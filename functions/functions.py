@@ -9,7 +9,7 @@ import pywt
 import sys
 
 def loadfidold(name,plot):
-    """loads Topspin FID and all other useful info"""
+    """loads Topspin FID and other useful info"""
     
     f=open(name, mode='rb') #open(path + "fid", mode='rb')
     fid = np.frombuffer(f.read(), dtype = int) #float to avoid condvta nonsense
@@ -20,7 +20,7 @@ def loadfidold(name,plot):
     
     g=open("acqus", mode='r')
     lines=g.readlines()
-    SW = float(lines[269].split()[1])
+    SW = float(lines[269].split()[1]) #269
     DW = 1/SW
     
     td = len(fid)
@@ -35,7 +35,7 @@ def loadfidold(name,plot):
     return fid, SW
 
 def loadfid(name,plot):
-    """loads Topspin FID and all other useful info"""
+    """loads Topspin FID and other useful info"""
     
     f=open(name, mode='rb') #open(path + "fid", mode='rb')
     fid = np.frombuffer(f.read(), dtype = float) #float to avoid condvta nonsense
@@ -46,7 +46,8 @@ def loadfid(name,plot):
     
     g=open("acqus", mode='r')
     lines=g.readlines()
-    SW = float(lines[268].split()[1])
+    #SW = float(lines[268].split()[1])
+    SW = float(lines[267].split()[1])
     DW = 1/SW
     td = len(fid)
     time = np.linspace(0, DW*td, num=td)
@@ -59,11 +60,13 @@ def loadfid(name,plot):
         plt.xlabel('Time (s)')
     return fid, SW
 
-def freqaxis(SW,zfi):
+def freqaxis(fid,SW):
     "Generate the referenced frequency axis (in kHz) as an array"
     
+    zfi = autozero(fid)
     g=open("acqus", mode='r')
     lines=g.readlines()
+    #SW = float(lines[268].split()[1]) #problem reading SW b/t pp's
     #BF1 = float(lines[19].split()[1])
     #SFO1 = float(lines[227].split()[1])
     cwd = os.getcwd()
@@ -104,12 +107,17 @@ def gauss(fid,lb):
         gbfid = fid
     return gbfid
 
+def fft(fid):
+    zfi = autozero(fid)
+    spec = np.fft.fftshift(np.fft.fft(fid,n=zfi))
+    return spec
+
 def fmc(fid,SW):
     """Calculates a FT and magnitude calculation of the FID"""
     
     zfi = autozero(fid)
     spec = np.fft.fftshift(scipy.fft(fid,n=zfi))
-    freq = freqaxis(SW,zfi)
+    freq = freqaxis(fid,SW)
     
     plt.gca().invert_xaxis()
     plt.plot(freq,np.abs(spec),'m')
@@ -149,21 +157,25 @@ def phase(spec, phases):
 
 def autophase(spec,n,phase2):
     td = spec.size
-    i = np.linspace(0,td,td)     # ph1 variables (in pts)
-    j = np.linspace(0,360,td)     # ph0 variables  (in degrees)
-    l = np.linspace(400*90,-400*90,td)  # ph2 variables (in degrees)
+    size = td
+    if size > 512:
+        size = 512
+    i = np.linspace(0,td,size)     # ph1 variables (in pts)
+    j = np.linspace(0,360,size)     # ph0 variables  (in degrees)
+    l = np.linspace(600*90,-600*90,size)  # ph2 variables (in degrees)
     ph0_1 = np.zeros(n)
     BestOffset = np.zeros(n)
-    offsets = np.arange(td,-td+1,-4)
-    Iter1 = np.zeros((n,td))
+    #offsets = np.arange(td,-td+1,-4)
+    offsets = np.linspace(-td/2,td/2,10)
+    Iter1 = np.zeros((n,size))
     M_ph1 = np.zeros(n)
     M_ph0 = np.zeros(n)
     ph1_1 = np.zeros(n)
-    Iter3 = np.zeros((n,td))
+    Iter3 = np.zeros((n,size))
     area1 = np.zeros(n)
     ph2_1 = np.zeros(n)
     if phase2 == 'yes':
-        Iter2 = np.zeros((n,len(offsets),td))
+        Iter2 = np.zeros((n,len(offsets),size))
         M_ph2 = np.zeros((n,len(offsets)))
         
     for k in range(n):
@@ -189,7 +201,7 @@ def autophase(spec,n,phase2):
                     Iter2[k,mm,r] = np.sum(np.real(phase(spec,[ph0_1[k],360*ph1_1[k],l[r],(offsets[mm])])))
                 M_ph2[k,mm] = np.max(abs(Iter2[k,mm,:]))
         
-            BestOffsetIndex = int(np.argwhere(abs(M_ph2[k,:]) == np.max(abs(M_ph2[k,:]))))
+            BestOffsetIndex = int( np.min( np.argwhere(abs(M_ph2[k,:]) == np.max(abs(M_ph2[k,:]))) ))
             BestOffset[k] = offsets[BestOffsetIndex]
             ph2_1[k] = l[np.argwhere((abs(Iter2[k,BestOffsetIndex])) == abs(M_ph2[k,BestOffsetIndex]))]
     
@@ -203,13 +215,13 @@ def autophase(spec,n,phase2):
         ph1 = ph1_1[a]
         ph2 = ph2_1[a]
     
-        i = ph1 + np.linspace(-64/(k+1), 64/(k+1), round(td/(k+1))) #MJJ shrinks these sizes each run, but mismatches with spec
-        j = ph0 + np.linspace(0, 360/(k+1), round(td/(k+1)))
-        l = ph2 + np.linspace(400*90/(k+1), -400*90/(k+1), round(td/(k+1)))
-        offsets = BestOffset[a] + np.linspace(128,-128, len(offsets))
+        i = ph1 + np.linspace(-64/(k+1), 64/(k+1), round(size/(k+1))) #MJJ shrinks these sizes each run, but mismatches with spec
+        j = ph0 + np.linspace(0, 360/(k+1), round(size/(k+1)))
+        l = ph2 + np.linspace(400*90/(k+1), -400*90/(k+1), round(size/(k+1)))
+        offsets = BestOffset[a] + np.linspace(128,-128, round(len(offsets)))
         #offsets = BestOffset[a] + np.linspace(round(td/(2*(k+1))),-round(td/(2*(k+1))), round(td/(k+1)))
         
-        print('Iteration %d/%d' % (k,n-1))
+        print('Iteration %d/%d' % (k+1,n))
         
     off = BestOffset[a]
     phases = [ph0,ph1*360,ph2,off]
@@ -222,18 +234,24 @@ def autophase(spec,n,phase2):
     print(phases)
     return phases
 
-def coadd(fid,SW,lb,plot):
+def coadd(fid,lb,plot):
     """Automatically coadd all spin echos and FT and MC"""
     """Specifically works for WCPMG data acquired on NEO"""
     
-    DW = 1/SW #(s)
+    ##Numbers are all different for diff WCPMG pp :(
     g=open("acqus", mode='r')
     lines=g.readlines()
+    #SW = float(lines[268].split()[1])
+    SW = float(lines[267].split()[1])
     d3 = float(lines[42].split()[3]) #d3 dead time (s)
     d6 = float(lines[42].split()[6]) #d6 acq time (s)
-    decim = int(lines[47].split()[1]) #decimation number
-    l22 = int(lines[118].split()[22]) #number of echoes
-    tp = float(lines[168].split()[11]) #p11 pulse width in WCPMG (us)*
+    #decim = int(lines[47].split()[1]) #decimation number
+    decim = int(lines[49].split()[1]) #decimation number
+    #l22 = int(lines[118].split()[22]) #number of echoes
+    l22 = int(lines[121].split()[22]) #number of echoes
+    #tp = float(lines[168].split()[11]) #p11 pulse width in WCPMG (us)*
+    tp = float(lines[170].split()[11]) #p11 pulse width in WCPMG (us)*
+    DW = 1/SW #(s)
     
     fid = fid[(2*decim-1):] #remove decimation points
     fid = fid[:int((l22)*np.round((d6 + 2*d3 + 2e-6 + tp*1e-6)/DW))] #remove trailing pts
@@ -246,11 +264,10 @@ def coadd(fid,SW,lb,plot):
     group = int(np.round((2*d3 + 2e-6 + tp*1e-6)/DW))
     fidcoadd = fidcoadd[round(group/2):len(fidcoadd)-round(group/2)] #kills filters too
        
-    zfi = autozero(fidcoadd)#auto zero-fill code
+    #zfi = autozero(fidcoadd)#auto zero-fill code
     fidcoadd = gauss(fidcoadd,lb)
-    
-    spec = np.fft.fftshift(scipy.fft(fidcoadd,n=zfi))
-    freq=freqaxis(SW,zfi)
+    spec = fft(fidcoadd)
+    freq = freqaxis(fidcoadd,SW)
     
     if plot=='yes':
         plt.gca().invert_xaxis()
@@ -443,10 +460,11 @@ def deT2fit(matrix,tau):
     plt.legend()
     return
 
-def cadzow(fid,r,SW,phases,lb):
+def cadzow(fid,phases,SW,lb):
     """Create Hankel matrix and use SVD to denoise fid"""
     
     l = round(len(fid)/2)
+    print(l)
     a = fid[:l+1] ##Note that in hankel(c,r) r[0] is ignored*
     ##...so need to incude r[0] as the last point in c!!
     b = fid[l:]
@@ -457,11 +475,16 @@ def cadzow(fid,r,SW,phases,lb):
     #U, s, Vt = scipy.linalg.svd(hank) #s is a vector of singular values, not a matrix, Vt is already transposed
     U, s, Vt = np.linalg.svd(hank) #s is a vector of singular values, not a matrix, Vt is already transposed
     s = np.array(s)
-    plt.figure(1)
-    plt.plot(s,'*')
-    plt.yscale('log')
-    plt.ylabel('Singular Value Magnitude')
-    plt.xlabel('Singular Value Entry')
+    s1 = np.flipud(np.diff(np.flipud(s)))
+    #plt.figure(1)
+    #plt.plot(s,'*')
+    #plt.plot(s1,'m.')
+    #plt.yscale('log')
+    #plt.ylabel('Singular Value Magnitude')
+    #plt.xlabel('Singular Value Entry')
+    
+    r = np.argmax(s1[round(0.1*len(s1)):]) + round(0.1*len(s1))
+    print('Retaining %d singular values' % r)
     
     s[(r):] = 0
     sigma = scipy.linalg.diagsvd(s, m, n) #rebuilds s as sigma matrix
@@ -492,10 +515,10 @@ def cadzow(fid,r,SW,phases,lb):
     plt.plot(np.real(fidrecon),'r')
     plt.title('Cadzow Denoising', fontsize=18)
     
-    zfi = autozero(fid)
-    spec = np.fft.fftshift(scipy.fft(fid,n=zfi))
-    specrecon = np.fft.fftshift(scipy.fft(fidrecon,n=zfi))
-    freq = freqaxis(SW,zfi)
+    #zfi = autozero(fid)
+    spec = fft(fid)
+    specrecon = fft(fidrecon)
+    freq = freqaxis(fid,SW)
     
     if phases == 0:
         spec = np.abs(spec)
@@ -516,11 +539,11 @@ def cadzow(fid,r,SW,phases,lb):
     
     return fidrecon
 
-def wavelet(fid,SW,phases,thresh,lb):
+def dwt(fid,SW,phases,thresh,lb):
     """Denoising with discrete wavelet transform"""
     
     def autozero2(fid):
-        """Automatically zero fill fid"""
+        """Automatically zero fill fid up to first possible Fourier number"""
         td = len(fid)
         zf = [2**n for n in range(28)] #auto zero-fill
         for i in range(24):
@@ -533,21 +556,30 @@ def wavelet(fid,SW,phases,thresh,lb):
     q = autozero2(fid)
     fid= np.pad(fid,(0,q-len(fid)), 'constant', constant_values=(0, 0))
     print(len(fid))
-    wavelet="coif5" #"coif5","sym5","db6","bior2.4","rbio3.7"
+    wavelet="sym10" #"coif5","sym5","db6","bior2.4","rbio3.7"
     thresh = thresh*np.max(fid)
     coeff = pywt.wavedec(fid, wavelet)#, mode="per" ) #careful on mode
-    coeff[1:] = (pywt.threshold(i, value=thresh, mode="soft" ) for i in coeff[1:])
+    ##Calc the Sj's
+    S = np.zeros(len(coeff),dtype='complex')
+    for i in range(len(coeff)):
+        S[i] = (np.max( np.abs(coeff[i]) ) / np.sum( np.abs(coeff[i]) ))
+    T = 0.002
+    k = np.argwhere(  S <= T ) 
+    coeff[np.min(k):] = (pywt.threshold(i, value=thresh, mode="soft" ) for i in coeff[np.min(k):])
+    print(S)
+    #k = 8
+    #coeff[k:] = (pywt.threshold(i, value=thresh, mode="soft" ) for i in coeff[k:])
     fidrecon = pywt.waverec(coeff, wavelet)#, mode="per" ) #careful on mode
     #rec = lowpassfilter(signal, 0.4)
     
     #coeff = pywt.swt(fid, wavelet)
     
-    fid = gauss(fid,lb)
-    fidrecon = gauss(fidrecon,lb)
+    #fid = gauss(fid,lb)
+    #fidrecon = gauss(fidrecon,lb)
     
     plt.figure(1)
     for i in range(len(coeff)):
-        plt.plot(np.real(coeff[i]), label = 'D[%1d]'%i)
+        plt.plot(np.real(coeff[i]) - i*np.max(np.real(np.array(coeff[i]))), label = 'D_%1d'%i)
     plt.legend()
     
     plt.figure(2)
@@ -559,8 +591,8 @@ def wavelet(fid,SW,phases,thresh,lb):
     plt.ylabel('Intensity (a.u.)', fontsize=14)
     
     zfi = autozero(fid)
-    spec = np.fft.fftshift(scipy.fft(fid,n=zfi))
-    specrecon = np.fft.fftshift(scipy.fft(fidrecon,n=zfi))
+    spec = fft(fid)
+    specrecon = fft(fidrecon)
     freq = freqaxis(SW,zfi)
     
     if phases == 0:
@@ -582,10 +614,10 @@ def wavelet(fid,SW,phases,thresh,lb):
     
     return fidrecon, coeff
 
-def swavelet(fid,SW,phases,thresh,lb):
+def swt(fid,SW,phases,thresh,lb):
     """Denoising with stationary wavelet transform"""
     
-    k = 4
+    k = 6
     
     def autozero2(fid):
         """Automatically zero fill fid"""
@@ -650,8 +682,8 @@ def swavelet(fid,SW,phases,thresh,lb):
     plt.ylabel('Intensity (a.u.)', fontsize=14)
     
     zfi = autozero(fid)
-    spec = np.fft.fftshift(scipy.fft(fid,n=zfi))
-    specrecon = np.fft.fftshift(scipy.fft(fidrecon,n=zfi))
+    spec = fft(fid)
+    specrecon =fft(fidrecon)
     freq = freqaxis(SW,zfi)
     
     if phases == 0:
@@ -672,3 +704,63 @@ def swavelet(fid,SW,phases,thresh,lb):
     plt.xlabel('Frequency (kHz)', fontsize=14)
     
     return fidrecon, coeff
+
+def dwtf(fid,SW,phases,thresh,lb):
+    """Denoising with discrete wavelet transform in the frequency domain"""
+    
+    zfi = autozero(fid)
+    spec = np.fft.fftshift(scipy.fft(fid,n=zfi))
+    freq = freqaxis(SW,zfi)
+    
+    wavelet="sym10" #"coif5","sym5","db6","bior2.4","rbio3.7"
+    thresh = thresh*np.max(fid)
+    coeff = pywt.wavedec(spec, wavelet)#, mode="per" ) #careful on mode
+    ##Calc the Sj's
+    S = np.zeros(len(coeff),dtype='complex')
+    for i in range(len(coeff)):
+        S[i] = (np.max( np.abs(coeff[i]) ) / np.sum( np.abs(coeff[i]) ))
+    T = 0.02
+    k = np.argwhere(  S <= T ) 
+    coeff[np.min(k):] = (pywt.threshold(i, value=thresh, mode="soft" ) for i in coeff[np.min(k):])
+    print(S)
+    #k = 8
+    #coeff[k:] = (pywt.threshold(i, value=thresh, mode="soft" ) for i in coeff[k:])
+    specrecon = pywt.waverec(coeff, wavelet)#, mode="per" ) #careful on mode
+    #rec = lowpassfilter(signal, 0.4)
+    
+    #coeff = pywt.swt(fid, wavelet)
+    
+    #fid = gauss(fid,lb)
+    #fidrecon = gauss(fidrecon,lb)
+    
+    plt.figure(1)
+    for i in range(len(coeff)):
+        plt.plot(np.real(coeff[i]) - i*np.max(np.real(np.array(coeff[i]))), label = 'D_%1d'%i)
+    plt.legend()
+    
+    plt.figure(2)
+    # plt.subplot(121)
+    # plt.plot(np.real(spec), color="k", alpha=0.7, label='Raw')
+    # plt.plot(np.real(specrecon), 'r', label='Wavelet', linewidth=2)
+    # plt.legend()
+    # plt.title('Wavelet Reconstruction', fontsize=18)
+    # plt.ylabel('Intensity (a.u.)', fontsize=14)
+    
+    if phases == 0:
+        spec = np.abs(spec)
+        specrecon = np.abs(specrecon)
+    else:
+        spec = phase(spec,phases)[0,:]
+        specrecon = phase(specrecon,phases)[0,:]
+    
+    rawsnr = snr(spec,j=0)
+    reconsnr = snr(specrecon,j=0)
+    
+    #plt.subplot(122)
+    plt.plot(freq,np.real(spec),'k',label='SNR = %.2f' %rawsnr)
+    plt.plot(freq,np.real(specrecon) + 1*np.max(np.abs(spec)),'r',label='SNR = %.2f' %reconsnr)
+    plt.gca().invert_xaxis()
+    plt.legend()
+    plt.xlabel('Frequency (kHz)', fontsize=14)
+    
+    return specrecon, coeff
