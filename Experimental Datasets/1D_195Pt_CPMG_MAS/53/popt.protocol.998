@@ -1,0 +1,32 @@
+
+Report of AU program poptau
+# Start time: 2021-09-28 14:41:02.243 -0400
+
+Number of experiments: 10
+total experiment time will be:  5 min 20 sec
+
+F1P=-911.516ppm F2P=-8663.408ppm
+PH_mode=2  FT_mod=6
+
+
+PROCNO=998
+
+Linear optimization of PCPD 2 in 10 steps, as Step: Group 1
+starting at 1.000000000   endval= 10.000000000 
+OPTIMUM= POSMAX
+VARMOD= LIN
+
+Experiment     PCPD 2         Maximum point   Minimum point       Integral
+     1       1.000000000000       476008280           99480      29261340.059769
+     2       2.000000000000       440185184          189707      29245068.059647
+     3       3.000000000000       455932187           27417      29363514.377609
+     4       4.000000000000       454416772           61780      29153814.445114
+     5       5.000000000000       441713831           40335      29327248.323486
+     6       6.000000000000       429242374           89190      29271572.572235
+     7       7.000000000000       464286453          212843      29286139.051407
+     8       8.000000000000       506632153          184546      29222044.332733
+     9       9.000000000000       437010957          213127      29332294.157013
+    10      10.000000000000       417404844           18672      28941085.354492
+poptau for PCPD 2 finished.
+POSMAX at experiment 8:  PCPD 2 = 8.000000  
+

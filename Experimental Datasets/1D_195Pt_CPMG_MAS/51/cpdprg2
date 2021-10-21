@@ -1,0 +1,6 @@
+;$OWNER=BRUKER
+  0.3u fq=cnst21 
+  0.5u pl=pl12
+1 pcpd:0
+  pcpd:180
+jump to 1

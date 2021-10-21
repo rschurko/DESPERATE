@@ -1,0 +1,19 @@
+
+Report of AU program poptau
+# Start time: 2021-05-30 13:43:18.005 -0400
+
+Number of experiments: 19
+total experiment time will be:  2 min 32 sec
+
+F1P=667.913ppm F2P=-449.294ppm
+PH_mode=1  FT_mod=6
+
+
+PROCNO=998
+
+Linear optimization of P 1 in 19 steps, as Step: Group 1
+starting at 1.000000000   endval= 19.000000000 
+OPTIMUM= POSMAX
+VARMOD= LIN
+
+poptaustop was executed for P 1, step 17

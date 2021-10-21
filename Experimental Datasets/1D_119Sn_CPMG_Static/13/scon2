@@ -1,0 +1,24 @@
+##TITLE= Parameter file, TopSpin 4.1.1
+##JCAMPDX= 5.0
+##DATATYPE= Parameter Values
+##NPOINTS= 81	$$ modification sequence number
+##ORIGIN= Bruker BioSpin GmbH
+##OWNER= rschurko
+$$ 2021-05-30 14:50:56.328 -0400  rschurko@600wb1.magnet.fsu.edu
+$$ /opt/topspin4.1.1/data/altenhof/nmr/SnO_May30_2021/13/scon2
+$$ process /opt/topspin4.1.1/prog/mod/acqdataserver
+##$BLKTR= (0..32)
+3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+##$DE1= 4.5
+##$DEADC= 0.5
+##$DEPA= 4.5
+##$DERX= 1.5
+##$GRADPRE= (0..1)
+10 10
+##$HD_BLKTR= (0..32)
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+##$HD_DE1= 5
+##$HD_DEADC= 0
+##$HD_DEPA= 2.5
+##$HD_DERX= 0
+##END=

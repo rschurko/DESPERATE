@@ -1,0 +1,80 @@
+; WURST-CPMG (TopSpin 4.0)
+
+; see L.A. O'Dell and R.W. Schurko, Chem. Phys. Lett. 464 (2008) 97-102
+; uses pre-made WURST pulse W_50us_500kHz_500
+; easiest to phase via a magnitude calculation "mc"
+; ARA mods Jan 18, 2021
+; fixed echod May 2021
+
+;parameters:
+;ns : 8 * n
+;d1 : recycle delay
+;d3 : time to allow pulse ringdown, 10 to 100 us
+;d6 : enter duration of echo
+;pl1 : Not used
+;pl2 : not used
+;pl12 : decoupling power - f2 set to max 50 KHz
+;p11 : WURST pulse length 
+;sp1 power level 
+;spnam1: typically W_50us_0500KHz_500
+;l22 : # of echos to be acquired  
+;cnst1 : set TD to be number of complex points acquired
+
+
+;value of DEPA may need to be set to 10 us: check edscon
+
+
+;$COMMENT=quadrupolar WURST-QCPMG sequence, samples continuously
+;$CLASS=Solidsfmc
+;$DIM=1D
+;$TYPE=half integer quadrupoles
+;$SUBTYPE=simple 1D
+;$OWNER=Martine Monette
+#include <Avance.incl>
+#include <De.incl>
+;prosol relations=
+ 
+"d11=30m"
+define delay echod
+"echod=(d6/2-p11/2 + d3)"
+
+;"l22 = (aq / (d3+p11+d3+1u+d6))"
+define delay rest
+"cnst1=((d6+d3*2+p11)*l22+d6)/dw"
+"rest=aq-(cnst1*dw)"
+"acqt0=1u*cnst11"
+ 
+1 ze
+ 
+2 d11 do:f2
+  d1
+  1u pl12:f2
+  10u reset1:f1							; reset NCO1 to 0 on channel 1
+  ACQ_START(ph30,ph31)
+  1u cpds2:f2
+  (p11:sp1 ph1):f1					; excitation adiabatic pulse
+  echod
+ 
+  1u START_NEXT_SCAN				; tell receiver to acquire TD points
+	 
+3 (p11:sp1 ph2):f1					; adiabatic pulse in train
+  d3
+  1u
+  d6 REC_UNBLK							; starts acquisition on receiver (generates RGP_HPPR, RGP_ADC, RGP_RX)
+  1u REC_BLK 								; stops acquisition
+  d3  
+lo to 3 times l22
+  1u do:f2
+  1u REC_BLK
+  rest
+  1u
+  rcyc=2
+  d11 mc #0 to 2 F0(zd)
+exit
+
+ph0=0
+ph1=0 0 1 1 2 2 3 3
+ph2=1 3 2 0 3 1 0 2
+ph30=0
+ph31=0 0 1 1 2 2 3 3
+

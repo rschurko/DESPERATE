@@ -1,0 +1,148 @@
+# 1 "/root/.topspin-BladeEpu/local_acqu/ppDirs/wcpmg_v2.ara"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "/root/.topspin-BladeEpu/local_acqu/ppDirs/wcpmg_v2.ara"
+; WURST-CPMG (TopSpin 4.0)
+
+; see L.A. O'Dell and R.W. Schurko, Chem. Phys. Lett. 464 (2008) 97-102
+; uses pre-made WURST pulse W_50us_500kHz_500
+; easiest to phase via a magnitude calculation "mc"
+; ARA mods Jan 18, 2021
+; fixed echod May 2021
+
+;parameters:
+;ns : 8 * n
+;d1 : recycle delay
+;d3 : time to allow pulse ringdown, 10 to 100 us
+;d6 : enter duration of echo
+;pl1 : Not used
+;pl2 : not used
+;pl12 : decoupling power - f2 set to max 50 KHz
+;p11 : WURST pulse length 
+;sp1 power level 
+;spnam1: typically W_50us_0500KHz_500
+;l22 : # of echos to be acquired  
+;cnst1 : set TD to be number of complex points acquired
+# 24 "/root/.topspin-BladeEpu/local_acqu/ppDirs/wcpmg_v2.ara"
+;value of DEPA may need to be set to 10 us: check edscon
+
+
+;$COMMENT=quadrupolar WURST-QCPMG sequence, samples continuously
+;$CLASS=Solidsfmc
+;$DIM=1D
+;$TYPE=half integer quadrupoles
+;$SUBTYPE=simple 1D
+;$OWNER=Martine Monette
+# 1 "/root/.topspin-BladeEpu/local_acqu/ppDirs/Avance.incl" 1
+;Avance4.incl
+;   for AV 4
+;
+;avance-version (16/08/18)
+;
+;$CLASS=HighRes Incl
+;$COMMENT=
+
+
+# 19 "/root/.topspin-BladeEpu/local_acqu/ppDirs/Avance.incl"
+;setrtp0 denotes TimingController
+
+
+# 50 "/root/.topspin-BladeEpu/local_acqu/ppDirs/Avance.incl"
+# 51 "/root/.topspin-BladeEpu/local_acqu/ppDirs/Avance.incl"
+
+
+# 63 "/root/.topspin-BladeEpu/local_acqu/ppDirs/Avance.incl"
+# 89 "/root/.topspin-BladeEpu/local_acqu/ppDirs/Avance.incl"
+# 90 "/root/.topspin-BladeEpu/local_acqu/ppDirs/Avance.incl"
+
+
+# 123 "/root/.topspin-BladeEpu/local_acqu/ppDirs/Avance.incl"
+;#define LOWQ
+;#define HIGHQ
+
+
+;#define MIX_UP
+;#define MIX_DOWN
+# 136 "/root/.topspin-BladeEpu/local_acqu/ppDirs/Avance.incl"
+;$Id: Avance4.incl,v 1.11 2016/11/11 13:43:39 ber Exp $
+# 34 "/root/.topspin-BladeEpu/local_acqu/ppDirs/wcpmg_v2.ara" 2
+
+# 1 "/root/.topspin-BladeEpu/local_acqu/ppDirs/De.incl" 1
+;De4.incl
+;   for AV4
+;
+;avance-version (15/08/13)
+;
+;$CLASS=HighRes Incl
+;$COMMENT=
+
+# 18 "/root/.topspin-BladeEpu/local_acqu/ppDirs/De.incl"
+;for multi receive
+
+
+# 27 "/root/.topspin-BladeEpu/local_acqu/ppDirs/De.incl"
+;$Id: De4.incl,v 1.3 2015/08/13 12:41:31 ber Exp $
+# 35 "/root/.topspin-BladeEpu/local_acqu/ppDirs/wcpmg_v2.ara" 2
+;prosol relations=
+ 
+"d11=30m"
+define delay echod
+"echod=(d6/2-p11/2 + d3)"
+
+;"l22 = (aq / (d3+p11+d3+1u+d6))"
+define delay rest
+"cnst1=((d6+d3*2+p11)*l22+d6)/dw"
+"rest=aq-(cnst1*dw)"
+"acqt0=1u*cnst11"
+ 
+# 1 "mc_line 47 file /root/.topspin-BladeEpu/local_acqu/ppDirs/wcpmg_v2.ara exp. def. part of mc cmd. before ze"
+; dimension 1D; AQ_mode 
+define delay MCWRK
+define delay MCREST
+"MCREST = d11 - d11"
+"MCWRK = 0.333333*d11"
+# 47 "/root/.topspin-BladeEpu/local_acqu/ppDirs/wcpmg_v2.ara"
+1 ze
+# 1 "mc_line 47 file /root/.topspin-BladeEpu/local_acqu/ppDirs/wcpmg_v2.ara exp. def. of mc cmd. after ze"
+# 48 "/root/.topspin-BladeEpu/local_acqu/ppDirs/wcpmg_v2.ara"
+ 
+# 1 "mc_line 49 file /root/.topspin-BladeEpu/local_acqu/ppDirs/wcpmg_v2.ara exp. start label for mc cmd."
+2 MCWRK  * 2 do:f2
+LBLF0, MCWRK 
+  MCREST
+# 50 "/root/.topspin-BladeEpu/local_acqu/ppDirs/wcpmg_v2.ara"
+  d1
+  1u pl12:f2
+  10u reset1:f1							; reset NCO1 to 0 on channel 1
+  (de adc ph31 syrec) (1u 1u ph30:r):f1
+  1u cpds2:f2
+  (p11:sp1 ph1):f1					; excitation adiabatic pulse
+  echod
+ 
+  1u setrtp1|0				; tell receiver to acquire TD points
+	 
+3 (p11:sp1 ph2):f1					; adiabatic pulse in train
+  d3
+  1u
+  d6 setrtp1|26							; starts acquisition on receiver (generates RGP_HPPR, RGP_ADC, RGP_RX)
+  1u setrtp1^26 								; stops acquisition
+  d3  
+lo to 3 times l22
+  1u do:f2
+  1u setrtp1^26
+  rest
+  1u
+  rcyc=2
+# 1 "mc_line 72 file /root/.topspin-BladeEpu/local_acqu/ppDirs/wcpmg_v2.ara exp. mc cmd. in line"
+  MCWRK wr #0
+  MCWRK zd
+  lo to LBLF0 times td0
+
+# 73 "/root/.topspin-BladeEpu/local_acqu/ppDirs/wcpmg_v2.ara"
+exit
+
+ph0=0
+ph1=0 0 1 1 2 2 3 3
+ph2=1 3 2 0 3 1 0 2
+ph30=0
+ph31=0 0 1 1 2 2 3 3

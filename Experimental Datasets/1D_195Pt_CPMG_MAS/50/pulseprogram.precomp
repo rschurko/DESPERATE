@@ -1,0 +1,145 @@
+# 1 "/root/.topspin-BladeEpu/local_acqu/ppDirs/wcpmg_MAS.jk"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "/root/.topspin-BladeEpu/local_acqu/ppDirs/wcpmg_MAS.jk"
+; qcpmg (TopSpin 2.0)
+
+; written by Stefan Steuernagel
+; pulse program for quadrupolar CPMG sequence
+; samples continuously, including ALL pulses and ringdown delays
+; may be used with digmod digital
+; important: only runs via SGU in channel 3
+; June 26 2015, modified by MJJ for rotor sync. CPMG acqusition according to Ivan Hung (JMR, 204 2010)
+; Jan 8, 2019, mod by AA, used for MAS-CPMG, using the same phase cycle as WCPMG (8 step), and calculate d3
+; Sept 28 2021, mod by AA, different dec program
+
+;parameters:
+;ns : 16 * n
+;d1 : recycle delay
+;d2 : echo delay (time of 1 echo/2 - p3/2)
+;d3 : time to allow pulse ringdown, (integer*rotorperiod - echo length - ref pulse)/2
+;d6 : enter duration of FID
+;pl1 : = Not used = 0
+;pl12 : decoupling power - f2 set to max 50kHz
+;p11 : WURST pulse length
+;sp1 : WURST power level 
+;spnam1: typically W_50us_0500KHz_500
+;p25 : dummy pulse, not used for acq.
+;l22 : # of echos to be acquired
+;l15 : integer multiple of rotational echoes
+;trot : MAS rotor period
+;cnst31 : =MAS spin rate, in Hz (or =1e6 for static)
+;setTD : set td to number of acquired complex data points
+# 30 "/root/.topspin-BladeEpu/local_acqu/ppDirs/wcpmg_MAS.jk"
+;$COMMENT=quadrupolar CPMG sequence, samples continuously, pulses blanked out, requires DRU
+;$CLASS=Solids
+;$DIM=1D
+;$TYPE=half integer quadrupoles
+;$SUBTYPE=simple 1D
+;$OWNER=Bruker
+;include <Avancesolids.incl>
+
+# 1 "/root/.topspin-BladeEpu/local_acqu/ppDirs/Avance.incl" 1
+;Avance4.incl
+;   for AV 4
+;
+;avance-version (16/08/18)
+;
+;$CLASS=HighRes Incl
+;$COMMENT=
+
+# 19 "/root/.topspin-BladeEpu/local_acqu/ppDirs/Avance.incl"
+;setrtp0 denotes TimingController
+
+
+# 50 "/root/.topspin-BladeEpu/local_acqu/ppDirs/Avance.incl"
+# 51 "/root/.topspin-BladeEpu/local_acqu/ppDirs/Avance.incl"
+
+
+# 63 "/root/.topspin-BladeEpu/local_acqu/ppDirs/Avance.incl"
+# 89 "/root/.topspin-BladeEpu/local_acqu/ppDirs/Avance.incl"
+# 90 "/root/.topspin-BladeEpu/local_acqu/ppDirs/Avance.incl"
+
+
+# 123 "/root/.topspin-BladeEpu/local_acqu/ppDirs/Avance.incl"
+;#define LOWQ
+;#define HIGHQ
+
+
+;#define MIX_UP
+;#define MIX_DOWN
+# 136 "/root/.topspin-BladeEpu/local_acqu/ppDirs/Avance.incl"
+;$Id: Avance4.incl,v 1.11 2016/11/11 13:43:39 ber Exp $
+# 38 "/root/.topspin-BladeEpu/local_acqu/ppDirs/wcpmg_MAS.jk" 2
+
+# 1 "/root/.topspin-BladeEpu/local_acqu/ppDirs/De.incl" 1
+;De4.incl
+;   for AV4
+;
+;avance-version (15/08/13)
+;
+;$CLASS=HighRes Incl
+;$COMMENT=
+
+# 18 "/root/.topspin-BladeEpu/local_acqu/ppDirs/De.incl"
+;for multi receive
+
+
+# 27 "/root/.topspin-BladeEpu/local_acqu/ppDirs/De.incl"
+;$Id: De4.incl,v 1.3 2015/08/13 12:41:31 ber Exp $
+# 39 "/root/.topspin-BladeEpu/local_acqu/ppDirs/wcpmg_MAS.jk" 2
+;#include <Delayssolids.incl>
+
+define delay trot
+"trot=1/cnst31"
+"d2=(d6-p11)/2"
+"d3=((2*l15*trot)-d6-p11)/2"
+define loopcounter setTD
+"setTD=((d6+d3*2+p11)*l22+d6)/dw"
+define delay del3
+"del3=d3-1u"
+"cnst1=((d6+d3*2+p11)*l22+d6)/dw"
+define delay rest
+"rest=aq-(cnst1*dw)"
+;"p25=1/cnst1"
+;"p25=p25"
+;cnst11 : to adjust t=0 for acquisition, if digmod = baseopt
+"acqt0=1u*cnst11"
+
+# 57 "/root/.topspin-BladeEpu/local_acqu/ppDirs/wcpmg_MAS.jk"
+1 ze
+2 d11 do:f2 
+  d1
+  ;1u pl9:f2
+  10u reset:f1
+  (de adc ph31 syrec) (1u 1u ph30:r):f1
+  ;STARTADC
+  ;RESETPHASE
+  ;1u RG_OFF
+  ;1u pl9:f2
+  ;1u cw:f2
+  1u cpds2:f2
+  (p11:sp1 ph1):f1			; WURST excitation pulse 
+  d2										; out echo delay (d2 = d6/2-p3/2)
+  d3										; out ring down delay
+  0.1u setrtp1|0
+3 (p11:sp1 ph2):f1						; out pi refocusing pulse
+  del3									; out ring down delay - 1us
+  1u ;DWL_CLK_ON					
+  d6 setrtp1|26;RG_ON							; out acq. time
+  1u setrtp1^26;RG_OFF							
+  del3									; out ring down delay -1us
+lo to 3 times l22		
+  1u do:f2
+  1u setrtp1^26;RG_OFF
+  1u ;DWL_CLK_OFF
+  rest
+  rcyc=2
+  10m wr #0
+exit
+   
+ph0=0
+ph1=0 0 1 1 2 2 3 3
+ph2=1 3 2 0 3 1 0 2
+ph30=0
+ph31=0 0 1 1 2 2 3 3
