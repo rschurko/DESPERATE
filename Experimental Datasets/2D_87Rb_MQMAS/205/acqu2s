@@ -1,0 +1,24 @@
+##TITLE= Parameter file, TopSpin 4.1.1
+##JCAMPDX= 5.0
+##DATATYPE= Parameter Values
+##NPOINTS= 131	$$ modification sequence number
+##ORIGIN= Bruker BioSpin GmbH
+##OWNER= rschurko
+$$ 2021-09-28 05:31:52.208 -0400  rschurko@600wb1.magnet.fsu.edu
+$$ /opt/topspin4.1.1/data/altenhof/nmr/RbNO3_MQMAS_Sept27_2021/205/acqu2s
+$$ process /opt/topspin4.1.1/prog/mod/acqdataserver
+##$ACQT0= 0
+##$BF1= 196.355444
+##$FnILOOP= 0
+##$FnMODE= 1
+##$NUC1= <87Rb>
+##$NusJSP= 0
+##$NusT2= 1
+##$NusTD= 129
+##$O1= -13352.170192
+##$ProjAngle= 0
+##$SFO1= 196.341389270029
+##$SW= 50.9316962520163
+##$SW_h= 10000
+##$TD= 129
+##END=

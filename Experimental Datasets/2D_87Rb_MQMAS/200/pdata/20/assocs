@@ -1,0 +1,11 @@
+##TITLE= Parameter file, TopSpin 4.0.7
+##JCAMPDX= 5.0
+##DATATYPE= Parameter Values
+##NPOINTS= 1	$$ modification sequence number
+##ORIGIN= Bruker BioSpin GmbH
+##OWNER= SRG
+$$ 2021-10-01 13:09:00.461 -0400  SRG@DESKTOP-R5S7N7V
+$$ C:/Users/SRG/Documents/Adam/Spectromter_Data/RbNO3_MQMAS_Sept27_2021/200/pdata/20/assocs
+$$ process C:\Bruker\TopSpin4.0.7\prog\mod\dirdata.exe
+##$MULTDISP= <>
+##END=

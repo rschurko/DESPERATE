@@ -1,0 +1,102 @@
+# 1 "/root/.topspin-BladeEpu/local_acqu/ppDirs/mp3q3h_nospam.ih"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "/root/.topspin-BladeEpu/local_acqu/ppDirs/mp3q3h_nospam.ih"
+; mp3q3h.ih
+
+; 3Q MAS pulse program for S>3/2 half-integer spin nuclei
+; for 3/2 nuclei set: in10 = in0*7/9, in11 = 0
+; for 5/2 nuclei set: in10 = 0, in11 = in0*19/12
+; for 7/2 nuclei set: in10 = 0, in11 = in0*101/45
+; for 9/2 nuclei set: in10 = 0, in11 = in0*91/36
+; excitation - t1(3Q) - conversion - opt.t1(1Q) - tau - 180sel - acquistion
+; 3-pulse experiment with full echo acquisition
+
+;ns : 96*n
+;p1 : excitation pulse at PL11
+;p2 : conversion pulse at PL11
+;p3 : selective 90 pulse at PL13
+;p4 : selective 180 pulse at PL14
+;d0 : initial t1 value
+;d1 : recycle delay
+;d6 : to allow full echo to build up
+;d10 : =0
+;d11 : =0
+;in0 : =rotor period for synchronized experiment
+;in10 : =in0*7/9 for 3/2, =0 for 5/2 and higher
+;in11 : =in0*19/12 for 5/2, in0*101/45 for 7/2
+;pl1 : =0 W
+;pl11 : excitation and conversion power level
+;pl13 : spam pulse power level
+;pl14 : pi-pulse power level
+;l1 : number of rotor cycles for synchronisation
+;cnst31 : MAS spin rate [Hz]
+;FnMODE : QF
+;zgoptns : -DtwoD, -Dd0tr or blank
+# 37 "/root/.topspin-BladeEpu/local_acqu/ppDirs/mp3q3h_nospam.ih"
+"d6=(1s*l1/cnst31)-(p2/2)-(p4/2)"
+
+
+"l0=td1-1"
+"d0=in0-(p1/2)-(p2/2)"
+;"in0=inf1"
+# 45 "/root/.topspin-BladeEpu/local_acqu/ppDirs/mp3q3h_nospam.ih"
+# 45 "/root/.topspin-BladeEpu/local_acqu/ppDirs/mp3q3h_nospam.ih"
+1 ze
+
+2 d1
+  10u pl11:f1
+  (3u ph1):f1
+  (p1 ph1):f1
+  1u
+
+# 55 "/root/.topspin-BladeEpu/local_acqu/ppDirs/mp3q3h_nospam.ih"
+  (p2 ph2):f1
+  d6
+  (p4 ph4 pl14):f1
+  go=2 ph31
+
+  10m wr #0 if #0 zd
+
+3 d1
+  10u pl11:f1
+  (3u ph1):f1
+  (p1 ph1):f1
+  d0
+  (p2 ph2):f1
+  d6
+; d10
+  (p4 ph4 pl14):f1
+; d11
+  go=3 ph31
+  10m wr #0 if #0 zd
+    15u id0
+;     5u id10
+;     5u id11
+  lo to 3 times l0
+# 81 "/root/.topspin-BladeEpu/local_acqu/ppDirs/mp3q3h_nospam.ih"
+exit
+
+ph0= 0
+ph2= 0
+
+;pathways to get echoes travelling forward with t1 in 2D
+;S=3/2, 0->-3->+1->-1
+ph1=(12) 0 11 10 9 8 7 6 5 4 3 2 1
+ph3= 0
+# 91 "/root/.topspin-BladeEpu/local_acqu/ppDirs/mp3q3h_nospam.ih"
+;S>3/2, 0->+3->+1->-1
+;ph1=(12) 0 1 2 3 4 5 6 7 8 9 10 11
+;ph3= 2
+
+;48-step phase cycle
+;ph4={0}*12 {1}*12 {2}*12 {3}*12
+;ph31=    0 3 2 1 0 3 2 1 0 3 2 1
+;         2 1 0 3 2 1 0 3 2 1 0 3
+
+;96-step phase cycle
+ph4=(8) {0}*12 {1}*12 {2}*12 {3}*12 {4}*12 {5}*12 {6}*12 {7}*12
+ph31= 0 3 2 1 0 3 2 1 0 3 2 1
+      1 0 3 2 1 0 3 2 1 0 3 2
+      2 1 0 3 2 1 0 3 2 1 0 3
+      3 2 1 0 3 2 1 0 3 2 1 0
