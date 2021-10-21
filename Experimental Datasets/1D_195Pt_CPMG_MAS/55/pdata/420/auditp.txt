@@ -1,0 +1,24 @@
+##TITLE= Audit trail, TopSpin 4.1.1
+##JCAMPDX= 5.01
+##ORIGIN= Bruker BioSpin GmbH
+##OWNER= rschurko
+$$ /opt/topspin4.1.1/data/altenhof/nmr/Pt(NH3)4Cl2_Sept28_2021/55/pdata/420/auditp.txt
+##AUDIT TRAIL=  $$ (NUMBER, WHEN, WHO, WHERE, PROCESS, VERSION, WHAT)
+(   1,<2021-09-28 22:35:51.244 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <accumulate start offset = 0 scale = 1 ppm
+       10 55 "Pt(NH3)4Cl2_Sept28_2021" "/opt/topspin4.1.1/data/altenhof/nmr"
+       data hash MD5: 512K
+       4D E6 9C 8D 1A B0 4A FD 26 27 29 A7 B6 1E 56 86>)
+(   2,<2021-09-28 22:35:51.534 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <accumulate offset = 0 scale = 1 ppm
+       10 54 "Pt(NH3)4Cl2_Sept28_2021" "/opt/topspin4.1.1/data/altenhof/nmr"
+       data hash MD5: 512K
+       FE 00 17 A1 01 F3 FC DA 98 26 11 AB 4F 50 57 07>)
+(   3,<2021-09-28 22:35:56.009 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <mc 
+       data hash MD5: 512K
+       82 38 B7 20 26 37 B1 CF A1 7B C9 FC 1F 55 56 0C>)
+##END=
+
+$$ hash MD5
+$$ 54 92 E0 48 F0 86 F3 8A AF 95 76 1C EE 1E EB 14

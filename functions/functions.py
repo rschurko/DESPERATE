@@ -8,7 +8,7 @@ from scipy.optimize import curve_fit
 import pywt
 import sys
 
-def loadfidold(name,plot):
+def loadfidold(name,plot='no'):
     """loads Topspin FID and other useful info"""
     
     f=open(name, mode='rb') #open(path + "fid", mode='rb')
@@ -34,7 +34,7 @@ def loadfidold(name,plot):
         plt.xlabel('Time (s)')
     return fid, SW
 
-def loadfid(name,plot):
+def loadfid(name,plot='no'):
     """loads Topspin FID and other useful info"""
     
     f=open(name, mode='rb') #open(path + "fid", mode='rb')
@@ -46,8 +46,9 @@ def loadfid(name,plot):
     
     g=open("acqus", mode='r')
     lines=g.readlines()
-    #SW = float(lines[268].split()[1])
-    SW = float(lines[267].split()[1])
+    for i in range(len(lines)):
+        if lines[i].split()[0] == '##$SW_h=': #SW actual index
+            SW = float(lines[i].split()[1])
     DW = 1/SW
     td = len(fid)
     time = np.linspace(0, DW*td, num=td)
@@ -64,11 +65,6 @@ def freqaxis(fid,zf=0):
     "Generate the referenced frequency axis (in kHz) as an array"
     
     zfi = autozero(fid,zf)
-    #g=open("acqus", mode='r')
-    #lines=g.readlines()
-    #SW = float(lines[268].split()[1]) #problem reading SW b/t pp's
-    #BF1 = float(lines[19].split()[1])
-    #SFO1 = float(lines[227].split()[1])
     cwd = os.getcwd()
     path = cwd + "\pdata\\1"
 
@@ -280,148 +276,124 @@ def autophase(spec,n,phase2='no'):
     print('[%d, %d, %d, %d]' % (phases[0],phases[1],phases[2],phases[3]))
     return phases
 
-def coadd(fid,lb,plot):
-    """Automatically coadd all spin echos and FT and MC"""
-    """Specifically works for WCPMG data acquired on NEO"""
-    
-    ##Numbers are all different for diff WCPMG pp :(
-    g=open("acqus", mode='r')
-    lines=g.readlines()
-    #SW = float(lines[268].split()[1])
-    SW = float(lines[267].split()[1])
-    d3 = float(lines[42].split()[3]) #d3 dead time (s)
-    d6 = float(lines[42].split()[6]) #d6 acq time (s)
-    #decim = int(lines[47].split()[1]) #decimation number
-    decim = int(round(float(lines[49].split()[1]))) #decimation number
-    #l22 = int(lines[118].split()[22]) #number of echoes
-    l22 = int(lines[121].split()[22]) #number of echoes
-    #tp = float(lines[168].split()[11]) #p11 pulse width in WCPMG (us)*
-    tp = float(lines[170].split()[11]) #p11 pulse width in WCPMG (us)*
-    DW = 1/SW #(s)
-    
-    fid = fid[(2*decim-1):] #remove decimation points
-    fid = fid[:int((l22)*np.round((d6 + 2*d3 + 2e-6 + tp*1e-6)/DW))] #remove trailing pts
-    
-    #plt.plot(np.real(fid))
-    
-    cpmg = np.transpose( np.reshape(fid, (l22, int(len(fid)/l22) )) )
-                      
-    fidcoadd = np.sum(cpmg, axis=1) #note that it's more robust to do 2D FT and then coadd
-
-    group = int(np.round((2*d3 + 2e-6 + tp*1e-6)/DW))
-    fidcoadd = fidcoadd[round(group/2):len(fidcoadd)-round(group/2)] #kills filters too
-       
-    #zfi = autozero(fidcoadd)#auto zero-fill code
-    fidcoadd = gauss(fidcoadd,lb)
-    spec = fft(fidcoadd)
-    freq = freqaxis(fidcoadd,SW)
-    
-    if plot=='yes':
-        plt.gca().invert_xaxis()
-        plt.plot(freq,np.abs(spec),'m')
-        plt.xlabel('Frequency (kHz)')
-    
-    return cpmg, fidcoadd, spec
-
-def coaddg(fid,plot='no'):
+def coadd(fid,MAS='no',plot='no'):
     """Automatically coadd all spin echos and FT"""
-    """Specifically works WCPMG data acquired on NEO with inconsistent spacings"""
+    """Specifically works for WCPMG data acquired on NEO with inconsistent spacings"""
     
-    ##Numbers are all different for diff WCPMG pp :(
     g=open("acqus", mode='r')
     lines=g.readlines()
-    #SW = float(lines[268].split()[1])
-    SW = float(lines[267].split()[1])
-    d3 = float(lines[42].split()[3]) #d3 dead time (s)
-    d6 = float(lines[42].split()[6]) #d6 acq time (s)
-    #decim = int(lines[47].split()[1]) #decimation number
-    decim = int(round(float(lines[49].split()[1]))) #decimation number
-    #l22 = int(lines[118].split()[22]) #number of echoes
-    l22 = int(lines[121].split()[22]) #number of echoes
-    #tp = float(lines[168].split()[11]) #p11 pulse width in WCPMG (us)*
-    tp = float(lines[170].split()[11]) #p11 pulse width in WCPMG (us)*
+    for i in range(len(lines)):
+        if lines[i] == '##$D= (0..63)\n': #D index -1
+            d3 = float(lines[i+1].split()[3])
+            d6 = float(lines[i+1].split()[6])
+        
+        if lines[i] == '##$L= (0..31)\n': #loop index -1
+            l22 = int(lines[i+1].split()[22]) #CPMG loops
+            l15 = int(lines[i+1].split()[15]) #MAS rotor sync integer
+        
+        if lines[i] == '##$P= (0..63)\n': #pulse width index -1
+            tp = float(lines[i+1].split()[11])
+        
+        if lines[i].split()[0] == '##$DECIM=': #Decim actual index
+            decim = int(round(float(lines[i].split()[1])))
+        
+        if lines[i].split()[0] == '##$SW_h=': #SW actual index
+            SW = float(lines[i].split()[1])
     DW = 1/SW #(s)
+    #par = [d3,d6,l22,l15,tp,decim,SW]
     
     fid = fid[(2*decim-1):] #remove decimation points
     fid = fid[:int((l22)*np.round((d6 + 2*d3 + 2e-6 + tp*1e-6)/DW))] #remove trailing pts
-    #plt.plot(np.real(fid))
     cpmg = np.transpose( np.reshape(fid, (l22, int(len(fid)/l22) )) )
     
     #For echo trains that aren't equally spaced, this roll algorithm will align them
-    for i in range(l22):
-        r = np.argmax(np.abs(np.real(cpmg[:,0]))) - np.argmax(np.abs(np.real(cpmg[:,i]))) #amount to roll by is difference of index of echo tops
-        cpmg[:,i] = np.roll(cpmg[:,i],r)
-    
-    zfi = autozero(cpmg[:,0])
-    m,n=cpmg.shape
-    spec = np.zeros((zfi,n),dtype='complex64')
-    for i in range(l22):
-        #cpmg[:,i] = gauss(cpmg[:,i],lb)
-        spec[:,i] = (fft(cpmg[:,i]))
+    if MAS == 'yes':
+        M = 2*l15-1
+        rot = int((d6/DW)/(M)) #If MAS, this is the approx pts. per rotor echo
+        l = int(len(cpmg[:,0])/2)
+        q = np.argmax(np.abs(np.real( gauss(cpmg[l-rot:l+rot,0],10 ) ))) + (l-rot)
+        for i in range(l22):
+            r = np.argmax(np.abs(np.real( gauss(cpmg[l-rot:l+rot,i],10) ))) + (l-rot)
+            cpmg[:,i] = np.roll(cpmg[:,i],(q-r))
+    else:
+        q = np.argmax(np.abs(np.real(cpmg[:,0])))
+        for i in range(l22):
+            r = q - np.argmax(np.abs(np.real(cpmg[:,i]))) #amount to roll by is difference of index of echo tops
+            cpmg[:,i] = np.roll(cpmg[:,i],r)
         
-    # mesh(np.abs(cpmg))
-    # sys.exit()
-    
+    #mesh(np.abs(cpmg))
+    #sys.exit()
     fidcoadd = np.sum(cpmg, axis=1) #note that it's more robust to do 2D FT and then coadd
-
-    #group = int(np.round((2*d3 + 2e-6 + tp*1e-6)/DW))
-    #fidcoadd = fidcoadd[round(group/2):len(fidcoadd)-round(group/2)] #kills filters too
-       
-    #zfi = autozero(fidcoadd)#auto zero-fill code
-    #fidcoadd = gauss(fidcoadd,lb)
-    #spec = fft(fidcoadd)
-    spec = np.sum(spec,axis=1)
-    freq = freqaxis(fidcoadd,SW)
-    
+ 
     if plot=='yes':
-        plt.gca().invert_xaxis()
-        plt.plot(freq,np.abs(spec),'m')
-        plt.xlabel('Frequency (kHz)')
+        plt.plot(np.real(fidcoadd),'m')
+        plt.title('Real Coadded FID')
+        #plt.xlabel('Time (s)')
     
-    return cpmg, fidcoadd, spec
+    return cpmg, fidcoadd
 
-def coaddOLD(fid,SW,lb,plot):
-    """Automatically coadd all spin echos and FT and MC"""
-    """Works for custom qcpmg data pre-NEO"""
+def coaddgen(fid,MAS='no',plot='no'):
+    """Automatically coadd all spin echos. Attempt at generic coaddition.
     
-    DW = 1/SW #(s)
+    parameters:
+        dring: int
+        dwindow: int
+        loop: int
+        pw: int
+    
+    """
+    
     g=open("acqus", mode='r')
     lines=g.readlines()
-    d3 = float(lines[42].split()[3]) #d3 dead time (s)
-    d6 = float(lines[42].split()[6]) #d6 acq time (s)
-    decim = int(round(float(lines[49].split()[1]))) #decimation number
-    l22 = int(lines[121].split()[22]) #number of echoes
-    tp = float(lines[170].split()[4]) #p4 pulse width in QCPMG (us)*
+    for i in range(len(lines)):
+        if lines[i] == '##$D= (0..63)\n': #D index -1
+            d3 = float(lines[i+1].split()[3])
+            d6 = float(lines[i+1].split()[6])
+        
+        if lines[i] == '##$L= (0..31)\n': #loop index -1
+            l22 = int(lines[i+1].split()[22]) #CPMG loops
+            l15 = int(lines[i+1].split()[15]) #MAS rotor sync integer
+        
+        if lines[i] == '##$P= (0..63)\n': #pulse width index -1
+            tp = float(lines[i+1].split()[11])
+        
+        if lines[i].split()[0] == '##$DECIM=': #Decim actual index
+            decim = int(round(float(lines[i].split()[1])))
+        
+        if lines[i].split()[0] == '##$SW_h=': #SW actual index
+            SW = float(lines[i].split()[1])
+    DW = 1/SW #(s)
+    #par = [d3,d6,l22,l15,tp,decim,SW]
     
-    group = int(np.round((2*d3 + tp*1e-6)/DW))
-    grouph = int(np.round(group/2))
-    fid = fid[(decim-1):] #remove decimation points
-    #fid = fid[:int((l22)*np.round((d6 + 2*d3 + tp*1e-6)/DW))-2*group] #remove trailing pts
-    #plt.plot(np.real(fid))
-    cpmg = np.zeros((int(d6/DW),l22),dtype=complex)
-    for n in range(l22):
-        cpmg[:,n] = fid[ n*( int(round(d6/DW))+group ) : n*( int(round(d6/DW))+group ) + (int(round(d6/DW)))]
+    fid = fid[(2*decim-1):] #remove decimation points
+    fid = fid[:int((l22)*np.round((d6 + 2*d3 + 2e-6 + tp*1e-6)/DW))] #remove trailing pts
+    cpmg = np.transpose( np.reshape(fid, (l22, int(len(fid)/l22) )) )
     
-    #mesh(np.real(cpmg))
-    zfi = autozero(cpmg[:,0])
-    m,n=cpmg.shape
-    spec = np.zeros((zfi,n),dtype='complex64')
-    for i in range(l22):
-        cpmg[:,i] = gauss(cpmg[:,i],lb)
-        spec[:,i] = (fft(cpmg[:,i]))
-    
-    #mesh(np.real(spec))
-    fidcoadd= gauss(np.sum(cpmg, axis=1),lb)
-    coadd = np.sum(spec, axis=1) #note that it's more robust to do 2D FT and then coadd
-
-    freq=freqaxis(cpmg[:,0],zfi)  
-    
+    #For echo trains that aren't equally spaced, this roll algorithm will align them
+    if MAS == 'yes':
+        M = 2*l15-1
+        rot = int((d6/DW)/(M)) #If MAS, this is the approx pts. per rotor echo
+        l = int(len(cpmg[:,0])/2)
+        q = np.argmax(np.abs(np.real( gauss(cpmg[l-rot:l+rot,0],10 ) ))) + (l-rot)
+        for i in range(l22):
+            r = np.argmax(np.abs(np.real( gauss(cpmg[l-rot:l+rot,i],10) ))) + (l-rot)
+            cpmg[:,i] = np.roll(cpmg[:,i],(q-r))
+    else:
+        q = np.argmax(np.abs(np.real(cpmg[:,0])))
+        for i in range(l22):
+            r = q - np.argmax(np.abs(np.real(cpmg[:,i]))) #amount to roll by is difference of index of echo tops
+            cpmg[:,i] = np.roll(cpmg[:,i],r)
+        
+    #mesh(np.abs(cpmg))
+    #sys.exit()
+    fidcoadd = np.sum(cpmg, axis=1) #note that it's more robust to do 2D FT and then coadd
+ 
     if plot=='yes':
-        plt.gca().invert_xaxis()
-        plt.plot(freq,np.real(coadd),'m')
-        plt.xlabel('Frequency (kHz)')
+        plt.plot(np.real(fidcoadd),'m')
+        plt.title('Real Coadded FID')
+        #plt.xlabel('Time (s)')
     
-    return cpmg, coadd, spec, fidcoadd
+    return cpmg, fidcoadd
 
 def T2fit(fid,SW):
     """Fit the monoexponential T2 / T2eff of the WCPMG echo train"""
@@ -595,375 +567,3 @@ def cadzow(fid,p=10):
     
     fidrecon = np.append( ad, ad2 ) #instead of rebuilding hank, just extract the fid
     return fidrecon
-
-def dwt(fid,SW,phases,thresh,lb):
-    """Denoising with discrete wavelet transform"""
-    
-    def autozero2(fid):
-        """Automatically zero fill fid up to first possible Fourier number"""
-        td = len(fid)
-        zf = [2**n for n in range(28)] #auto zero-fill
-        for i in range(24):
-            if td < zf[i]:
-                a = i
-                break
-        zfi = int(zf[a])
-        print(zfi)
-        return zfi
-    q = autozero2(fid)
-    fid= np.pad(fid,(0,q-len(fid)), 'constant', constant_values=(0, 0))
-    print(len(fid))
-    wavelet="sym10" #"coif5","sym5","db6","bior2.4","rbio3.7"
-    thresh = thresh*np.max(fid)
-    coeff = pywt.wavedec(fid, wavelet)#, mode="per" ) #careful on mode
-    ##Calc the Sj's
-    S = np.zeros(len(coeff),dtype='complex')
-    for i in range(len(coeff)):
-        S[i] = (np.max( np.abs(coeff[i]) ) / np.sum( np.abs(coeff[i]) ))
-    T = 0.002
-    k = np.argwhere(  S <= T ) 
-    coeff[np.min(k):] = (pywt.threshold(i, value=thresh, mode="soft" ) for i in coeff[np.min(k):])
-    print(S)
-    #k = 8
-    #coeff[k:] = (pywt.threshold(i, value=thresh, mode="soft" ) for i in coeff[k:])
-    fidrecon = pywt.waverec(coeff, wavelet)#, mode="per" ) #careful on mode
-    #rec = lowpassfilter(signal, 0.4)
-    
-    #coeff = pywt.swt(fid, wavelet)
-    
-    #fid = gauss(fid,lb)
-    #fidrecon = gauss(fidrecon,lb)
-    
-    plt.figure(1)
-    for i in range(len(coeff)):
-        plt.plot(np.real(coeff[i]) - i*np.max(np.real(np.array(coeff[i]))), label = 'D_%1d'%i)
-    plt.legend()
-    
-    plt.figure(2)
-    plt.subplot(121)
-    plt.plot(np.real(fid), color="k", alpha=0.7, label='Raw')
-    plt.plot(np.real(fidrecon), 'r', label='Wavelet', linewidth=2)
-    plt.legend()
-    plt.title('Wavelet Reconstruction', fontsize=18)
-    plt.ylabel('Intensity (a.u.)', fontsize=14)
-    
-    zfi = autozero(fid)
-    spec = fft(fid)
-    specrecon = fft(fidrecon)
-    freq = freqaxis(SW,zfi)
-    
-    if phases == 0:
-        spec = np.abs(spec)
-        specrecon = np.abs(specrecon)
-    else:
-        spec = phase(spec,phases)
-        specrecon = phase(specrecon,phases)
-    
-    rawsnr = snr(spec,j=0)
-    reconsnr = snr(specrecon,j=0)
-    
-    plt.subplot(122)
-    plt.plot(freq,np.real(spec),'k',label='SNR = %.2f' %rawsnr)
-    plt.plot(freq,np.real(specrecon) + 1*np.max(np.abs(spec)),'r',label='SNR = %.2f' %reconsnr)
-    plt.gca().invert_xaxis()
-    plt.legend()
-    plt.xlabel('Frequency (kHz)', fontsize=14)
-    
-    return fidrecon, coeff
-
-def swt(fid,SW,phases,thresh,lb):
-    """Denoising with stationary wavelet transform"""
-    
-    k = 6
-    
-    def autozero2(fid):
-        """Automatically zero fill fid"""
-        td = len(fid)
-        zf = [2**n for n in range(28)] #auto zero-fill
-        for i in range(24):
-            if td < zf[i]:
-                a = i
-                break
-        zfi = int(zf[a])
-        return zfi
-    q = autozero2(fid)
-    fid= np.pad(fid,(0,q-len(fid)), 'constant', constant_values=(0, 0))
-    print(len(fid))
-    wavelet="sym15" #"coif5","sym5","db6","bior2.4","rbio3.7"
-    thresh = thresh*np.max(fid)
-    
-    coeff = pywt.swt(fid, wavelet)
-
-    plt.figure(1)
-    plt.subplot(131)
-    for i in range(len(coeff)):
-        plt.plot(np.real(coeff[i][1]) - i*np.max(np.real(np.array(coeff[:][1]))), label = 'D_%1d'%i)
-    plt.title('Detail Component')
-    plt.legend(loc='upper right')
-    
-    plt.subplot(132)
-    for i in range(len(coeff)):
-        plt.plot(np.real(coeff[i][0]) - i*np.max(np.real(np.array(coeff[:][0]))), label = 'A_%1d'%i)
-    plt.title('Approximation Component')
-    plt.legend(loc='upper right')
-    
-    kcoeff = np.array(coeff)[k:,:,:]
-    m,n,s = kcoeff.shape
-    DCth = np.zeros((s,m),dtype='complex')
-    for i in range(len(coeff) - k):
-        DCth[:,i] = pywt.threshold(kcoeff[i,1,:], value=thresh, mode="soft" )
-    
-    plt.subplot(133)
-    for i in range(m):
-        plt.plot(np.real(DCth[:,i]) - i*np.max(np.real(DCth[:,:])), label = 'D_%1d'%(k+i))
-    plt.title('Detail Component Thresholding')
-    plt.legend(loc='upper right')
-    
-    ##Big note that the ordering of the levels is backwards from Srivastava
-    
-    coeffrecon = coeff[:k][:]
-    for i in range(len(coeff) - k):
-        coeffrecon.append( ( coeff[k+i][0] , DCth[:,i] ) )
-    
-    fidrecon = pywt.iswt(coeffrecon, wavelet)#, mode="per" ) #careful on mode
-    
-    fid = gauss(fid,lb)
-    fidrecon = gauss(fidrecon,lb)
-    
-    plt.figure(2)
-    plt.subplot(121)
-    plt.plot(np.real(fid), color="k", alpha=0.7, label='Raw')
-    plt.plot(np.real(fidrecon), 'r', label='Wavelet', linewidth=2)
-    plt.legend()
-    plt.title('Wavelet Reconstruction', fontsize=18)
-    plt.ylabel('Intensity (a.u.)', fontsize=14)
-    
-    zfi = autozero(fid)
-    spec = fft(fid)
-    specrecon =fft(fidrecon)
-    freq = freqaxis(SW,zfi)
-    
-    if phases == 0:
-        spec = np.abs(spec)
-        specrecon = np.abs(specrecon)
-    else:
-        spec = phase(spec,phases)
-        specrecon = phase(specrecon,phases)
-    
-    rawsnr = snr(spec,j=0)
-    reconsnr = snr(specrecon,j=0)
-    
-    plt.subplot(122)
-    plt.plot(freq,np.real(spec),'k',label='SNR = %.2f' %rawsnr)
-    plt.plot(freq,np.real(specrecon) + 1*np.max(np.abs(spec)),'r',label='SNR = %.2f' %reconsnr)
-    plt.gca().invert_xaxis()
-    plt.legend()
-    plt.xlabel('Frequency (kHz)', fontsize=14)
-    
-    return fidrecon, coeff
-
-def dwtf(fid,SW,phases,thresh,lb):
-    """Denoising with discrete wavelet transform in the frequency domain"""
-    
-    zfi = autozero(fid)
-    spec = np.fft.fftshift(scipy.fft(fid,n=zfi))
-    freq = freqaxis(SW,zfi)
-    
-    wavelet="sym10" #"coif5","sym5","db6","bior2.4","rbio3.7"
-    thresh = thresh*np.max(fid)
-    coeff = pywt.wavedec(spec, wavelet)#, mode="per" ) #careful on mode
-    ##Calc the Sj's
-    S = np.zeros(len(coeff),dtype='complex')
-    for i in range(len(coeff)):
-        S[i] = (np.max( np.abs(coeff[i]) ) / np.sum( np.abs(coeff[i]) ))
-    T = 0.02
-    k = np.argwhere(  S <= T ) 
-    coeff[np.min(k):] = (pywt.threshold(i, value=thresh, mode="soft" ) for i in coeff[np.min(k):])
-    print(S)
-    #k = 8
-    #coeff[k:] = (pywt.threshold(i, value=thresh, mode="soft" ) for i in coeff[k:])
-    specrecon = pywt.waverec(coeff, wavelet)#, mode="per" ) #careful on mode
-    #rec = lowpassfilter(signal, 0.4)
-    
-    #coeff = pywt.swt(fid, wavelet)
-    
-    #fid = gauss(fid,lb)
-    #fidrecon = gauss(fidrecon,lb)
-    
-    plt.figure(1)
-    for i in range(len(coeff)):
-        plt.plot(np.real(coeff[i]) - i*np.max(np.real(np.array(coeff[i]))), label = 'D_%1d'%i)
-    plt.legend()
-    
-    plt.figure(2)
-    # plt.subplot(121)
-    # plt.plot(np.real(spec), color="k", alpha=0.7, label='Raw')
-    # plt.plot(np.real(specrecon), 'r', label='Wavelet', linewidth=2)
-    # plt.legend()
-    # plt.title('Wavelet Reconstruction', fontsize=18)
-    # plt.ylabel('Intensity (a.u.)', fontsize=14)
-    
-    if phases == 0:
-        spec = np.abs(spec)
-        specrecon = np.abs(specrecon)
-    else:
-        spec = phase(spec,phases)
-        specrecon = phase(specrecon,phases)
-    
-    rawsnr = snr(spec,j=0)
-    reconsnr = snr(specrecon,j=0)
-    
-    #plt.subplot(122)
-    plt.plot(freq,np.real(spec),'k',label='SNR = %.2f' %rawsnr)
-    plt.plot(freq,np.real(specrecon) + 1*np.max(np.abs(spec)),'r',label='SNR = %.2f' %reconsnr)
-    plt.gca().invert_xaxis()
-    plt.legend()
-    plt.xlabel('Frequency (kHz)', fontsize=14)
-    
-    return specrecon, coeff
-
-def wavelet_denoise(level, data, region_spec,s, wave = 'bior2.4', threshold = 'mod', alpha = 1):
-    """
-    Stationary wavelet based noise removal technique
-    
-    Parameters
-    ----------
-    level : int
-        maximum level of the swt to be used for denoising
-        typical values range from 5 to 7 for most NMR spectra
-    data : ndarray
-        real valued spectral data
-        best results for unapodized data >16K points
-    region_spec : ndarray
-        binary spectrum of same length as data used for defining peak regions
-    wave : str
-        optional : descrete wavelet used for swt
-        default : 'bior2.4'
-        for a list of other wavelets use command pywt.wavelist(kind='discrete')
-    threshold : str
-        optional : choice of thresholding method
-        default : 'mod'
-        'mod' : modified thresholding technique
-        'soft' : soft thresholding
-        'hard' : hard thresholding
-    alpha : float
-        optional : alpha value for the modified thresholding
-        default  : 1 all values must be >= 0 and <= 1
-    
-    Returns
-    -------
-    final : ndarray
-        denoised spectrum the same length as the initial data
-    coeffin : ndarray
-        contains the detail and approximation components prior to thresholding
-    coeffs : ndarray
-        contains the detail and approximation components after thresholding
-    """
-    threshlist = ['mod', 'hard', 'soft', 'gar']
-    wavelet_list = pywt.wavelist(kind='discrete')
-    if threshold not in threshlist:
-        raise ValueError("""Threshold method must be 'mod', 'soft', or 'hard'""")
-    if wave not in wavelet_list:
-        raise ValueError("""Unknown wavelet, please chose from: """, wavelet_list)
-    if not 0 <= alpha <= 1:
-        raise ValueError('alpha must be >= 0 and <= 1')
-    
-    coeffs=pywt.swt((data), wave, level = level) #stationary wavelet transform
-    coeffin =pywt.swt((data), wave, level = level) #save a duplicate
-    coeffreq =pywt.swt(np.fft.fftshift(np.fft.fft(data)), wave, level = level) #run the swt on FT(data) to obtainn noise vector
-    ### This section calculates the lambdas at each level and removes noise
-    ### from each using the chosen thresholding method
-    for i in range(len(coeffs)):
-        temp = coeffs[i]
-        #lam = calc_lamb(temp[1], region_spec)   ###CHK**
-        tempf = coeffreq[i]
-        #Normalize the freq coefficient so the relative intensity of noise is not skewed
-        rr = np.max(np.abs(np.real(temp[0])))/np.max(np.abs(np.real(tempf[0]))) 
-        ri = np.max(np.abs(np.imag(temp[0])))/np.max(np.abs(np.imag(tempf[0]))) 
-        lam = calc_lamb( rr*(np.real(tempf[0])) + 1j*ri*(np.imag(tempf[0])) , region_spec,s)    ###CHK**
-        
-        if threshold == 'soft':
-            fincomp0 = soft_threshold(temp[0], lam)
-            fincomp1 = soft_threshold(temp[1], lam)
-        if threshold == 'hard':
-            fincomp0 = hard_threshold(temp[0], lam)
-            fincomp1 = hard_threshold(temp[1], lam)
-        if threshold == 'mod':
-            fincomp0 = mod_thresh(temp[0], lam, alpha)
-            fincomp1 = mod_thresh(temp[1], lam, alpha)
-        if threshold == 'gar':
-            fincomp0 = gar_threshold(temp[0], lam)
-            fincomp1 = gar_threshold(temp[1], lam)
-        coeffs[i] = (fincomp0, fincomp1)
-        print(lam)
-    # plt.plot(np.imag(temp[0]/np.max(np.abs(temp[0]))))
-    # plt.plot(np.imag(tempf[0]/np.max(np.abs(tempf[0]))))
-    # sys.exit()
-    #print('Lambda = %5.3f'%lam)
-    final = pywt.iswt(coeffs, wave) #recontrusct the final denoised spectrum
-    return final, coeffin, coeffs, coeffreq
-
-def calc_lamb(data, region,s):
-    """calculates the lambda value to use as the noise threshold
-    
-    Parameters
-    ----------
-    data: ndarray
-        real valued data where the threshold is calculated
-    region: ndarry
-        binary spectrum that defines the peak and noise regions
-        
-    Returns
-    -------
-    lam: float
-       value for the noise threshold"""
-    if s == 0:
-        #spec = fft(data)
-        #plt.plot(np.real(spec))
-        #sys.exit()
-        noise = data[0:int(0.1*len(data))] #test first 100 pts, vs. first 1000 pts, etc.
-    else:
-        noise = np.zeros(data.shape,dtype='complex64')
-        idx = np.where(region == 0)
-        noise[idx] = data[idx]
-    sig = np.std(noise)
-    lam = sig*np.sqrt(2*np.log(len(data)))
-    return lam
-
-def hard_threshold(data, lam):
-    """Hard Thresholding"""
-    data_thr = np.copy(data)
-    neg_idx = np.where(np.abs(data) < lam)
-    data_thr[neg_idx] = 0
-    return data_thr
-    
-def soft_threshold(data, lam):
-    """Soft Thresholding"""
-    data_thr = np.copy(data)
-    pos_idx = np.where(data > lam)
-    mid_idx = np.where(np.abs(data) <= lam)
-    neg_idx = np.where(data < -lam)
-    data_thr[pos_idx] = data[pos_idx] - lam
-    data_thr[mid_idx] = 0
-    data_thr[neg_idx] = data[neg_idx] + lam
-    return data_thr
-
-def mod_thresh(data, lam, alpha):
-    """Modified thresholding using algorithm in:
-    Wang and Dai, Proceedings of the 2018 International Symposium 
-    on Communication Engineering & Computer Science (CECS 2018), 2018, 481"""
-    data_thr = np.copy(data)
-    pos_idx = np.where(np.abs(data) >= lam)
-    neg_idx = np.where(np.abs(data) < lam)
-    data_thr[pos_idx] = data[pos_idx] - alpha*(lam**4/data[pos_idx]**3)
-    data_thr[neg_idx] = (1-alpha)*(data[neg_idx]**5/lam**4)
-    return data_thr
-
-def gar_threshold(data, lam):
-    "garrote thresholding"
-    data_thr = np.copy(data)
-    pos_idx = np.where(np.abs(data) > lam)
-    neg_idx = np.where(np.abs(data) <= lam)
-    data_thr[pos_idx] = data[pos_idx] - lam**2/data_thr[pos_idx]
-    data_thr[neg_idx] = 0
-    return data_thr

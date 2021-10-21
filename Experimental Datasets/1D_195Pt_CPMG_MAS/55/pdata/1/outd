@@ -1,0 +1,16 @@
+##TITLE= Parameter file, TopSpin 4.1.1
+##JCAMPDX= 5.0
+##DATATYPE= Parameter Values
+##NPOINTS= 1	$$ modification sequence number
+##ORIGIN= Bruker BioSpin GmbH
+##OWNER= rschurko
+$$ 2021-09-28 18:03:16.693 -0400  rschurko@600wb1.magnet.fsu.edu
+$$ /opt/topspin4.1.1/data/altenhof/nmr/Pt(NH3)4Cl2_Sept28_2021/55/pdata/1/outd
+$$ process /opt/topspin4.1.1/prog/mod/dirdata
+##$CURPLOT= <>
+##$CURPRIN= <$>
+##$DFORMAT= <normdp>
+##$LAYOUT= <+/1D_H.xwp>
+##$LFORMAT= <normlp>
+##$PFORMAT= <normpl>
+##END=

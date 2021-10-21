@@ -56,12 +56,15 @@ snrpout[0] = simproc.snrp(specout,k,l)
 specrecon[:,0] = specout
 
 for i in range(m-1):
+    if i == 4:
+        i = 5
     kk = 50 + i
     print(kk)
     os.chdir( path + str(kk) )
-    fid, SW = proc.loadfid('fid',plot='no')  
-
-    cpmg, fidcoadd, dumspec = proc.coaddg(fid) #save lb for cadzow
+    fid, SW = proc.loadfid('fid',plot='no') 
+    if i == 5:
+        i = 4
+    cpmg, fidcoadd = proc.coadd(fid,MAS='yes') #save lb for cadzow
     
     specintemp = proc.phase(proc.fft(proc.gauss(fidcoadd,gb),zf),ph)
     specin[:,i+1] = np.real(specintemp)/np.max(np.real(specintemp))
@@ -117,6 +120,6 @@ head = ['ns', 'SNRpp_in', 'SSIM_in', 'SNRpp_out', 'SSIM_out']
 # display table
 print(tabulate(data, headers=head, tablefmt="pretty", floatfmt="5.4f"))
 #generate ns counter at end
-
+os.chdir( path )
 print('Finished!')
 print("-- %5.5f s Run Time --" % (time.time() - start_time))
