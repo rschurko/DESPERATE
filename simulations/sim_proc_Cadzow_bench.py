@@ -31,9 +31,9 @@ ph = [558.67, 92160.09, 0, 0]
 
 gb = 10 ##Amount of global gaussian broadening for coadd
 
-fid, spec = simproc.coadd(fid, 512, 50)
+fid = simproc.coadd(fid, 512, 50)
 fidref = proc.gauss( fid , lb = gb )
-specref = proc.phase(proc.fft(fidref),ph)[0,:]
+specref = proc.phase(proc.fft(fidref),ph)
 
 kk = 11 ##Number of noisy data points
 
@@ -44,18 +44,18 @@ snrout =  np.zeros(kk)
 SSIMin =  np.zeros(kk)
 SSIMout =  np.zeros(kk)
 res =  np.zeros(kk)
-specrecon = np.zeros((4096,kk),dtype='complex64')
-specin = np.zeros((4096,kk),dtype='complex64')
+specrecon = np.zeros((len(specref),kk),dtype='complex64')
+specin = np.zeros((len(specref),kk),dtype='complex64')
 for i in range(kk):
     fid,SW = simproc.read('Sn_CPMG_id.fid', lb=T2, plot='no') #dup for coadd
     fid = simproc.noise(fid,(i+1)*0.1)
-    fid, spec = simproc.coadd(fid, 512, 50)                   #dup for coadd
+    fid = simproc.coadd(fid, 512, 50)                   #dup for coadd
     fid = proc.gauss(fid , lb = gb)
-    spec = proc.phase(proc.fft(fid),ph)[0,:]
+    spec = proc.phase(proc.fft(fid),ph)
     specin[:,i] = spec
     
     #spec = proc.phase(spec,ph)[0,:]
-    snrpin[i] = snrp(spec,1446,3249)
+    snrpin[i] = snrp(spec,1446,3249) ##CHK index based on ZF
     snrin[i] = proc.snr(spec,j=0)
     
     #fid,SW = simproc.read('Sn_CPMG_id.fid', lb=T2, plot='no') #dup for coadd
@@ -71,7 +71,7 @@ for i in range(kk):
 
     fidrecon = simproc.cadzow(fid,ph,SW,lb = gb) ##Slow Cadzow
     plt.close()
-    specrecon[:,i] = proc.phase(proc.fft(fidrecon),ph)[0,:]
+    specrecon[:,i] = proc.phase(proc.fft(fidrecon),ph)
     snrpout[i] = snrp(specrecon[:,i],1446,3249)
 
     SSIMout[i], res[i], snrout[i] = simproc.residual(fidref,fidrecon,SW,ph,plot='no')
