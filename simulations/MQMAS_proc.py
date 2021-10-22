@@ -4,6 +4,7 @@ sys.path.insert(0,'/Users/SRG/Documents/Adam/Python/SSNMR/functions')
 import numpy as np
 import functions as proc
 import simpson as simproc
+import wavelet_denoise as wave
 import matplotlib.pyplot as plt
 import matplotlib as mpl
 import time
@@ -11,7 +12,7 @@ start_time = time.time()
 
 
 fid,SW = simproc.read('MQMAS_echo_sync.fid', lb=0, plot='no') #This normalizes FID
-fid = simproc.noise(fid, 0.02) #Adds noise as a % of max intensity
+fid = simproc.noise(fid, 0.1) #Adds noise as a % of max intensity
 
 #Simulation params:
 np1 = 128
@@ -52,7 +53,7 @@ for i in range(zf2):
     spec[:,i] = proc.fft(spec1[:,i])
 
 #PCA Denoise
-# spec = proc.PCA(spec,5)
+# spec = proc.PCA(spec,3)
 # plt.close()
 # plt.close()
 #sys.exit()
@@ -61,6 +62,9 @@ for i in range(zf2):
 ph = [278, 184280, 0, 0]
 #ph = proc.autophase(spec[410,:],50,phase2='no')
 spec = proc.phase(spec,ph,ax=1)
+
+#2D SWT
+spec, coeffs = wave.wavelet_denoise2(2, np.real(spec), 0, wave = 'bior2.2', threshold = 'mod', alpha = 0)
 
 #SNRs
 a = np.unravel_index(spec.argmax(), spec.shape)
@@ -71,7 +75,9 @@ snrp1 = simproc.snrp(spec[290,:],2293,2464)
 snrp2 = simproc.snrp(spec[422,:],2130,2408)
 snrp3 = simproc.snrp(spec[433,:],1836,2118)
 
-
+print('SNRp 1 = %.1f' %snrp1)
+print('SNRp 2 = %.1f' %snrp2)
+print('SNRp 3 = %.1f' %snrp3)
 print('SNR over F2 = %5.1f' %snrF2)
 print('SNR over F1 = %5.1f' %snrF1)
 
