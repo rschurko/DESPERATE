@@ -12,7 +12,7 @@ def loadfidold(name,plot='no'):
     """loads Topspin FID and other useful info"""
     
     f=open(name, mode='rb') #open(path + "fid", mode='rb')
-    fid = np.frombuffer(f.read(), dtype = int) #float to avoid condvta nonsense
+    fid = np.frombuffer(f.read(), dtype = int) #int for pre-NEO
     l = int(len(fid))
     Re = fid[0:l:2]
     Im = 1j*fid[1:l:2]
@@ -61,10 +61,56 @@ def loadfid(name,plot='no'):
         plt.xlabel('Time (s)')
     return fid, SW
 
-def freqaxis(fid,zf=0):
+def loadfid2(name,plot='no'):
+    """loads Topspin 2D SER"""
+    
+    f=open(name, mode='rb') #open(path + "fid", mode='rb')
+    fid = np.frombuffer(f.read(), dtype = int) #float to avoid condvta nonsense
+    l = int(len(fid))
+    Re = fid[0:l:2]
+    Im = 1j*fid[1:l:2]
+    fid = Re + Im
+    
+    g=open("acqus", mode='r')
+    lines=g.readlines()
+    for i in range(len(lines)):
+        if lines[i].split()[0] == '##$SW_h=': #SW actual index
+            SW2 = float(lines[i].split()[1])
+            
+        if lines[i].split()[0] == '##$TD=': #TD actual index
+            td2 = int(int(lines[i].split()[1]) / 2)
+            
+        if lines[i] == '##$TD_INDIRECT= (0..7)\n': #TD1 index -1
+            td1 = int(lines[i+1].split()[1])
+            
+        if lines[i] == '##$IN= (0..63)\n': #Assumes in0 for DW1
+            DW1 = float(lines[i+1].split()[0])
+            
+    fid = np.reshape(fid,(td1,td2))
+    
+    #DW2 = 1/SW2
+    #SW1 = 1/DW1
+    
+    #t2 = np.linspace(0, DW2*td2, num=td2)
+    #t1 = np.linspace(0, DW1*td1, num=td1)
+    if plot == 'yes':
+        #mesh(np.real(fid))
+        plt.contour(np.abs(fid),30)
+        plt.title('Magnitude 2D FID')
+        plt.xlabel('t2 [index]')
+        plt.ylabel('t1 [index]')
+        # plt.subplot(121)
+        # plt.contour(t2,t1,np.real(fid),25)
+        # plt.subplot(122)
+        # plt.contour(t2,t1,np.imag(fid),25)
+        # plt.xlabel('Time (s)')
+    return fid
+
+def freqaxis(spec,zf=0,unit='kHz'):
     "Generate the referenced frequency axis (in kHz) as an array"
     
-    zfi = autozero(fid,zf)
+    #zfi = autozero(fid,zf)
+    zfi = spec.size
     cwd = os.getcwd()
     path = cwd + "\pdata\\1"
 
@@ -77,12 +123,13 @@ def freqaxis(fid,zf=0):
     
     off = ((OFFSET*SF)-SW/2)*1e-3
     freq = np.linspace(-SW/2e3+off, SW/2e3+off, num=zfi)
+    if unit == 'ppm':
+        freq = (freq*1e3)/SF
     os.chdir(cwd)
-    
     return freq
 
 def autozero(fid,n=0):
-    """Automatically zero fill fid"""
+    """Automatically calculate zero fill amount for fid"""
     if n == 0:
         td = len(fid)
         zf = [2**n for n in range(28)] #auto zero-fill
@@ -154,7 +201,7 @@ def mesh(matrix):
     x, y = np.meshgrid(x, y)
     fig = plt.figure()
     ax = Axes3D(fig)
-    surf=ax.plot_surface(x.T, y.T, matrix, cmap='jet')
+    surf=ax.plot_surface(x.T, y.T, matrix, cmap='cool')
     fig.colorbar(surf, shrink=0.5, aspect=10)
     plt.show()
     return
@@ -394,6 +441,99 @@ def coaddgen(fid,MAS='no',plot='no'):
         #plt.xlabel('Time (s)')
     
     return cpmg, fidcoadd
+
+def mqproc(fid, SH = -7/9, zf1=0, zf2=0, lb1=0, lb2=0):
+    """Process MQMAS data with shearing.
+    
+    Parameters
+    ----------
+    fid : ndarray
+        complex FID matrix
+    SH : float
+        Shearing constant; default = -7/9 for I = 3/2
+    zf1 : int
+        0-fill F1
+    zf2 : int
+        0-fill F2
+    lb1 : int
+        Gaussian broaden t1 without mean (shift) 0
+    lb2 : int
+        Gaussian broaden t2
+    """
+    np1 = fid.shape[0]
+    np2 = fid.shape[1]
+    if zf2 == 0:
+        zf2 = autozero(fid[0,:])
+    if zf1 == 0:
+        zf1 = autozero(fid[:,0])
+    for i in range(np2):
+        fid[:,i] = gauss(fid[:,i],lb1,c=0)
+    
+    #FT t2
+    ##Need the default zf2 from autozero fcn
+    spec1 = np.zeros((np1,zf2),dtype='complex')
+    for i in range(np1):
+        spec1[i,:] = fft(fid[i,:],zf2)
+    
+    #Shearing
+    g=open("acqus", mode='r')
+    lines=g.readlines()
+    for i in range(len(lines)):
+        if lines[i].split()[0] == '##$SW_h=': #SW actual index
+            SW2 = float(lines[i].split()[1])
+        if lines[i] == '##$IN= (0..63)\n': #Assumes in0 for DW1
+            DW1 = float(lines[i+1].split()[0])
+    freq2 = np.linspace(-SW2/2,SW2/2,zf2) #F2 freq. (Hz)
+    t1 = np.arange(0,np1*DW1,DW1)             #t1 time vector (s)
+    spec1 = np.multiply(spec1, np.exp(1j*SH*2*np.pi*np.outer(t1,freq2)) )
+    
+    #iFT t2, centered GB, FT t2 again
+    dum = np.fft.fftshift((np.fft.ifft(spec1[0,:])))
+    c2 = np.argmax(dum) / zf2
+    for i in range(np1):
+        spec1[i,:] = np.fft.fftshift( (np.fft.ifft(spec1[i,:])) )
+        spec1[i,:] = (np.fft.fft( gauss(spec1[i,:],lb2,c2) ,zf2))
+
+    #FT t1
+    spec = np.zeros((zf1,zf2),dtype='complex')
+    for i in range(zf2):
+        spec[:,i] = fft(spec1[:,i])
+    return spec
+
+def fiso(spec,zf=0,SH = 7/9,q=3,unit='kHz'):
+    """Generate the referenced isotropic F1 for MQMAS.
+    q: int
+        MQC coherence order (default = 3)
+    """
+    
+    zfi = spec.size
+    cwd = os.getcwd()
+    
+    g=open("acqus", mode='r')
+    lines=g.readlines()
+    for i in range(len(lines)):
+        if lines[i] == '##$IN= (0..63)\n': #Assumes in0 for DW1
+            DW1 = float(lines[i+1].split()[0])
+    SW1 = 1/DW1 #Hz
+            
+    path = cwd + "\pdata\\1"
+    os.chdir(path)
+    h=open("procs", mode='r')
+    lines=h.readlines()
+    SF = float(lines[107].split()[1])     #MHz
+    OFFSET = float(lines[87].split()[1])  #ppm
+    
+    off = ((OFFSET*SF)-SW1/2)  #ref off in Hz
+    #freq = np.linspace(-SW/2e3+off, SW/2e3+off, num=zfi)
+    
+    freq1 =  np.linspace(-SW1/2, SW1/2, zfi) ##F1 in Hz 
+    fiso =  ( (freq1+off) / (1 + abs(SH)) )/1e3 ##F1iso in kHz 
+    #freq1 = np.linspace(-SW1/2,SW1/2,zfi)
+    
+    if unit == 'ppm':
+        fiso = (freq1)/((SF)*(q-SH)) + (off/SF) #F1iso in ppm
+    os.chdir(cwd)
+    return fiso
 
 def T2fit(fid,SW):
     """Fit the monoexponential T2 / T2eff of the WCPMG echo train"""

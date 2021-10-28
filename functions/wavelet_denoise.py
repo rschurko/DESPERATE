@@ -14,14 +14,29 @@ import pywt
 import matplotlib.pyplot as plt
 import sys
 
-def wavelet_denoise2(level, data, region_spec, wave = 'bior2.4', threshold = 'mod', alpha = 1):
+def wavelet_denoise2(level, data, region_spec, wave = 'bior2.2', threshold = 'mod', alpha = 0):
+    """
+    2D Stationary wavelet based noise removal technique
     
-    final = 0
-    coeffs = 0
+    ###
+    """
+    #F1proj = np.max(data, axis = 0)
+    coeffs=pywt.swt2(data, wave, level = level)
+    for i in range(len(coeffs)):
+        temp = coeffs[i]
+        lam = calc_lamb(temp[0], region_spec)
+        if threshold == 'mod':
+            fincomp0 = mod_thresh(temp[0], lam, alpha)
+            fincomp1 = mod_thresh(temp[1][0], lam, alpha)
+            fincomp2 = mod_thresh(temp[1][1], lam, alpha)
+            fincomp3 = mod_thresh(temp[1][2], lam, alpha)
+        coeffs[i] = (fincomp0, (fincomp1, fincomp2, fincomp3))
+
+    final = pywt.iswt2(coeffs, wave)
     
     return final, coeffs
 
-def wavelet_denoise(level, data, region_spec, wave = 'bior2.4', threshold = 'mod', alpha = 1):
+def wavelet_denoise(level, data, region_spec, wave = 'bior2.4', threshold = 'mod', alpha = 0):
     """
     Stationary wavelet based noise removal technique
     
@@ -259,7 +274,7 @@ def calc_lamb(data, region):
     lam: float
        value for the noise threshold"""
     if type(region) == int:
-        noise = data[0:int(0.1*len(data))] #test %'s of noise baseline
+        noise = data[0:int(0.15*len(data))] #test %'s of noise baseline
     else:
         noise = np.zeros(data.shape)
         idx = np.where(region == 0)
