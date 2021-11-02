@@ -1,0 +1,27 @@
+##TITLE= Audit trail, TopSpin 4.1.3
+##JCAMPDX= 5.01
+##ORIGIN= Bruker BioSpin GmbH
+##OWNER= mason42
+$$ C:/Bruker/TopSpin4.1.3/data/MAS 1 testing/24/pdata/999/auditp.txt
+##AUDIT TRAIL=  $$ (NUMBER, WHEN, WHO, WHERE, PROCESS, VERSION, WHAT)
+(   1,<2021-10-25 16:48:26.750 +0000>,<CZC950B486\nmrsu>,<CZC950B486>,<go4>,<TopSpin 4.0.9>,
+      <acquisition in progress>)
+$$ D:/nmrdata/mason42/MAS 1 testing/24/audita.txt
+(   2,<2021-10-25 17:44:42.097 +0000>,<CZC950B486\nmrsu>,<CZC950B486>,<go4>,<TopSpin 4.0.9>,
+      <created by zg on 'AV NEO 300 WB Double' (CZC950B486) by user 'CZC950B486\nmrsu'
+       on data set with UUID '5fdcbcb2-35b3-11ec-a4c9-0030d622da91'
+       started at 2021-10-25 16:48:26.767 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-10-25 17:44:42.096 +0000
+       configuration hash MD5:
+       85 B0 29 43 50 7C A6 24 6B B9 4B 48 9C DF FD 2A
+       double data hash MD5: 4K * 26
+       34 E9 5C 38 A9 45 2B 05 A6 A7 56 1B 2F 26 C9 C2>)
+(   3,<2021-11-02 15:38:07.084 -0700>,<THE-LAB\mason42>,<mapfire470>,<proc1d>,<TopSpin 4.1.3>,
+      <Start of raw data processing
+       efp 1 LB = 100 FT_mod = 6 PKNL = 1 PHC0 = -258.6515 PHC1 = -54.4 TDeff = 1K SI = 1K 
+       data hash MD5: 1K
+       9D 55 13 81 51 B2 54 BF BD 9C 4F EF 4C 9C 55 C6>)
+##END=
+
+$$ hash MD5
+$$ 48 E5 07 3C 0C 4B D7 01 A0 22 19 C8 6B 42 A0 9D

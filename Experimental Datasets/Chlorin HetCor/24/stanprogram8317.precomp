@@ -1,0 +1,200 @@
+# 1 "/root/.topspin-BladeEpu/local_acqu/wobbDir/pp_drx"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "/root/.topspin-BladeEpu/local_acqu/wobbDir/pp_drx"
+; -*-pulsprog-*-
+;
+# 17 "/root/.topspin-BladeEpu/local_acqu/wobbDir/pp_drx"
+; wobble pulseprogram for Avance NEO spectrometers
+
+
+# 39 "/root/.topspin-BladeEpu/local_acqu/wobbDir/pp_drx"
+# 40 "/root/.topspin-BladeEpu/local_acqu/wobbDir/pp_drx"
+
+# 66 "/root/.topspin-BladeEpu/local_acqu/wobbDir/pp_drx"
+
+# 70 "/root/.topspin-BladeEpu/local_acqu/wobbDir/pp_drx"
+define list <frequency> freqList1=<$FQ1LIST>
+
+
+define list <frequency> freqList2=<$FQ2LIST>
+# 93 "/root/.topspin-BladeEpu/local_acqu/wobbDir/pp_drx"
+# 95 "/root/.topspin-BladeEpu/local_acqu/wobbDir/pp_drx"
+; BEGIN SOUBROUTINE DEFINITION
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+subroutine WOBB_ON_CHAN
+
+
+# 161 "/root/.topspin-BladeEpu/local_acqu/wobbDir/pp_drx"
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; END OF SUBROUTINE DEFINITION
+
+
+define delay		dwellTime
+define loopcounter	wbstCmplx
+define loopcounter      pointsForAveraging
+# 169 "/root/.topspin-BladeEpu/local_acqu/wobbDir/pp_drx"
+"pointsForAveraging = l1"
+"dwellTime = 2 * d1 * pointsForAveraging" ; for one point in wobble curve
+"wbstCmplx = td/2"
+
+
+# 174 "/root/.topspin-BladeEpu/local_acqu/wobbDir/pp_drx"
+	ze	
+		
+# 184 "/root/.topspin-BladeEpu/local_acqu/wobbDir/pp_drx"
+    1	100m ;speed adjustment
+
+
+subr WOBB_ON_CHAN
+;EXEC_begin WOBB_ON_CHAN WOBB_ON_CHAN(any freqList1, any setrtp1, any f1, any adc1, any 1u)
+# 97 "/root/.topspin-BladeEpu/local_acqu/wobbDir/pp_drx"
+ 
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+	exec_on_chan:f1
+
+
+	10u setrtp1|14|13
+
+        ; tell receiver not to acquire until next setrtp1^1
+        1u setrtp1|1
+
+        ; use PL2 to be compatible with old wobble procedure
+	10u pl2:f1
+
+	;********
+	; next wobble curve
+
+    	100m freqList1.res ;speed adjustment
+	
+ 	1m adc1 ph0 syrec
+
+	1u reset:f1
+
+	; tell receiver to acquire WBST points 
+	1u setrtp1|0
+
+	;--------------
+	; now acquire WBST points
+
+    20   1u freqList1(receive):f1
+
+        ; note that at least 150u are required here 
+        ; to avoid spikes after PLL change
+        150u freqList1:f1 
+
+        ; send tune signal and acquire simultaneously
+	10u setrtp1|26|27
+
+	; now acquire a complex sample point
+        0.05u setrtp1^1
+
+        ; dwell time for one complex point
+	; of the wobble curve
+        dwellTime
+
+        ; tell receiver not to acquire until next setrtp1^1
+	1u setrtp1|1
+
+	1u setrtp1^26^27
+
+	1u freqList1.inc
+
+	lo to 20 times wbstCmplx 
+
+    ;--------------
+
+	1u
+
+	exec_wait
+
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ 
+;EXEC_end   WOBB_ON_CHAN
+# 187 "/root/.topspin-BladeEpu/local_acqu/wobbDir/pp_drx"
+subr WOBB_ON_CHAN
+;EXEC_begin WOBB_ON_CHAN WOBB_ON_CHAN(any freqList2, any setrtp2, any f2, any adc2, any eoscnp2)
+# 97 "/root/.topspin-BladeEpu/local_acqu/wobbDir/pp_drx"
+ 
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+	exec_on_chan:f2
+
+
+	10u setrtp2|14|13
+
+        ; tell receiver not to acquire until next setrtp2^1
+        1u setrtp2|1
+
+        ; use PL2 to be compatible with old wobble procedure
+	10u pl2:f2
+
+	;********
+	; next wobble curve
+
+    	100m freqList2.res ;speed adjustment
+	
+ 	1m adc2 ph0 syrec
+
+	1u reset:f2
+
+	; tell receiver to acquire WBST points 
+	1u setrtp2|0
+
+	;--------------
+	; now acquire WBST points
+
+    21   1u freqList2(receive):f2
+
+        ; note that at least 150u are required here 
+        ; to avoid spikes after PLL change
+        150u freqList2:f2 
+
+        ; send tune signal and acquire simultaneously
+	10u setrtp2|26|27
+
+	; now acquire a complex sample point
+        0.05u setrtp2^1
+
+        ; dwell time for one complex point
+	; of the wobble curve
+        dwellTime
+
+        ; tell receiver not to acquire until next setrtp2^1
+	1u setrtp2|1
+
+	1u setrtp2^26^27
+
+	1u freqList2.inc
+
+	lo to 21 times wbstCmplx 
+
+    ;--------------
+
+	eoscnp2
+
+	exec_wait
+
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ 
+;EXEC_end   WOBB_ON_CHAN
+# 190 "/root/.topspin-BladeEpu/local_acqu/wobbDir/pp_drx"
+# 209 "/root/.topspin-BladeEpu/local_acqu/wobbDir/pp_drx"
+# 210 "/root/.topspin-BladeEpu/local_acqu/wobbDir/pp_drx"
+
+
+	exec_on_other
+	100m
+	exec_wait
+# 216 "/root/.topspin-BladeEpu/local_acqu/wobbDir/pp_drx"
+	rcyc1 = 1
+
+
+# 224 "/root/.topspin-BladeEpu/local_acqu/wobbDir/pp_drx"
+					
+	exit
+
+
+# 229 "/root/.topspin-BladeEpu/local_acqu/wobbDir/pp_drx"
+ph0 = 0
