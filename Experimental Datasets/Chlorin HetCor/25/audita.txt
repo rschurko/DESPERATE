@@ -1,0 +1,22 @@
+##TITLE= Audit trail, TopSpin 4.0.9
+##JCAMPDX= 5.01
+##ORIGIN= Bruker BioSpin GmbH
+##OWNER= root
+$$ /root/.topspin-BladeEpu/local_acqu/MAS 1 testing/25/audita.txt
+##AUDIT TRAIL=  $$ (NUMBER, WHEN, WHO, WHERE, PROCESS, VERSION, WHAT)
+(   1,<2021-10-25 18:27:55.451 +0000>,<CZC950B486\nmrsu>,<CZC950B486>,<go4>,<TopSpin 4.0.9>,
+      <acquisition in progress>)
+$$ D:/nmrdata/mason42/MAS 1 testing/25/audita.txt
+(   2,<2021-10-25 18:42:06.018 +0000>,<CZC950B486\nmrsu>,<CZC950B486>,<go4>,<TopSpin 4.0.9>,
+      <created by zg on 'AV NEO 300 WB Double' (CZC950B486) by user 'CZC950B486\nmrsu'
+       on data set with UUID '457a103c-35c1-11ec-8733-0030d622da91'
+       started at 2021-10-25 18:27:55.469 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-10-25 18:42:06.018 +0000
+       configuration hash MD5:
+       85 B0 29 43 50 7C A6 24 6B B9 4B 48 9C DF FD 2A
+       double data hash MD5: 4K * 26
+       65 B2 6D 4B AC 84 19 7D C0 1F A7 F1 7F 5D F4 0E>)
+##END=
+
+$$ hash MD5
+$$ 66 38 54 6B C7 13 C4 F5 63 2D 21 A6 C2 50 69 37
