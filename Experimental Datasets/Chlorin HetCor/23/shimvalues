@@ -1,0 +1,61 @@
+# Wed Oct 20 18:52:04 2021
+#$$PROBEIDENTIFIER=D0005_0005
+#$$PROBENAME=MAS
+#$$SHIMID=312532
+#
+# Active Shim Gradients
+#
+Z           		0               
+Z2          		0               
+Z3          		0               
+Z4          		0               
+Z5          		0               
+X           		18000           
+XZ          		0               
+XZ2         		0               
+Y           		0               
+YZ          		0               
+YZ2         		0               
+XY          		0               
+XYZ         		0               
+(X2-Y2)     		0               
+(X2-Y2)Z    		0               
+X3          		0               
+Y3          		0               
+#
+# Lock Parameter
+#
+FIELD		6065.400
+LOCKPHASE		 316.900
+LOCKPOWER		  -8.000
+LOCKGAIN		 123.201
+LOCKDC		 -75.000
+LOCKSHIFT		   4.700
+LOOPGAIN		  -9.400
+LOOPTIME		   0.464
+LOOPFILTER		  50.000
+#
+IEEE64_VERSION_CODE 1
+#
+# Shim currents 
+#
+SHIM_SETTING [ 1]        0.00000000
+SHIM_SETTING [ 2]        0.00000000
+SHIM_SETTING [ 3]        0.00000000
+SHIM_SETTING [ 4]        0.00000000
+SHIM_SETTING [ 5]        0.00000000
+SHIM_SETTING [ 6]     9468.00000000
+SHIM_SETTING [ 7]        0.00000000
+SHIM_SETTING [ 8]        0.00000000
+SHIM_SETTING [ 9]        0.00000000
+SHIM_SETTING [10]        0.00000000
+SHIM_SETTING [11]        0.00000000
+SHIM_SETTING [12]        0.00000000
+SHIM_SETTING [13]        0.00000000
+SHIM_SETTING [14]        0.00000000
+SHIM_SETTING [15]        0.00000000
+SHIM_SETTING [16]        0.00000000
+SHIM_SETTING [17]        0.00000000
+SHIM_SETTING [18]        0.00000000
+SHIM_SETTING [19]        0.00000000
+SHIM_SETTING [20]        0.00000000
