@@ -1,0 +1,11 @@
+##TITLE= Parameter file, TopSpin 4.0.9
+##JCAMPDX= 5.0
+##DATATYPE= Parameter Values
+##NPOINTS= 1	$$ modification sequence number
+##ORIGIN= Bruker BioSpin GmbH
+##OWNER= nmrsu
+$$ 2021-10-19 10:17:00.518 -0700  nmrsu@CZC950B486
+$$ D:/nmrdata/mason42/MAS 1 testing/22/pdata/999/assocs
+$$ process C:\Bruker\TopSpin4.0.9\prog\mod\dataserver.exe
+##$MULTDISP= <D:/nmrdata/mason42/MAS 1 testing/18/pdata/999>
+##END=
