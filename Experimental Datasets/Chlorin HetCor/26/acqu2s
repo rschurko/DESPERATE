@@ -1,0 +1,24 @@
+##TITLE= Parameter file, TopSpin 4.0.9
+##JCAMPDX= 5.0
+##DATATYPE= Parameter Values
+##NPOINTS= 16	$$ modification sequence number
+##ORIGIN= Bruker BioSpin GmbH
+##OWNER= nmrsu
+$$ 2021-10-25 17:26:10.563 -0700  nmrsu@CZC950B486
+$$ D:/nmrdata/mason42/MAS 1 testing/26/acqu2s
+$$ process C:\Bruker\TopSpin4.0.9\prog\mod\acqdataserver.exe
+##$ACQT0= 0
+##$BF1= 301.1
+##$FnILOOP= 1
+##$FnMODE= 5
+##$NUC1= <1H>
+##$NusJSP= 0
+##$NusT2= 7e-05
+##$NusTD= 64
+##$O1= 699.999999994816
+##$ProjAngle= 0
+##$SFO1= 301.1007
+##$SW= 175.895842869692
+##$SW_h= 100000
+##$TD= 26
+##END=
