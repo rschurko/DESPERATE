@@ -1,16 +1,7 @@
-# -*- coding: utf-8 -*-
-#Functions for processing SIMPSON data
+#Functions for processing SIMPSON data and some numerical tools
 import numpy as np
 import matplotlib.pyplot as plt
-import os
-from mpl_toolkits.mplot3d import Axes3D
-import scipy 
-from scipy.optimize import curve_fit
-import functions as proc
 import pandas
-import pywt
-#import pywt
-#import sys
 
 def read(name,lb,plot):
     """Read SIMPSON file; preferrably the FID"""
@@ -30,9 +21,6 @@ def read(name,lb,plot):
     
     fid = np.reshape(fid,(td,))
     fid = fid/np.max(fid)
-    # R = np.real(fid) / np.max(np.abs(np.real(fid)))
-    # I = np.imag(fid) / np.max(np.abs(np.imag(fid)))
-    # fid = R + 1j*I
     
     if lb!=0:
         fid = np.multiply( fid, np.exp(-time/lb) )
@@ -62,11 +50,11 @@ def noise(fid, th):
     
     return fid
 
-def snrp(spec,i,j):
+def snrp(spec,i,j,th=0.1):
     """Peak-to-peak SNR. Need to know the indicies of the max [i] and min[j] peaks."""
     
     spec = np.real(spec)
-    sn = ( spec[i] - spec[j] ) / np.std(spec[0:100])
+    sn = ( spec[i] - spec[j] ) / np.std(spec[0:int(th*len(spec))])
     #print('SNRp = %.3f' %sn)
     return sn
 
@@ -80,36 +68,6 @@ def ssim(specref, measure):
     Y = np.real( specref )
     SSIM = (2*np.mean(X)*np.mean(Y) + 0)*( 2*np.cov(X,Y)[0][1] + 0) /( (np.mean(X)**2 + np.mean(Y)**2 +0)*(np.std(X)**2 +np.std(Y)**2 + 0))
     return SSIM
-
-def deplot(data,denoised,SW,phases):
-    
-    plt.figure(1)
-    plt.subplot(121)
-    plt.plot(np.real(data),'k')
-    plt.subplot(122)
-    plt.plot(np.real(denoised),'r')
-    plt.title('Fast Cadzow Denoising (urQRd)', fontsize=18)
-    
-    spec = proc.phase( proc.fft(data) , phases)
-    specrecon = proc.phase( proc.fft(denoised) , phases)
-    #freq = proc.freqaxis(data)
-    freq = np.linspace(SW/2,-SW/2,len(spec))
-    
-    snr1 = proc.snr(spec,j=0)
-    snr2 = proc.snr(specrecon,j=0)
-    
-    plt.figure(2)
-    plt.subplot(211)
-    plt.plot(freq,np.real(spec),'k',label='SNR = %.2f' %snr1)
-    plt.gca().invert_xaxis()
-    plt.legend(loc = 'upper right')
-    plt.subplot(212)
-    plt.plot(freq,np.real(specrecon),'r',label='SNR = %.2f' %snr2)
-    plt.xlabel('Frequency (kHz)')
-    plt.legend(loc = 'upper right')
-    plt.gca().invert_xaxis()
-    
-    return
 
 def coadd(fid,td,r):
     """Coadd simpson cpmg echo train with r # echoes for td # points"""

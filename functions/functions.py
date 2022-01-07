@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib.widgets import Slider, Button
 import os
 from mpl_toolkits.mplot3d import Axes3D
 import scipy 
@@ -8,69 +9,40 @@ from scipy.optimize import curve_fit
 import pywt
 import sys
 
-def loadfidold(name,plot='no'):
-    """loads Topspin FID and other useful info"""
-    
-    f=open(name, mode='rb') #open(path + "fid", mode='rb')
-    fid = np.frombuffer(f.read(), dtype = int) #int for pre-NEO
-    l = int(len(fid))
-    Re = fid[0:l:2]
-    Im = 1j*fid[1:l:2]
-    fid = Re + Im
-    
-    g=open("acqus", mode='r')
-    lines=g.readlines()
-    SW = float(lines[269].split()[1]) #269
-    DW = 1/SW
-    
-    td = len(fid)
-    time = np.linspace(0, DW*td, num=td)
-    
-    if plot == 'yes':
-        plt.subplot(211)
-        plt.plot(time,np.real(fid),'b')
-        plt.subplot(212)
-        plt.plot(time,np.imag(fid),'r')
-        plt.xlabel('Time (s)')
-    return fid, SW
-
 def loadfid(name,plot='no'):
-    """loads Topspin FID and other useful info"""
-    
-    f=open(name, mode='rb') #open(path + "fid", mode='rb')
-    fid = np.frombuffer(f.read(), dtype = float) #float to avoid condvta nonsense
-    l = int(len(fid))
-    Re = fid[0:l:2]
-    Im = 1j*fid[1:l:2]
-    fid = Re + Im
+    """loads Topspin FID with optional plotting"""
     
     g=open("acqus", mode='r')
     lines=g.readlines()
     for i in range(len(lines)):
         if lines[i].split()[0] == '##$SW_h=': #SW actual index
             SW = float(lines[i].split()[1])
+        if lines[i].split()[0] == '##$DTYPA=': #TD actual index
+            dt = int(lines[i].split()[1])
     DW = 1/SW
-    td = len(fid)
-    time = np.linspace(0, DW*td, num=td)
     
-    if plot == 'yes':
-        plt.subplot(211)
-        plt.plot(time,np.real(fid),'b')
-        plt.subplot(212)
-        plt.plot(time,np.imag(fid),'r')
-        plt.xlabel('Time (s)')
-    return fid, SW
-
-def loadfid2(name,plot='no'):
-    """loads Topspin 2D SER"""
-    
-    f=open(name, mode='rb') #open(path + "fid", mode='rb')
-    fid = np.frombuffer(f.read(), dtype = int) #float to avoid condvta nonsense
+    f=open(name, mode='rb')
+    fid = np.frombuffer(f.read(), dtype = [np.dtype(np.int32), np.dtype(np.float32), np.dtype(np.float64)][dt]) #float or int #Need to look for byt
     l = int(len(fid))
     Re = fid[0:l:2]
     Im = 1j*fid[1:l:2]
     fid = Re + Im
     
+    td = len(fid)
+    time = np.linspace(0, DW*td, num=td)
+    
+    if plot == 'yes':
+        fig=plt.figure()
+        ax1 = plt.subplot(211)
+        ax2 = plt.subplot(212, sharex = ax1)
+        ax1.plot(time,np.real(fid),'b')
+        ax2.plot(time,np.imag(fid),'r')
+        plt.xlabel('Time (s)')
+    return fid
+
+def loadfid2(name,plot='no'):
+    """loads Topspin 2D SER"""
+
     g=open("acqus", mode='r')
     lines=g.readlines()
     for i in range(len(lines)):
@@ -85,42 +57,49 @@ def loadfid2(name,plot='no'):
             
         if lines[i] == '##$IN= (0..63)\n': #Assumes in0 for DW1
             DW1 = float(lines[i+1].split()[0])
+        if lines[i].split()[0] == '##$DTYPA=': #TD actual index
+            dt = int(lines[i].split()[1])
             
+    f=open(name, mode='rb') #open(path + "fid", mode='rb')
+    fid = np.frombuffer(f.read(), dtype = [np.dtype(np.int32), np.dtype(np.float32), np.dtype(np.float64)][dt]) #float or int #Need to look for byt
+    l = int(len(fid))
+    fid = fid[0:l:2] + 1j*fid[1:l:2]
+            
+    DW2 = 1/SW2
+    td1 = int(len(fid)/td2)  ##TD1 from acqus seems to miss
     fid = np.reshape(fid,(td1,td2))
     
-    #DW2 = 1/SW2
-    #SW1 = 1/DW1
-    
-    #t2 = np.linspace(0, DW2*td2, num=td2)
-    #t1 = np.linspace(0, DW1*td1, num=td1)
+    t2 = np.linspace(0, DW2*td2, num=td2)
+    t1 = np.linspace(0, DW1*td1, num=td1)
     if plot == 'yes':
-        #mesh(np.real(fid))
-        plt.contour(np.abs(fid),30)
+        plt.contour(t2,t1,np.abs(fid),40)
         plt.title('Magnitude 2D FID')
-        plt.xlabel('t2 [index]')
-        plt.ylabel('t1 [index]')
-        # plt.subplot(121)
-        # plt.contour(t2,t1,np.real(fid),25)
-        # plt.subplot(122)
-        # plt.contour(t2,t1,np.imag(fid),25)
-        # plt.xlabel('Time (s)')
+        plt.xlabel('t$_2$ (s)')
+        plt.ylabel('t$_1$ (s)')
     return fid
 
-def freqaxis(spec,zf=0,unit='kHz'):
-    "Generate the referenced frequency axis (in kHz) as an array"
+def freqaxis(spec,unit='kHz'):
+    "Generate the referenced frequency axis (in kHz or ppm) as an array"
     
-    #zfi = autozero(fid,zf)
     zfi = spec.size
+    g=open("acqus", mode='r')
+    lines=g.readlines()
+    for i in range(len(lines)):
+        if lines[i].split()[0] == '##$SW_h=': #SW actual index
+            SW = float(lines[i].split()[1])
+            
     cwd = os.getcwd()
     path = cwd + "\pdata\\1"
-
     os.chdir(path)
     h=open("procs", mode='r')
     lines=h.readlines()
-    SW = float(lines[119].split()[1])
-    SF = float(lines[107].split()[1])
-    OFFSET = float(lines[87].split()[1])
-    
+    for i in range(len(lines)):
+        if lines[i].split()[0] == '##$OFFSET=': #Offset actual index
+            OFFSET = float(lines[i].split()[1])
+        
+        if lines[i].split()[0] == '##$SF=': #SW actual index
+            SF = float(lines[i].split()[1])
+   
     off = ((OFFSET*SF)-SW/2)*1e-3
     freq = np.linspace(-SW/2e3+off, SW/2e3+off, num=zfi)
     if unit == 'ppm':
@@ -194,7 +173,7 @@ def fmc(fid,SW):
     return spec
 
 def mesh(matrix):
-    """3D mesh plot of a 2D matrix"""
+    """3D mesh plot of a 2D matrix just like Matlab's mesh function"""
     
     x = np.arange(matrix.shape[0])
     y = np.arange(matrix.shape[1])
@@ -232,14 +211,110 @@ def phase(spec, phases, ax=0):
             spec = np.transpose(spec)
         m,n = spec.shape
         a = np.transpose(np.arange(-m/2, m/2, 1))/m
-        #a = np.reshape(a,(m,1))
         b = (np.transpose(np.arange((-m/2-off),(m/2-off),1)**2)) / ((m**2)/2)
-        #b = np.reshape(b,(m,1))
         phase = ph0 + a*ph1 + b*ph2
         spec= np.multiply( spec, np.outer(np.exp((phase*(3.14159j/180))),np.ones((1,n))) )
         if ax == 1:
             spec = np.transpose(spec)
     return spec
+
+def mphase(data,fine=0,ax=1):
+    """Manual phasing with matplotlib widget for 1D or 2D data"""
+    
+    if data.ndim == 1:
+        fig = plt.figure()
+        plt.subplots_adjust(bottom=0.35)
+        ax = fig.subplots()
+        p, = ax.plot(np.real(data),'k')
+        
+        but = plt.axes([0.25, 0.25, 0.65, 0.03])
+        off_slide = plt.axes([0.25, 0.2, 0.65, 0.03])
+        ph0_slide = plt.axes([0.25, 0.15, 0.65, 0.03])
+        ph1_slide = plt.axes([0.25, 0.1, 0.65, 0.03])
+        ph2_slide = plt.axes([0.25, 0.05, 0.65, 0.03])
+        
+        off = Slider(off_slide, 'Offset', valmin= 0, valmax = len(data), 
+                          valinit=0, valstep=10)
+        ph0 = Slider(ph0_slide, "Zero", valmin= 0, valmax = 360, 
+                          valinit=0, valstep=0.5)
+        if fine == 0:
+            ph1 = Slider(ph1_slide, 'First', valmin= -1e6, valmax = 1e6, 
+                              valinit=0, valstep=20)
+        else:
+            ph1 = Slider(ph1_slide, 'First', valmin= -1e6/fine, valmax = 1e6/fine, 
+                              valinit=0, valstep=20)
+        ph2 = Slider(ph2_slide, 'Second', valmin= -1e4, valmax = 1e4, 
+                          valinit=0, valstep=10)
+        b = Button(but, 'Print Phases')
+        
+        def update(val):
+            y = phase(data,[ph0.val,ph1.val,ph2.val,off.val])
+            p.set_ydata(np.real(y))
+            fig.canvas.draw()
+            
+        def press(val):
+            print('[%d, %d, %d, %d]' % (ph0.val,ph1.val,ph2.val,off.val))
+        
+        ph0.on_changed(update); ph1.on_changed(update)
+        ph2.on_changed(update); off.on_changed(update)
+        b.on_clicked(press)
+        plt.show(block=True)
+        
+    elif data.ndim == 2:
+        fig = plt.figure()
+        grid = plt.GridSpec(4, 3, hspace=0.3, wspace=0.3) #4x5 grid of subplots #spacings for h and w
+        main_ax = fig.add_subplot(grid[1:3, 1:3]) 
+        yplot = fig.add_subplot(grid[1:3, 0], yticklabels=[])
+        xplot = fig.add_subplot(grid[0, 1:3], yticklabels=[], sharex=main_ax)
+        
+        main_ax.contour(np.real(data),10,cmap='jet')
+        xplot.plot(np.flipud(np.sum(np.real(data),0)),'k') #sum
+        yplot.plot(np.real(np.sum(data,1)),np.arange((len(np.sum(data,1)))),'k') #sum
+        yplot.invert_xaxis()
+        
+        but = plt.axes([0.25, 0.25, 0.65, 0.03])
+        off_slide = plt.axes([0.25, 0.2, 0.65, 0.03])
+        ph0_slide = plt.axes([0.25, 0.15, 0.65, 0.03])
+        ph1_slide = plt.axes([0.25, 0.1, 0.65, 0.03])
+        ph2_slide = plt.axes([0.25, 0.05, 0.65, 0.03])
+        
+        off = Slider(off_slide, 'Offset', valmin= 0, valmax = len(data), 
+                          valinit=0, valstep=10)
+        ph0 = Slider(ph0_slide, "Zero", valmin= -180, valmax = 180, 
+                          valinit=0, valstep=0.5)
+        if fine == 0:
+            ph1 = Slider(ph1_slide, 'First', valmin= -1e6, valmax = 1e6, 
+                              valinit=0, valstep=20)
+        else:
+            ph1 = Slider(ph1_slide, 'First', valmin= -1e6/fine, valmax = 1e6/fine, 
+                              valinit=0, valstep=20)
+        ph2 = Slider(ph2_slide, 'Second', valmin= -1e4, valmax = 1e4, 
+                          valinit=0, valstep=10)
+        b = Button(but, 'Print Phases and Exit')
+        # Updating the plot
+        def update(val):
+            y = phase(data,[ph0.val,ph1.val,ph2.val,off.val],ax=ax)
+            main_ax.clear()
+            xplot.clear()
+            yplot.clear()
+            main_ax.contour(np.real(y),10,cmap='jet')
+            xplot.plot(np.flipud(np.sum(np.real(y),0)),'k') #sum
+            yplot.plot(np.real(np.sum(y,1)),np.arange((len(np.sum(y,1)))),'k') #sum
+            yplot.invert_xaxis()
+            fig.canvas.draw()
+            
+        def press(val):
+            print('[%d, %d, %d, %d]' % (ph0.val,ph1.val,ph2.val,off.val))
+            plt.close()
+            
+        # Calling the function "update" when the value of the slider is changed
+        ph0.on_changed(update)
+        ph1.on_changed(update)
+        ph2.on_changed(update)
+        off.on_changed(update)
+        b.on_clicked(press)
+        plt.show(block=True)
+    return
 
 def autophase(spec,n,phase2='no'):
     """Automatically phases spectrum up to second order. Reccommended to use heavy line broadening prior to use"""
@@ -256,8 +331,7 @@ def autophase(spec,n,phase2='no'):
     #offsets = np.arange(td,-td+1,-4)
     offsets = np.linspace(-td/2,td/2,10)
     Iter1 = np.zeros((n,size))
-    M_ph1 = np.zeros(n)
-    M_ph0 = np.zeros(n)
+    M_ph1 = np.zeros(n); M_ph0 = np.zeros(n)
     ph1_1 = np.zeros(n)
     Iter3 = np.zeros((n,size))
     area1 = np.zeros(n)
@@ -307,7 +381,6 @@ def autophase(spec,n,phase2='no'):
         j = ph0 + np.linspace(0, 360/(k+1), round(size/(k+1)))
         l = ph2 + np.linspace(400*90/(k+1), -400*90/(k+1), round(size/(k+1)))
         offsets = BestOffset[a] + np.linspace(128,-128, round(len(offsets)))
-        #offsets = BestOffset[a] + np.linspace(round(td/(2*(k+1))),-round(td/(2*(k+1))), round(td/(k+1)))
         
         print('Iteration %d/%d' % (k+1,n))
         
@@ -324,8 +397,9 @@ def autophase(spec,n,phase2='no'):
     return phases
 
 def coadd(fid,MAS='no',plot='no'):
-    """Automatically coadd all spin echos and FT"""
-    """Specifically works for WCPMG data acquired on NEO with inconsistent spacings"""
+    """Automatically coadd all spin echos and FT;
+    Specifically works for WCPMG data acquired on NEO with
+    or without inconsistent spacings"""
     
     g=open("acqus", mode='r')
     lines=g.readlines()
@@ -347,7 +421,6 @@ def coadd(fid,MAS='no',plot='no'):
         if lines[i].split()[0] == '##$SW_h=': #SW actual index
             SW = float(lines[i].split()[1])
     DW = 1/SW #(s)
-    #par = [d3,d6,l22,l15,tp,decim,SW]
     
     fid = fid[(2*decim-1):] #remove decimation points
     fid = fid[:int((l22)*np.round((d6 + 2*d3 + 2e-6 + tp*1e-6)/DW))] #remove trailing pts
@@ -368,25 +441,30 @@ def coadd(fid,MAS='no',plot='no'):
             r = q - np.argmax(np.abs(np.real(cpmg[:,i]))) #amount to roll by is difference of index of echo tops
             cpmg[:,i] = np.roll(cpmg[:,i],r)
         
-    #mesh(np.abs(cpmg))
-    #sys.exit()
-    fidcoadd = np.sum(cpmg, axis=1) #note that it's more robust to do 2D FT and then coadd
+    fidcoadd = np.sum(cpmg, axis=1) 
  
     if plot=='yes':
         plt.plot(np.real(fidcoadd),'m')
         plt.title('Real Coadded FID')
-        #plt.xlabel('Time (s)')
-    
     return cpmg, fidcoadd
 
-def coaddgen(fid,MAS='no',plot='no'):
+def coaddgen(fid,pw=11,dring=3,dwindow=6,loop=22,lrot = 15,MAS='no',plot='no'):
     """Automatically coadd all spin echos. Attempt at generic coaddition.
+    Assumes that the CPMG pulse sequence has the following structure:
+        
+    pulse - tau2 - [tau2 - pulse - tau2 - tau_echo]_N
     
     parameters:
-        dring: int
-        dwindow: int
-        loop: int
-        pw: int
+    dring: int
+        Index of the ring down delay (tau2) in topsin (e.g., 3 for d3)
+    dwindow: int
+        Index of the windowed echo delay (tau_echo) in topsin (e.g., 6 for d6)
+    loop: int
+        Index of the loop counter (N) in topsin (e.g., 20 for l20)
+    lrot: int
+        Index of the MAS loop counter (M) in topsin (e.g., 15 for l15)
+    pw: int
+        Index of the pulse width (pulse) in topsin (e.g., 11 for p11)
     
     """
     
@@ -394,15 +472,15 @@ def coaddgen(fid,MAS='no',plot='no'):
     lines=g.readlines()
     for i in range(len(lines)):
         if lines[i] == '##$D= (0..63)\n': #D index -1
-            d3 = float(lines[i+1].split()[3])
-            d6 = float(lines[i+1].split()[6])
+            d3 = float(lines[i+1].split()[dring])
+            d6 = float(lines[i+1].split()[dwindow])
         
         if lines[i] == '##$L= (0..31)\n': #loop index -1
-            l22 = int(lines[i+1].split()[22]) #CPMG loops
-            l15 = int(lines[i+1].split()[15]) #MAS rotor sync integer
+            l22 = int(lines[i+1].split()[loop]) #CPMG loops
+            l15 = int(lines[i+1].split()[lrot]) #MAS rotor sync integer
         
         if lines[i] == '##$P= (0..63)\n': #pulse width index -1
-            tp = float(lines[i+1].split()[11])
+            tp = float(lines[i+1].split()[pw])
         
         if lines[i].split()[0] == '##$DECIM=': #Decim actual index
             decim = int(round(float(lines[i].split()[1])))
@@ -442,8 +520,8 @@ def coaddgen(fid,MAS='no',plot='no'):
     
     return cpmg, fidcoadd
 
-def mqproc(fid, SH = -7/9, zf1=0, zf2=0, lb1=0, lb2=0):
-    """Process MQMAS data with shearing.
+def mqproc(fid, SH = -7/9,q = 0, zf1=0, zf2=0, lb1=0, lb2=0):
+    """Process whole-echo MQMAS data with shearing.
     
     Parameters
     ----------
@@ -451,6 +529,8 @@ def mqproc(fid, SH = -7/9, zf1=0, zf2=0, lb1=0, lb2=0):
         complex FID matrix
     SH : float
         Shearing constant; default = -7/9 for I = 3/2
+    q : int
+        Optional input to do Q-shearing, will use zf1 for freq. zero-fill
     zf1 : int
         0-fill F1
     zf2 : int
@@ -470,12 +550,11 @@ def mqproc(fid, SH = -7/9, zf1=0, zf2=0, lb1=0, lb2=0):
         fid[:,i] = gauss(fid[:,i],lb1,c=0)
     
     #FT t2
-    ##Need the default zf2 from autozero fcn
     spec1 = np.zeros((np1,zf2),dtype='complex')
     for i in range(np1):
         spec1[i,:] = fft(fid[i,:],zf2)
     
-    #Shearing
+    #Shearing t1-F2 matrix
     g=open("acqus", mode='r')
     lines=g.readlines()
     for i in range(len(lines)):
@@ -483,8 +562,20 @@ def mqproc(fid, SH = -7/9, zf1=0, zf2=0, lb1=0, lb2=0):
             SW2 = float(lines[i].split()[1])
         if lines[i] == '##$IN= (0..63)\n': #Assumes in0 for DW1
             DW1 = float(lines[i+1].split()[0])
+    
     freq2 = np.linspace(-SW2/2,SW2/2,zf2) #F2 freq. (Hz)
     t1 = np.arange(0,np1*DW1,DW1)             #t1 time vector (s)
+    
+    if q != 0:
+        spec1 = np.multiply(spec1, np.exp(1j*q*2*np.pi*np.outer(t1,freq2)) )
+        #FT t1
+        spec = np.zeros((zf1,zf2),dtype='complex') ##rename spec
+        for i in range(zf2):
+            spec[:,i] = fft(spec1[:,i],np1) ##rename spec #dont ZF the FT here
+        
+        
+        
+    
     spec1 = np.multiply(spec1, np.exp(1j*SH*2*np.pi*np.outer(t1,freq2)) )
     
     #iFT t2, centered GB, FT t2 again
@@ -497,11 +588,11 @@ def mqproc(fid, SH = -7/9, zf1=0, zf2=0, lb1=0, lb2=0):
     #FT t1
     spec = np.zeros((zf1,zf2),dtype='complex')
     for i in range(zf2):
-        spec[:,i] = fft(spec1[:,i])
+        spec[:,i] = fft(spec1[:,i],zf1)
     return spec
 
-def fiso(spec,zf=0,SH = 7/9,q=3,unit='kHz'):
-    """Generate the referenced isotropic F1 for MQMAS.
+def fiso(spec,SH = 7/9,q=3,unit='kHz'):
+    """Generate the referenced isotropic F1 axis for MQMAS.
     q: int
         MQC coherence order (default = 3)
     """
@@ -518,10 +609,14 @@ def fiso(spec,zf=0,SH = 7/9,q=3,unit='kHz'):
             
     path = cwd + "\pdata\\1"
     os.chdir(path)
-    h=open("procs", mode='r')
+    h=open("proc2s", mode='r') ##Pulling from proc2
     lines=h.readlines()
-    SF = float(lines[107].split()[1])     #MHz
-    OFFSET = float(lines[87].split()[1])  #ppm
+    for i in range(len(lines)):
+        if lines[i].split()[0] == '##$OFFSET=': #Offset actual index
+            OFFSET = float(lines[i].split()[1])
+        
+        if lines[i].split()[0] == '##$SF=': #SW actual index
+            SF = float(lines[i].split()[1])
     
     off = ((OFFSET*SF)-SW1/2)  #ref off in Hz
     #freq = np.linspace(-SW/2e3+off, SW/2e3+off, num=zfi)
@@ -535,32 +630,8 @@ def fiso(spec,zf=0,SH = 7/9,q=3,unit='kHz'):
     os.chdir(cwd)
     return fiso
 
-def T2fit(fid,SW):
-    """Fit the monoexponential T2 / T2eff of the WCPMG echo train"""
-    
-    fid = np.abs(fid)
-    DW = 1/SW #(s)
-    g=open("acqus", mode='r')
-    lines=g.readlines()
-    d3 = float(lines[42].split()[3]) #d3 dead time (s)
-    d6 = float(lines[42].split()[6]) #d6 acq time (s)
-    decim = int(lines[47].split()[1]) #decimation number
-    l22 = int(lines[118].split()[22]) #number of echoes
-    tp = float(lines[168].split()[11]) #p11 pulse width in WCPMG (us)*
-    
-    #want the index so you can figure out the time with the dwell
-    indx1 = np.argmax(fid[:int(2*decim + (d6+ 2*d3 + 2e-6 + tp*1e-6)/DW -1)]) 
-    #print(tau1, indx1)
-    
-    indx=[indx1]
-    tops = []
-    tau  = []
-    group = int((d6/2+ 2*d3 + 2e-6 + tp*1e-6)/DW) #group delay of dead time and half echo
-    for i in range(l22):
-        run = np.argmax(fid[ indx[i] + group : indx[i] + group + int((d6)/DW)-1])
-        indx.append( indx[i] + group + run )
-        tops.append(fid[indx[i]])
-        tau.append(indx[i]*DW) #index*DW gives the times of the echo tops
+def T2fit(tops,tau):
+    """Fit the monoexponential T2 / T2eff of the (W)CPMG echo train"""
         
     tops = tops/np.amax(tops)
     tau = np.asarray(tau)
@@ -581,7 +652,7 @@ def T2fit(fid,SW):
     plt.legend()
     return tau
     
-def snr(spec,j):
+def snr(spec,j=0):
     """SNR measure in the frequency domain. Specturm needs to be phased for accurate measure"""
     
     spec = np.real(spec)
@@ -589,7 +660,7 @@ def snr(spec,j):
     if j!=0:    
         sn = np.max(spec) / np.std(spec[0:j])
     else:
-        sn = np.max(spec) / np.std(spec[0:100])
+        sn = np.max(spec) / np.std(spec[0:int(0.1*len(spec))])
     #print('SNR = %.3f' %sn)
     return sn
 
@@ -620,38 +691,9 @@ def PCA(matrix,r):
     # b = np.dot(sigma, Vh) ##replace with np.matmul or @ 
     # z1 = np.dot(U[:,:r], b[:r,:]) #retain 'r' principal components
     
-    return z #np.transpose(z1)
+    return z
 
-def deT2fit(matrix,tau):
-    """Fit the T2 of denoised CPMG data"""
-    #can either reccomend to run T2fit first or use T2fit funciton in this function to get tau
-    #and either suppress the plot or use as subplot somehow
-    matrix = np.abs(matrix)
-    m,n = matrix.shape
-    tops=[]
-    for i in range(n):
-        tops.append(np.max(matrix[:,i]))
-        
-    tops = tops/np.amax(tops)
-    #plt.plot(tops)
-    plt.plot(tau,tops,'k')
-    plt.xlabel('Time (ms)')
-    def f(x,a,T2):
-        return a*np.exp(-x/T2)
-    
-    popt, pcov = curve_fit(f, tau, tops, bounds= (0.0, [3., 1000.]) )
-    print('a = %5.3f' % popt[0])
-    print('T2 = %5.5f (s)' % popt[1])
-    
-    rmse = np.sqrt(np.mean(np.square(f(tau, popt[0], popt[1])-tops)))
-    print('RMSE = %5.4f' % rmse)
-    
-    plt.plot(tau, f(tau, popt[0], popt[1]),'r',
-             label='fit a*exp[-t/T2]: a=%5.3f, T2=%5.3f (s), RMSE = %5.3f' % (popt[0],popt[1],rmse))        
-    plt.legend()
-    return
-
-def cadzow(fid,p=10):
+def cadzow(fid,p=10, plot ='no'):
     """Create Hankel matrix and use SVD to denoise fid
     
     Parameters
@@ -675,13 +717,14 @@ def cadzow(fid,p=10):
     U, s, Vt = np.linalg.svd(hank) #s is a vector of singular values, not a matrix, Vt is already transposed
     s = np.array(s)
     s1 = np.flipud(np.diff(np.flipud(s)))
-    #plt.figure(1)
-    #plt.plot(s,'*')
-    # plt.plot(s1,'m.')
-    # #plt.yscale('log')
-    # plt.ylabel('Singular Value Magnitude')
-    # plt.xlabel('Singular Value Entry')
-    # sys.exit()
+    if plot == 'yes':
+        #plt.figure(1)
+        #plt.plot(s,'*')
+        plt.plot(s1,'m.')
+        #plt.yscale('log')
+        plt.ylabel('Deriv. Singular Value Magnitude')
+        plt.xlabel('Singular Value Entry')
+        sys.exit()
     
     r = np.argmax(s1[round((p/100)*len(s1)):]) + round((p/100)*len(s1)) #% of SV's to not look at
     print('Ignoring first %d percent of singular values for cut-off' %p)
@@ -689,13 +732,9 @@ def cadzow(fid,p=10):
     
     s[(r):] = 0
     sigma = scipy.linalg.diagsvd(s, m, n) #rebuilds s as sigma matrix
-    #plt.imshow(np.abs(sigma))
     hankrecon = np.matmul( np.matmul(U,sigma), Vt )
     
-    #plt.imshow(np.abs(hank))
-    #plt.imshow(np.abs(hankrecon))
-    
-    ad = [] #welcome to the inefficient anti-diagonal averaging algorithm
+    ad = [] #anti-diagonal averaging algorithm
     for i in range(m-1):
         ad.append( np.mean( np.fliplr( hankrecon[:i+1,:i+1] ).diagonal()))
     ad = np.array(ad)
