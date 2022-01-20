@@ -89,8 +89,6 @@ def rmse(specref,specrecon):
     """RMSE between two vectors"""
     ref = np.real(specref)/np.max(np.abs(np.real(specref)))
     result = np.real(specrecon)/np.max(np.abs(np.real(specrecon)))
-    #rmse = np.sqrt( np.sum( np.real( specref - specrecon )**2 ) / len(specref) )
     
     rmse = np.sqrt(np.mean((result-ref)**2))
-    
     return rmse

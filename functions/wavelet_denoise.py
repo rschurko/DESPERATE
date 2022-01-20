@@ -11,30 +11,10 @@ Created on Wed Mar 24 16:02:47 2021
 
 import numpy as np
 import pywt
+from scipy.ndimage.filters import maximum_filter
 import matplotlib.pyplot as plt
 import sys
-
-def wavelet_denoise2(level, data, region_spec, wave = 'bior2.2', threshold = 'mod', alpha = 0):
-    """
-    2D Stationary wavelet based noise removal technique
-    
-    ###
-    """
-    #F1proj = np.max(data, axis = 0)
-    coeffs=pywt.swt2(data, wave, level = level)
-    for i in range(len(coeffs)):
-        temp = coeffs[i]
-        lam = calc_lamb(temp[0], region_spec)
-        if threshold == 'mod':
-            fincomp0 = mod_thresh(temp[0], lam, alpha)
-            fincomp1 = mod_thresh(temp[1][0], lam, alpha)
-            fincomp2 = mod_thresh(temp[1][1], lam, alpha)
-            fincomp3 = mod_thresh(temp[1][2], lam, alpha)
-        coeffs[i] = (fincomp0, (fincomp1, fincomp2, fincomp3))
-
-    final = pywt.iswt2(coeffs, wave)
-    
-    return final, coeffs
+import functions as proc
 
 def wavelet_denoise(level, data, region_spec, wave = 'bior2.4', threshold = 'mod', alpha = 0):
     """
@@ -83,12 +63,12 @@ def wavelet_denoise(level, data, region_spec, wave = 'bior2.4', threshold = 'mod
         raise ValueError('alpha must be >= 0 and <= 1')
     
     coeffs=pywt.swt((data), wave, level = level) #stationary wavelet transform
-    coeffin =pywt.swt((data), wave, level = level)
+    coeffin = np.copy(coeffs)
     ### This section calculates the lambdas at each level and removes noise
     ### from each using the chosen thresholding method
     for i in range(len(coeffs)):
         temp = coeffs[i]
-        lam = calc_lamb(temp[0], region_spec)
+        lam = calc_lamb(temp[0], region_spec) #lam comes from approx. component
         if threshold == 'soft':
             fincomp0 = soft_threshold(temp[0], lam)
             fincomp1 = soft_threshold(temp[1], lam)
@@ -104,6 +84,29 @@ def wavelet_denoise(level, data, region_spec, wave = 'bior2.4', threshold = 'mod
         coeffs[i] = (fincomp0, fincomp1)
     #print('Lambda = %5.3f'%lam)
     final = pywt.iswt(coeffs, wave) #recontrusct the final denoised spectrum
+    return final, coeffin, coeffs
+
+def wavelet_denoise2(level, data, region_spec, wave = 'bior2.2', threshold = 'mod', alpha = 0):
+    """
+    2D Stationary wavelet based noise removal technique
+    
+    ###
+    """
+    #F1proj = np.max(data, axis = 0)
+    coeffs = pywt.swt2(data, wave, level = level)
+    coeffin = np.copy(coeffs)
+    for i in range(len(coeffs)):
+        temp = coeffs[i]
+        lam = calc_lamb(temp[0], region_spec) #lam comes from approx. component
+        if threshold == 'mod':
+            fincomp0 = mod_thresh(temp[0], lam, alpha)
+            fincomp1 = mod_thresh(temp[1][0], lam, alpha)
+            fincomp2 = mod_thresh(temp[1][1], lam, alpha)
+            fincomp3 = mod_thresh(temp[1][2], lam, alpha)
+        coeffs[i] = (fincomp0, (fincomp1, fincomp2, fincomp3))
+
+    final = pywt.iswt2(coeffs, wave)
+    
     return final, coeffin, coeffs
 
 def region_spec(data, nthresh = 4.5, buff_size = 200, filter_size = 2):
@@ -259,6 +262,67 @@ def base_deriv(s0):
         deriv[i] = (42*(s0[i] - s0[i-1]) + 48*(s0[i+1]-s0[i-2]) + 27*(s0[i+2]-s0[i-3]) + 8*(s0[i+3]-s0[i-4]) + s0[i+4]-s0[i-5])/512
     return deriv
 
+def extract_windows(data, window_size):
+    """
+    
+    Parameters
+    ----------
+    data : TYPE
+        DESCRIPTION.
+    window_size : TYPE
+        DESCRIPTION.
+
+    Returns
+    -------
+    TYPE
+        DESCRIPTION.
+
+    """
+    start = window_size
+    sub_windows = (
+        start +
+        np.expand_dims(np.arange(window_size), 0) +
+        np.expand_dims(np.arange(len(data)-2*window_size) - int(window_size/2), 0).T
+        )
+    return data[sub_windows]
+
+def region_spec2(data, thresh = 3, wndw = 30):
+    """
+    Generate a binary 2D spectrum where peak regions = 1 and noise = 0
+    
+    Parameters
+    ----------
+    data : ndarray
+        real valued spectral data
+    nthresh : float
+        optional : threshold use to define peak levels
+        default  : 3 times the noise level
+    wndw : int
+        optional : sets the number of points to add around the peaks
+        default  : 30 pts
+    
+    Returns
+    -------
+    fin_reg : ndarray
+        binary spectrum the same shape as the initial data defining peak regions
+    """
+    test = maximum_filter(data, size = 5)
+    npts = [data.shape[0]//16, data.shape[1]//16]
+    tempNoise = np.zeros((16,16))
+    for i in range(16):
+        for k in range(16):
+            tempNoise[i,k] = np.std(test[(i*npts[0]):npts[0]*(i+1),
+                                   (k*npts[1]):npts[1]*(k+1)])
+    noise = thresh*np.mean(tempNoise)
+    wdw = extract_windows(test, wndw)
+    wdw = np.concatenate((np.zeros((wndw,wndw,data.shape[1])),
+                          wdw, 
+                          np.zeros((wndw,wndw,data.shape[1]))), axis = 0)
+    
+    mn = np.max(np.abs(wdw), axis = 1) - np.min(np.abs(wdw), axis = 1)
+    fin_reg = 1-np.array([mn < noise][0]).astype(int)
+    return fin_reg
+
 def calc_lamb(data, region):
     """calculates the lambda value to use as the noise threshold
     
@@ -273,12 +337,18 @@ def calc_lamb(data, region):
     -------
     lam: float
        value for the noise threshold"""
+        
     if type(region) == int:
-        noise = data[0:int(0.15*len(data))] #test %'s of noise baseline
+        if data.ndim == 1:
+            noise = data[0:int(0.1*len(data))] 
+        elif data.ndim ==2:
+            #noise = data[0:int(0.1*len(data[:,0])),0:int(0.2*len(data[0,:]))]
+            noise = data[0:int(0.1*len(data[:,0]))] 
     else:
         noise = np.zeros(data.shape)
         idx = np.where(region == 0)
         noise[idx] = data[idx]
+            
     sig = np.std(noise)
     lam = sig*np.sqrt(2*np.log(len(data)))
     return lam

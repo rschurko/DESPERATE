@@ -6,7 +6,6 @@ import os
 from mpl_toolkits.mplot3d import Axes3D
 import scipy 
 from scipy.optimize import curve_fit
-import pywt
 import sys
 
 def loadfid(name,plot='no'):
@@ -99,7 +98,7 @@ def freqaxis(spec,unit='kHz'):
         
         if lines[i].split()[0] == '##$SF=': #SW actual index
             SF = float(lines[i].split()[1])
-   
+
     off = ((OFFSET*SF)-SW/2)*1e-3
     freq = np.linspace(-SW/2e3+off, SW/2e3+off, num=zfi)
     if unit == 'ppm':
@@ -509,8 +508,6 @@ def coaddgen(fid,pw=11,dring=3,dwindow=6,loop=22,lrot = 15,MAS='no',plot='no'):
             r = q - np.argmax(np.abs(np.real(cpmg[:,i]))) #amount to roll by is difference of index of echo tops
             cpmg[:,i] = np.roll(cpmg[:,i],r)
         
-    #mesh(np.abs(cpmg))
-    #sys.exit()
     fidcoadd = np.sum(cpmg, axis=1) #note that it's more robust to do 2D FT and then coadd
  
     if plot=='yes':
@@ -530,7 +527,7 @@ def mqproc(fid, SH = -7/9,q = 0, zf1=0, zf2=0, lb1=0, lb2=0):
     SH : float
         Shearing constant; default = -7/9 for I = 3/2
     q : int
-        Optional input to do Q-shearing, will use zf1 for freq. zero-fill
+        Optional input to do Q-shearing with Fiso expansion, will use zf1 for freq. zero-fill
     zf1 : int
         0-fill F1
     zf2 : int
@@ -540,8 +537,7 @@ def mqproc(fid, SH = -7/9,q = 0, zf1=0, zf2=0, lb1=0, lb2=0):
     lb2 : int
         Gaussian broaden t2
     """
-    np1 = fid.shape[0]
-    np2 = fid.shape[1]
+    np1 = fid.shape[0]; np2 = fid.shape[1]
     if zf2 == 0:
         zf2 = autozero(fid[0,:])
     if zf1 == 0:
@@ -567,34 +563,55 @@ def mqproc(fid, SH = -7/9,q = 0, zf1=0, zf2=0, lb1=0, lb2=0):
     t1 = np.arange(0,np1*DW1,DW1)             #t1 time vector (s)
     
     if q != 0:
-        spec1 = np.multiply(spec1, np.exp(1j*q*2*np.pi*np.outer(t1,freq2)) )
+        p = int((zf1-np1)/2)
+        spec = np.zeros((zf1,zf2),dtype='complex')
+        spec1 = np.multiply(spec1, np.exp(1j*q*2*np.pi*np.outer(t1,freq2)) ) #Q-shear
         #FT t1
-        spec = np.zeros((zf1,zf2),dtype='complex') ##rename spec
+        specq = np.zeros((np1,zf2),dtype='complex') ##rename spec
         for i in range(zf2):
-            spec[:,i] = fft(spec1[:,i],np1) ##rename spec #dont ZF the FT here
+            specq[:,i] = fft(spec1[:,i],np1) #dont ZF the FT here
+            
+        specq2 = np.pad(specq, [(p,p), (0,0)], mode='constant',constant_values=0) #0-filled
         
-        
-        
-    
-    spec1 = np.multiply(spec1, np.exp(1j*SH*2*np.pi*np.outer(t1,freq2)) )
-    
-    #iFT t2, centered GB, FT t2 again
-    dum = np.fft.fftshift((np.fft.ifft(spec1[0,:])))
-    c2 = np.argmax(dum) / zf2
-    for i in range(np1):
-        spec1[i,:] = np.fft.fftshift( (np.fft.ifft(spec1[i,:])) )
-        spec1[i,:] = (np.fft.fft( gauss(spec1[i,:],lb2,c2) ,zf2))
+        l = (zf1/np1)
+        for i in range(zf2): #IFT to un-Q-shear
+            spec[:,i] = np.fft.ifft(specq2[:,i]) #dont ZF the FT here
 
-    #FT t1
-    spec = np.zeros((zf1,zf2),dtype='complex')
-    for i in range(zf2):
-        spec[:,i] = fft(spec1[:,i],zf1)
+        t1s = np.arange(0,zf1*(DW1/l),(DW1/l)) #faster t1 from 0-fill
+        spec = np.multiply(spec, np.exp(-1j*q*2*np.pi*np.outer(t1s,freq2)) ) #un-q-shear
+        spec = np.multiply(spec, np.exp(1j*SH*2*np.pi*np.outer(t1s,freq2)) ) #normal shear
+        
+        for i in range(zf2): #FT t1 post shear
+            spec[:,i] = np.fft.fft(spec[:,i]) ##rename spec #dont ZF the FT here
+        
+        z = np.unravel_index(spec.argmax(), spec.shape)
+        c2 = np.argmax(np.abs(np.fft.fftshift((np.fft.ifft(spec[z[0],:]))))) / zf2
+        for i in range(zf1):
+            spec[i,:] = np.fft.fftshift( (np.fft.ifft(spec[i,:])) )
+            spec[i,:] = (np.fft.fft( gauss(spec[i,:],lb2,c2)))
+
+    else:
+        spec1 = np.multiply(spec1, np.exp(1j*SH*2*np.pi*np.outer(t1,freq2)) ) #normal shear
+        
+        #iFT t2, centered GB, FT t2 again
+        dum = np.fft.fftshift((np.fft.ifft(spec1[0,:])))
+        c2 = np.argmax(dum) / zf2
+        for i in range(np1):
+            spec1[i,:] = np.fft.fftshift( (np.fft.ifft(spec1[i,:])) )
+            spec1[i,:] = (np.fft.fft( gauss(spec1[i,:],lb2,c2) ,zf2))
+    
+        #FT t1
+        spec = np.zeros((zf1,zf2),dtype='complex')
+        for i in range(zf2):
+            spec[:,i] = fft(spec1[:,i],zf1)
     return spec
 
-def fiso(spec,SH = 7/9,q=3,unit='kHz'):
+def fiso(spec,SH = 7/9,q=3,unit='kHz',s=1):
     """Generate the referenced isotropic F1 axis for MQMAS.
     q: int
         MQC coherence order (default = 3)
+    s: int
+        If you used Q-shearing, scale Fiso by this factor (zf1/np1)
     """
     
     zfi = spec.size
@@ -621,7 +638,7 @@ def fiso(spec,SH = 7/9,q=3,unit='kHz'):
     off = ((OFFSET*SF)-SW1/2)  #ref off in Hz
     #freq = np.linspace(-SW/2e3+off, SW/2e3+off, num=zfi)
     
-    freq1 =  np.linspace(-SW1/2, SW1/2, zfi) ##F1 in Hz 
+    freq1 =  np.linspace(-(SW1)/2, (SW1)/2, zfi)*s ##F1 in Hz 
     fiso =  ( (freq1+off) / (1 + abs(SH)) )/1e3 ##F1iso in kHz 
     #freq1 = np.linspace(-SW1/2,SW1/2,zfi)
     
