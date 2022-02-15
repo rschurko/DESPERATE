@@ -16,13 +16,17 @@ cwd =  os.getcwd()
 
 ##1. Params:
 #Pick just two figures to compare
-aa = 4 #Spectrum index
+aa = 2 #Spectrum index
 base = 0.5 #base contour %'age
+nc = 40 #number of contours
+s = 2 #switch on sum (0) or skyline (1) projection or both (2)
 
 nzf1 = 512
 nzf2 = 4096
+gb1 = 0
+gb2 = 5
 
-a1 = 196; a2 = 338; a3 = 356 #F1 indices for the 2nd order spectra
+a1 = 198; a2 = 340; a3 = 358 #F1 indices for the 2nd order spectra
 
 ##2. Obtain all exp spec over a loop
 m = 5
@@ -37,10 +41,10 @@ for j in range(m):
     os.chdir(cwd + '\\' + str(exp[j]))
     fid = proc.loadfid2('ser',plot='no')
     ## SH = +7/9 for this coherence selection
-    spec = proc.mqproc(fid, SH = 7/9, zf1=nzf1, zf2=nzf2, lb1=0, lb2=5) 
+    spec = proc.mqproc(fid, SH = 7/9, zf1=nzf1, zf2=nzf2, lb1 = gb1, lb2 = gb2) 
     
     #PCA Denoise
-    # spec = proc.PCA(spec,3)
+    # spec = proc.PCA(spec,10)
     # plt.close()
     # plt.close()
     #sys.exit()
@@ -51,7 +55,13 @@ for j in range(m):
     specin[:,:,j] = proc.phase(spec,ph,ax=1)
     
     #Denoise 2D SWT
-    specrecon[:,:,j], coeffs = wave.wavelet_denoise2(2, np.real(specin[:,:,j]), 0, wave = 'bior2.2', threshold = 'mod', alpha = 0)
+    wdw = wave.region_spec2(np.real(spec), thresh = 12, wndw = 12)
+    specrecon[:,:,j], coeffin, coeffs = wave.wavelet_denoise2(2, np.real(specin[:,:,j]), wdw)
+
+    #PCA Denoise
+    # specrecon[:,:,j] = proc.PCA(specrecon[:,:,j],15)
+    # plt.close()
+    # plt.close()
 
     #SNRs
     a = np.unravel_index(spec.argmax(), spec.shape)
@@ -79,15 +89,16 @@ SSIMout1 = SSIMout1 - c; SSIMout2 = SSIMout2 - c; SSIMout3 = SSIMout3 - c;
 #Plotting Stuff
 mpl.rcParams['font.family'] = "arial"
 mpl.rcParams['font.size'] = 14
+mpl.rcParams['pdf.fonttype'] = 42
 
 freq2 = proc.freqaxis(spec[0,:],unit='ppm')
 fiso = proc.fiso(spec[:,0],unit='ppm')
 
 h = np.max(np.real(specin[:,:,aa]))
-lvls = np.linspace((base*1e-2)*h,h,30)
+lvls = np.linspace((base*1e-2)*h,h,nc)
 
 #############First Fig
-fig = plt.figure(figsize=(11, 8)) # figure size w x h
+fig = plt.figure(figsize=(12, 8)) # figure size w x h
 grid = plt.GridSpec(4, 5, hspace=0.3, wspace=0.6) #4x5 grid of subplots #spacings for h and w
 main_ax = fig.add_subplot(grid[1:, 1:4]) 
 
@@ -97,19 +108,32 @@ xplot = fig.add_subplot(grid[0, 1:4], yticklabels=[], sharex=main_ax)
 main_ax.contour(freq2,fiso,(np.real(specin[:,:,aa])),lvls,cmap='jet')
 main_ax.set_xlabel('F$_{2}$ (ppm)')#, fontfamily = 'Arial')
 #main_ax.set_ylabel('F1_iso Frequency (ppm)')#, fontfamily = 'Arial')
-main_ax.set_ylabel("F$_{iso}$ (ppm)")
+main_ax.set_ylabel("F$_{iso}$ (ppm)",labelpad=-429)
 main_ax.invert_yaxis()
 main_ax.invert_xaxis()
 main_ax.set_xlim(-24, -40) ##CHK BACK
-main_ax.set_ylim(-20, -37)  ##CHK BACK
+main_ax.set_ylim(-24, -40)  ##CHK BACK
+main_ax.tick_params(right = True,left = False,labelleft = False, 
+                    labelright=True, which = 'both')
 main_ax.minorticks_on()
 
-xplot.plot(freq2,(np.sum(np.real(specin[:,:,aa]),0)),'k')
+if s == 0:
+    xplot.plot(freq2,(np.sum(np.real(specin[:,:,aa]),0)),'k') #sum
+    yplot.plot(np.real(np.sum(specin[:,:,aa],1)),fiso,'k')
+elif s==1:
+    xplot.plot(freq2,(np.max(np.real(specin[:,:,aa]),0)),'k') #skyline
+    yplot.plot(np.real(np.max(specin[:,:,aa],1)),fiso,'k') #Skyline
+else:
+    xplot.plot(freq2,(np.max(np.real(specin[:,:,aa]),0) / np.max(np.max(np.real(specin[:,:,aa]),0)) )+0.5,'k') #both
+    xplot.plot(freq2,(np.sum(np.real(specin[:,:,aa]),0) / np.max(np.sum(np.real(specin[:,:,aa]),0))),'r') #
+    yplot.plot(np.real(np.max(specin[:,:,aa],1) / np.max(np.max(specin[:,:,aa],1)))+0.5,fiso,'k') 
+    yplot.plot(np.real(np.sum(specin[:,:,aa],1) / np.max(np.sum(specin[:,:,aa],1))),fiso,'r')
 
-yplot.plot(np.real(np.sum(specin[:,:,aa],1)),fiso,'k')
+# xplot.plot(freq2,(np.sum(np.real(specin[:,:,aa]),0)),'k')
+# yplot.plot(np.real(np.sum(specin[:,:,aa],1)),fiso,'k')
 yplot.invert_xaxis()
 yplot.invert_yaxis()
-yplot.set_ylim(-20, -37)  ##CHK BACK
+yplot.set_ylim(-24, -40)  ##CHK BACK
 
 #Plot the sub-spectra
 s1 = fig.add_subplot(grid[1, 4], yticklabels=[])
@@ -126,9 +150,9 @@ s3.plot(freq2,(np.real(specin[a3,:,aa])),'m')
 
 ####################Second fig
 h = np.max(np.real(specrecon[:,:,aa]))
-lvls = np.linspace((base*1e-2)*h,h,30)
+lvls = np.linspace((base*1e-2)*h,h,nc)
 
-fig = plt.figure(figsize=(11, 8)) # figure size w x h
+fig = plt.figure(figsize=(12, 8)) # figure size w x h
 grid = plt.GridSpec(4, 5, hspace=0.3, wspace=0.6) #4x5 grid of subplots #spacings for h and w
 main_ax = fig.add_subplot(grid[1:, 1:4]) 
 
@@ -138,19 +162,34 @@ xplot = fig.add_subplot(grid[0, 1:4], yticklabels=[], sharex=main_ax)
 main_ax.contour(freq2,fiso,(np.real(specrecon[:,:,aa])),lvls,cmap='jet')
 main_ax.set_xlabel('F$_{2}$ (ppm)')#, fontfamily = 'Arial')
 #main_ax.set_ylabel('F1_iso Frequency (ppm)')#, fontfamily = 'Arial')
-main_ax.set_ylabel("F$_{iso}$ (ppm)")
+main_ax.set_ylabel("F$_{iso}$ (ppm)",labelpad=-429)
 main_ax.invert_yaxis()
 main_ax.invert_xaxis()
 main_ax.set_xlim(-24, -40) ##CHK BACK
-main_ax.set_ylim(-20, -37)  ##CHK BACK
+main_ax.set_ylim(-24, -40)  ##CHK BACK
+main_ax.tick_params(right = True,left = False,labelleft = False, 
+                    labelright=True, which = 'both')
 main_ax.minorticks_on()
 
-xplot.plot(freq2,(np.sum(np.real(specrecon[:,:,aa]),0)),'k')
+if s == 0:
+    xplot.plot(freq2,(np.sum(np.real(specrecon[:,:,aa]),0)),'k') #sum
+    yplot.plot(np.real(np.sum(specrecon[:,:,aa],1)),fiso,'k')
+elif s==1:
+    xplot.plot(freq2,(np.max(np.real(specrecon[:,:,aa]),0)),'k') #skyline
+    yplot.plot(np.real(np.max(specrecon[:,:,aa],1)),fiso,'k') #Skyline
+else:
+    xplot.plot(freq2,(np.max(np.real(specrecon[:,:,aa]),0) / np.max(np.max(np.real(specin[:,:,aa]),0)) )+0.5,'k') #both
+    xplot.plot(freq2,(np.sum(np.real(specrecon[:,:,aa]),0) / np.max(np.sum(np.real(specin[:,:,aa]),0))),'r') #
+    yplot.plot(np.real(np.max(specrecon[:,:,aa],1) / np.max(np.max(specrecon[:,:,aa],1)))+0.5,fiso,'k') 
+    yplot.plot(np.real(np.sum(specrecon[:,:,aa],1) / np.max(np.sum(specrecon[:,:,aa],1))),fiso,'r')
+    
 
-yplot.plot(np.real(np.sum(specrecon[:,:,aa],1)),fiso,'k')
+# xplot.plot(freq2,(np.sum(np.real(specrecon[:,:,aa]),0)),'k')
+# yplot.plot(np.real(np.sum(specrecon[:,:,aa],1)),fiso,'k')
+
 yplot.invert_xaxis()
 yplot.invert_yaxis()
-yplot.set_ylim(-20, -37)  ##CHK BACK
+yplot.set_ylim(-24, -40)  ##CHK BACK
 
 #Plot the sub-spectra
 s1 = fig.add_subplot(grid[1, 4], yticklabels=[])
@@ -167,6 +206,7 @@ s3.plot(freq2,(np.real(specrecon[a3,:,aa])),'m')
 
 ##Table of results
 ns = ['ns=384', 'ns=192', 'ns=96', '75 kHz', 'No SPAM']
+ns = [1,2,3,4,5]
 data=[]
 for i in range(len(SSIMin1)):
     data.append( [ns[i],"%.1f"%snrF1in[i],"%.1f"%snrF1out[i], "%.1f"%snrF2in[i],
@@ -180,5 +220,9 @@ head = ['Exp','SNRF1_in','SNRF1_out', 'SNRF2_in','SNRF2_out', 'SSIM_in1', 'SSIM_
 print(tabulate(data, headers=head, tablefmt="pretty", floatfmt="5.4f"))
 
 os.chdir(cwd)
+
+a = np.asarray(data,dtype='float64')
+np.savetxt("8_MQ_exp.csv",a, fmt='%5.4f', delimiter=',')
+
 print('Finished!')
 print("-- %5.5f s Run Time --" % (time.time() - start_time))

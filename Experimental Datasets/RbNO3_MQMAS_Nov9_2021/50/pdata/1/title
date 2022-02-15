@@ -1,0 +1,16 @@
+MQMAS-NUS
+40% NUS (205 pts)
+'T2' = 3 ms
+HP(-3) - HP(0)pi/2(+1) - pi - echo
+96 phase cycle
+
+87Rb, 10kHz MAS
+RbNO3
+
+SW2 = 10 kHz
+
+exc (5.6us @ 100 kHz) - conv (2.0us @ 100 kHz) - CT pi/2 (10 kHz) - CT pi (10 kHz)
+
+2D
+512 t1 pts
+96 scans

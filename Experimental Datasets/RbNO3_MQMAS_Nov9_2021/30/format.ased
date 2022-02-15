@@ -1,0 +1,329 @@
+#*******************************************************************
+#
+# $Source: /sc/CvsTree/sc/gen/src/form/ased_acqu.form,v $
+#
+# Copyright (c) 1995 - 2008
+# BRUKER BioSpin GmbH
+# D-76287 Rheinstetten, Germany
+#
+# All Rights Reserved
+#
+#
+# $Id: ased_acqu.form,v 1.40 2020/07/10 16:17:06 alexander.herbig Exp $
+#*******************************************************************
+EDIT_PAR COMMAND FILE
+
+DI_MODE         LONG
+ED_ENTRY        ACQU
+ORDER           FILE
+
+
+HEADER		"====== General ======"
+NAME		PULPROG
+END
+NAME		TD
+END
+NAME		SW
+END
+T_NAME		SWH
+		TYPE	R32
+		CLASS	ACQU
+		SUBRANGE 0.0 1e38
+		REL	"SWH=SW*SFO1"
+		INV_REL "SW=SWH/SFO1"
+		UNIT	"Hz"
+		FORMAT	"%14.2f Hz"
+		TEXT	"sweep width in acquisition direction"
+END
+T_NAME          AQ
+		TYPE	R32
+		CLASS	ACQU
+		SUBRANGE 0.0 1e38
+		REL	"AQ=aqcalc(SW,SFO1,TD,DIGTYP,FnMODE)"
+		INV_REL	"TD=tdcalc(SW,SFO1,1.0e6*AQ,DIGTYP,FnMODE)"
+		UNIT	"sec"
+		FORMAT	"%14.7f sec"
+                TEXT	"acquisition time"
+END
+NAME		RG
+END
+T_NAME          DW
+		TYPE	R32
+		CLASS	ACQU
+		SUBRANGE 0.0 1e38
+		REL	"DW=1/(2*SW*SFO1)"
+		INV_REL	"SW=1000000/(2*(0.005+DW)*SFO1)"
+		UNIT	"usec"
+		FORMAT	"%14.3f usec"
+		TEXT	"dwell time "
+END
+NAME		DE
+		FORMAT	"%14.2f usec"
+END
+T_NAME		GRPDLY
+		TYPE	R64
+		SUBRANGE 0 1e38
+		CLASS	ACQU
+		REL	"GRPDLY=GRPDLY"
+		INV_REL	"GRPDLY=GRPDLY"				
+		UNIT	"no"
+		TEXT	"group delay of digital filter"
+		FORMAT	"%14.0f"
+		NONEDIT
+END
+T_NAME		CNST31
+TYPE	R32
+CLASS	ACQU
+SUBRANGE -1e38 1e38
+REL	"CNST31=CNST[31]"
+INV_REL	"CNST[31]=CNST31"
+FORMAT	"%14.7f"
+		TEXT		"MAS spin rate [Hz]"
+END
+T_NAME		D0
+TYPE	R32
+CLASS	ACQU
+SUBRANGE 0.0 1e38
+REL	"D0=D[0]"
+INV_REL	"D[0]=D0"
+UNIT	"sec"
+FORMAT	"%14.9f sec"
+		TEXT		"initial t1 value"
+END
+T_NAME		D1
+TYPE	R32
+CLASS	ACQU
+SUBRANGE 0.0 1e38
+REL	"D1=D[1]"
+INV_REL	"D[1]=D1"
+UNIT	"sec"
+FORMAT	"%14.9f sec"
+		TEXT		"recycle delay"
+END
+T_NAME		d6
+		TYPE	R32
+		SUBRANGE 0.0 1e8
+		CLASS	ACQU
+		REL	"d6=(1s*l1/cnst31)-(p2/2)-5us-p3-(p4/2)"
+		INV_REL	"D[0]=d6"
+		UNIT	"sec"
+		TEXT		"to allow full echo to build up"
+		FORMAT	"%14.10f sec"
+		NONEDIT
+END
+NAME		DS
+		TEXT	"number of dummy scans"
+END
+T_NAME		in0
+		TYPE	R32
+		SUBRANGE 0.0 1e8
+		CLASS	ACQU
+		REL	"in0=inf1"
+		INV_REL	"D[0]=in0"
+		UNIT	"sec"
+		TEXT		"=rotor period for synchronized experiment"
+		FORMAT	"%14.10f sec"
+		NONEDIT
+END
+T_NAME		INF1
+TYPE	R64
+CLASS	ACQU
+SUBRANGE 0.0 1e38
+REL	"INF1=INF[1]"
+INV_REL	"INF[1]=INF1"
+UNIT	"usec"
+FORMAT	"%14.4f usec"
+TEXT	"increment for F1"
+NONEDIT
+END
+T_NAME		L1
+TYPE	R32
+CLASS	ACQU
+SUBRANGE 0.0 1e38
+REL	"L1=L[1]"
+INV_REL	"L[1]=L1"
+FORMAT	"%14.0f"
+		TEXT		"number of rotor cycles for synchronisation"
+END
+NAME		NS
+		TEXT	"scans to execute"
+END
+NAME		NUSLIST
+		TEXT	"variable counter list"
+END
+T_NAME		SPARSELIST
+		TYPE	I32
+		SUBRANGE 0 2147483647
+		CLASS	ACQU
+		REL	"SPARSELIST=             0"
+		INV_REL	"D[0]=SPARSELIST"
+		UNIT	"no"
+		TEXT	"SPARSELIST[77]={              0               3 ... }"
+		FORMAT	"%14d"
+		NONEDIT
+END
+NAME		TDav	
+		TEXT	"number of averages in nD"
+END
+HEADER		"======== CHANNEL f1 ========"
+NAME		SFO1
+FORMAT	"%14.7f MHz"
+TEXT	"frequency of ch. 1"
+END
+NAME		O1
+FORMAT	"%14.2f Hz"
+TEXT	"frequency of ch. 1"
+END
+T_NAME		O1P
+TYPE	R64
+CLASS	ACQU
+SUBRANGE -1e38 1e38
+REL	"O1P=O1/BF1"
+INV_REL	"O1=O1P*BF1"
+UNIT	"ppm"
+FORMAT	"%14.3f ppm"
+TEXT	"frequency of ch. 1"
+END
+NAME		NUC1
+NONEDIT
+TEXT	"nucleus for channel 1"
+END
+T_NAME		P1
+TYPE	R32
+CLASS	ACQU
+SUBRANGE 0.0 1.0e10
+REL	"P1=P[1]"
+INV_REL	"P[1]=P1"
+UNIT	"usec"
+FORMAT	"%14.3f usec"
+		TEXT		"excitation pulse at PL11"
+END
+T_NAME		P2
+TYPE	R32
+CLASS	ACQU
+SUBRANGE 0.0 1.0e10
+REL	"P2=P[2]"
+INV_REL	"P[2]=P2"
+UNIT	"usec"
+FORMAT	"%14.3f usec"
+		TEXT		"conversion pulse at PL11"
+END
+T_NAME		P3
+TYPE	R32
+CLASS	ACQU
+SUBRANGE 0.0 1.0e10
+REL	"P3=P[3]"
+INV_REL	"P[3]=P3"
+UNIT	"usec"
+FORMAT	"%14.3f usec"
+		TEXT		"selective 90 pulse at PL13"
+END
+T_NAME		P4
+TYPE	R32
+CLASS	ACQU
+SUBRANGE 0.0 1.0e10
+REL	"P4=P[4]"
+INV_REL	"P[4]=P4"
+UNIT	"usec"
+FORMAT	"%14.3f usec"
+		TEXT		"selective 180 pulse at PL14"
+END
+T_NAME		PLW1
+TYPE	R32
+CLASS	ACQU
+SUBRANGE 0 1098.51
+REL	"PLW1=PLW[1]"
+INV_REL	"PLW[1]=PLW1"
+UNIT	"W"
+FORMAT	"%14.5g W"
+		TEXT		"=0 W"
+END
+T_NAME		PLdB1
+TYPE	R32
+CLASS	ACQU
+SUBRANGE -30.508 1000
+REL	"if(PLW[1]>0)PLdB1=-10*log(PLW[1])/LN10;else PLdB1=1000;"
+INV_REL	"PLW[1]=0;if(PLdB1<1000)PLW[1]=pow(10.0,(-PLdB1)/10.0)"
+UNIT	"dB"
+FORMAT	"%14.2f dB"
+TEXT	"power PL1 in dB"
+END
+T_NAME		PLW11
+TYPE	R32
+CLASS	ACQU
+SUBRANGE 0 1098.51
+REL	"PLW11=PLW[11]"
+INV_REL	"PLW[11]=PLW11"
+UNIT	"W"
+FORMAT	"%14.5g W"
+		TEXT		"excitation and conversion power level"
+END
+T_NAME		PLdB11
+TYPE	R32
+CLASS	ACQU
+SUBRANGE -30.508 1000
+REL	"if(PLW[11]>0)PLdB11=-10*log(PLW[11])/LN10;else PLdB11=1000;"
+INV_REL	"PLW[11]=0;if(PLdB11<1000)PLW[11]=pow(10.0,(-PLdB11)/10.0)"
+UNIT	"dB"
+FORMAT	"%14.2f dB"
+TEXT	"power PL11 in dB"
+END
+T_NAME		PLW13
+TYPE	R32
+CLASS	ACQU
+SUBRANGE 0 1098.51
+REL	"PLW13=PLW[13]"
+INV_REL	"PLW[13]=PLW13"
+UNIT	"W"
+FORMAT	"%14.5g W"
+		TEXT		"spam pulse power level"
+END
+T_NAME		PLdB13
+TYPE	R32
+CLASS	ACQU
+SUBRANGE -30.508 1000
+REL	"if(PLW[13]>0)PLdB13=-10*log(PLW[13])/LN10;else PLdB13=1000;"
+INV_REL	"PLW[13]=0;if(PLdB13<1000)PLW[13]=pow(10.0,(-PLdB13)/10.0)"
+UNIT	"dB"
+FORMAT	"%14.2f dB"
+TEXT	"power PL13 in dB"
+END
+T_NAME		PLW14
+TYPE	R32
+CLASS	ACQU
+SUBRANGE 0 1098.51
+REL	"PLW14=PLW[14]"
+INV_REL	"PLW[14]=PLW14"
+UNIT	"W"
+FORMAT	"%14.5g W"
+		TEXT		"pi-pulse power level"
+END
+T_NAME		PLdB14
+TYPE	R32
+CLASS	ACQU
+SUBRANGE -30.508 1000
+REL	"if(PLW[14]>0)PLdB14=-10*log(PLW[14])/LN10;else PLdB14=1000;"
+INV_REL	"PLW[14]=0;if(PLdB14<1000)PLW[14]=pow(10.0,(-PLdB14)/10.0)"
+UNIT	"dB"
+FORMAT	"%14.2f dB"
+TEXT	"power PL14 in dB"
+END
+HEADER		"======== F1 INDIRECT DIMENSION ========"
+T_NAME		td1
+		TYPE	I32
+		CLASS	ACQU
+		REL	"td1=129"
+		INV_REL	"TD=TD"
+		FORMAT	"%d"
+		TEXT	"F1 Time domain size"
+		NONEDIT
+END
+T_NAME		sw_F1
+		TYPE	R32
+		CLASS	ACQU
+		REL	"sw_F1=50.931616"
+		INV_REL	"SW=SW"
+		FORMAT	"%f"
+		TEXT	"F1 Sweep width [ppm]"
+		NONEDIT
+END

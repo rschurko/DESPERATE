@@ -1,0 +1,200 @@
+##TITLE= Audit trail, TopSpin 4.1.1
+##JCAMPDX= 5.01
+##ORIGIN= Bruker BioSpin GmbH
+##OWNER= rschurko
+$$ /opt/topspin4.1.1/data/altenhof/nmr/RbNO3_MQMAS_Nov9_2021/40/audita.txt
+##AUDIT TRAIL=  $$ (NUMBER, WHEN, WHO, WHERE, PROCESS, VERSION, WHAT)
+(   1,<2021-01-28 22:12:47.116 +0000>,<root>,<BladeEpu>,<go4>,<TopSpin 4.0.6>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'hung'
+       started at 2021-01-28 21:48:38.948 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-01-28 22:12:47.116 +0000
+       configuration hash MD5:
+       7F 7E 37 1F 02 44 10 53 B9 CC C8 7F F4 5B D9 E3
+       double data hash MD5: 512 * 128
+       10 5B 41 53 A1 49 E3 E7 85 B1 F3 9C 25 EA 5C D1>)
+$$ /opt/topspin/data/hung/nmr/rb87_01/206/audita.txt
+(   2,<2021-01-28 17:12:20.178 -0500>,<hung>,<600wb1.magnet.fsu.edu>,<sertoint>,<TopSpin 4.0.6>,
+      <sertoint
+       data hash MD5: 512 * 128
+       3D 63 C0 D0 0A 68 28 6B C4 4D 13 56 5B F0 25 16>)
+(   3,<2021-02-11 19:09:10.271 -0500>,<hung>,<600wb1.magnet.fsu.edu>,<dirdata>,<TopSpin 4.0.6>,
+      <wra from 206 "rb87_01" "/opt/topspin/data/hung/nmr"
+       data hash MD5: 512 * 128
+       3D 63 C0 D0 0A 68 28 6B C4 4D 13 56 5B F0 25 16>)
+$$ /opt/nmrdata/data/hung/nmr/rb87_01/284/audita.txt
+(   4,<2021-02-12 22:23:48.672 +0000>,<hung>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+(   5,<2021-02-12 22:23:48.674 +0000>,<hung>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+(   6,<2021-02-13 00:00:22.966 +0000>,<hung>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'hung'
+       on data set with UUID 'fa36cf38-6d80-11eb-97a6-00139526610d'
+       started at 2021-02-12 22:23:48.683 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-02-13 00:00:22.964 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512 * 129
+       F0 5B 81 DB 8E 59 65 46 2C E5 A8 03 F4 81 F5 27>)
+(   7,<2021-02-12 19:00:19.259 -0500>,<hung>,<600wb1.magnet.fsu.edu>,<sertoint>,<TopSpin 4.1.1>,
+      <sertoint
+       data hash MD5: 512 * 129
+       56 AF 18 95 CD 05 62 DB AF A8 94 C6 37 79 7D D2>)
+(   8,<2021-09-27 14:27:53.836 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<dirdata>,<TopSpin 4.1.1>,
+      <wrpa from 1 284 "RbNO3_MQMAS_Sept27_2021" "/opt/topspin4.1.1/data/altenhof/nmr"
+       data hash MD5: 512 * 129
+       56 AF 18 95 CD 05 62 DB AF A8 94 C6 37 79 7D D2>)
+$$ /opt/topspin4.1.1/data/altenhof/nmr/RbNO3_MQMAS_Sept27_2021/200/audita.txt
+(   9,<2021-09-27 18:32:10.304 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+(  10,<2021-09-27 18:32:10.306 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+(  11,<2021-09-27 18:33:40.085 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '39e9dd76-1fc1-11ec-b497-00139526610d'
+       started at 2021-09-27 18:32:10.314 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-09-27 18:33:40.082 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 1K * 2
+       28 E4 03 2A 40 EC D2 8F AD A7 91 38 F8 C1 75 F6>)
+(  12,<2021-09-27 14:33:37.508 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<sertoint>,<TopSpin 4.1.1>,
+      <sertoint
+       data hash MD5: 1K * 2
+       03 48 DA E5 3F F0 51 30 D6 CE D3 8E 0A 69 CD D8>)
+(  13,<2021-09-27 18:35:05.960 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+(  14,<2021-09-27 18:35:05.962 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+(  15,<2021-09-27 18:36:02.103 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID 'a29cc338-1fc1-11ec-8e16-00139526610d'
+       started at 2021-09-27 18:35:05.975 +0000, POWCHK enabled, PULCHK disabled,
+       terminated by command 'stop' at 2021-09-27 18:36:02.101 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 1K * 1
+       63 0C 14 41 FB 04 6E 12 82 23 65 59 94 D1 78 62>)
+(  16,<2021-09-27 14:35:59.292 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<sertoint>,<TopSpin 4.1.1>,
+      <sertoint
+       data hash MD5: 1K * 1
+       14 3D EB C6 80 C4 50 32 CA C6 BB 6D 39 5D 0F 3C>)
+(  17,<2021-09-27 18:36:08.881 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+(  18,<2021-09-27 18:36:08.883 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+(  19,<2021-09-27 18:53:35.372 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID 'c81dc4a4-1fc1-11ec-94fd-00139526610d'
+       started at 2021-09-27 18:36:08.894 +0000, POWCHK enabled, PULCHK disabled,
+       terminated by command 'stop' at 2021-09-27 18:53:35.369 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 1K * 23
+       36 BF B3 5B 64 1A D7 CE 2C 6B 37 A8 A5 AF EE 17>)
+(  20,<2021-09-27 14:53:32.484 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<sertoint>,<TopSpin 4.1.1>,
+      <sertoint
+       data hash MD5: 1K * 23
+       41 63 FB 68 09 65 14 02 34 85 27 64 53 F3 1E 9D>)
+(  21,<2021-09-27 18:54:29.452 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+(  22,<2021-09-27 18:54:29.454 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+(  23,<2021-09-27 18:57:41.651 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '581b4ca0-1fc4-11ec-a83a-00139526610d'
+       started at 2021-09-27 18:54:29.466 +0000, POWCHK enabled, PULCHK disabled,
+       terminated by command 'stop' at 2021-09-27 18:57:41.648 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 1K * 5
+       5D 9B F4 B1 0E 8B C5 21 E3 C6 7C 28 34 BC 90 14>)
+(  24,<2021-09-27 14:57:38.759 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<sertoint>,<TopSpin 4.1.1>,
+      <sertoint
+       data hash MD5: 1K * 5
+       56 64 24 E2 84 CC 8A BA A6 5F 19 77 7E 96 08 03>)
+(  25,<2021-09-27 18:58:20.949 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+(  26,<2021-09-27 18:58:20.951 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+(  27,<2021-09-27 19:02:55.193 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID 'e2171754-1fc4-11ec-aad5-00139526610d'
+       started at 2021-09-27 18:58:20.964 +0000, POWCHK enabled, PULCHK disabled,
+       terminated by command 'stop' at 2021-09-27 19:02:55.190 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 1K * 7
+       1B 3A 17 8F 6A 44 2E 4E D1 13 DE 56 28 E4 24 51>)
+(  28,<2021-09-27 15:02:52.277 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<sertoint>,<TopSpin 4.1.1>,
+      <sertoint
+       data hash MD5: 1K * 7
+       23 8B 1D 7A 8A 11 30 05 EF CE 73 E4 2C 60 72 22>)
+(  29,<2021-09-27 19:02:58.768 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+(  30,<2021-09-27 19:02:58.771 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+(  31,<2021-09-27 20:39:33.643 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '87aeab50-1fc5-11ec-9785-00139526610d'
+       started at 2021-09-27 19:02:58.783 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-09-27 20:39:33.640 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 1K * 129
+       20 2D A7 98 F9 C3 41 75 97 D0 CF 56 CC E6 E0 59>)
+(  32,<2021-09-27 16:39:30.352 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<sertoint>,<TopSpin 4.1.1>,
+      <sertoint
+       data hash MD5: 1K * 129
+       90 E4 8C 65 99 C1 23 C4 13 BC FA 05 EA 74 8E B2>)
+(  33,<2021-11-09 12:27:24.179 -0500>,<rschurko>,<600wb1.magnet.fsu.edu>,<dirdata>,<TopSpin 4.1.1>,
+      <wrpa from 1 200 "RbNO3_MQMAS_Sept27_2021" "/opt/topspin4.1.1/data/altenhof/nmr"
+       data hash MD5: 1K * 129
+       90 E4 8C 65 99 C1 23 C4 13 BC FA 05 EA 74 8E B2>)
+(  34,<2021-11-09 12:28:39.397 -0500>,<rschurko>,<600wb1.magnet.fsu.edu>,<dirdata>,<TopSpin 4.1.1>,
+      <wrpa from 1 20 "RbNO3_MQMAS_Nov9_2021" "/opt/topspin4.1.1/data/altenhof/nmr"
+       data hash MD5: 1K * 129
+       90 E4 8C 65 99 C1 23 C4 13 BC FA 05 EA 74 8E B2>)
+$$ /opt/topspin4.1.1/data/altenhof/nmr/RbNO3_MQMAS_Nov9_2021/30/audita.txt
+(  35,<2021-11-09 21:17:41.344 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+(  36,<2021-11-09 21:17:41.346 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+(  37,<2021-11-09 22:15:06.653 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '79020c6a-41a2-11ec-9069-00139526610d'
+       started at 2021-11-09 21:17:41.356 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-11-09 22:15:06.652 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 1K * 77
+       4E 73 62 BA 5A 7D 16 86 88 65 F3 F3 A7 6A 44 23>)
+(  38,<2021-11-09 17:15:06.494 -0500>,<rschurko>,<600wb1.magnet.fsu.edu>,<sertoint>,<TopSpin 4.1.1>,
+      <sertoint
+       data hash MD5: 1K * 77
+       67 57 58 B0 53 98 84 B7 C4 B1 64 A4 D6 53 B6 20>)
+(  39,<2021-11-09 18:18:48.220 -0500>,<rschurko>,<600wb1.magnet.fsu.edu>,<dirdata>,<TopSpin 4.1.1>,
+      <wrpa from 1 30 "RbNO3_MQMAS_Nov9_2021" "/opt/topspin4.1.1/data/altenhof/nmr"
+       data hash MD5: 1K * 77
+       67 57 58 B0 53 98 84 B7 C4 B1 64 A4 D6 53 B6 20>)
+$$ /opt/topspin4.1.1/data/altenhof/nmr/RbNO3_MQMAS_Nov9_2021/40/audita.txt
+(  40,<2021-11-10 02:33:39.713 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+(  41,<2021-11-10 02:33:39.715 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+(  42,<2021-11-10 04:29:20.038 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '9d13313e-41ce-11ec-8815-00139526610d'
+       started at 2021-11-10 02:33:39.725 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-11-10 04:29:20.036 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 1K * 154
+       D9 03 B3 24 FF E5 72 56 A1 B1 83 DC E2 A4 DC 9E>)
+(  43,<2021-11-09 23:29:18.492 -0500>,<rschurko>,<600wb1.magnet.fsu.edu>,<sertoint>,<TopSpin 4.1.1>,
+      <sertoint
+       data hash MD5: 1K * 154
+       BA 07 B7 2E 78 E4 F8 06 2F 64 8B DB DF FC 01 28>)
+##END=
+
+$$ hash MD5
+$$ 89 B9 8C 6E 2E C2 42 72 CE 73 47 A1 E9 65 D2 9D

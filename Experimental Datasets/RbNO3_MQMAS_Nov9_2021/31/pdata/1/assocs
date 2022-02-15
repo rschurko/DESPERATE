@@ -1,0 +1,11 @@
+##TITLE= Parameter file, TopSpin 4.1.1
+##JCAMPDX= 5.0
+##DATATYPE= Parameter Values
+##NPOINTS= 2	$$ modification sequence number
+##ORIGIN= Bruker BioSpin GmbH
+##OWNER= rschurko
+$$ 2021-11-09 18:03:12.931 -0500  rschurko@600wb1.magnet.fsu.edu
+$$ /opt/topspin4.1.1/data/altenhof/nmr/RbNO3_MQMAS_Nov9_2021/31/pdata/1/assocs
+$$ process /opt/topspin4.1.1/prog/mod/dataserver
+##$MULTDISP= <>
+##END=

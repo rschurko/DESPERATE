@@ -1,0 +1,982 @@
+##TITLE= Audit trail, TopSpin 4.1.1
+##JCAMPDX= 5.01
+##ORIGIN= Bruker BioSpin GmbH
+##OWNER= rschurko
+$$ /opt/topspin4.1.1/data/altenhof/nmr/RbNO3_MQMAS_Nov9_2021/10/audita.txt
+##AUDIT TRAIL=  $$ (NUMBER, WHEN, WHO, WHERE, PROCESS, VERSION, WHAT)
+(   1,<2021-01-28 22:12:47.116 +0000>,<root>,<BladeEpu>,<go4>,<TopSpin 4.0.6>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'hung'
+       started at 2021-01-28 21:48:38.948 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-01-28 22:12:47.116 +0000
+       configuration hash MD5:
+       7F 7E 37 1F 02 44 10 53 B9 CC C8 7F F4 5B D9 E3
+       double data hash MD5: 512 * 128
+       10 5B 41 53 A1 49 E3 E7 85 B1 F3 9C 25 EA 5C D1>)
+$$ /opt/topspin/data/hung/nmr/rb87_01/206/audita.txt
+(   2,<2021-01-28 17:12:20.178 -0500>,<hung>,<600wb1.magnet.fsu.edu>,<sertoint>,<TopSpin 4.0.6>,
+      <sertoint
+       data hash MD5: 512 * 128
+       3D 63 C0 D0 0A 68 28 6B C4 4D 13 56 5B F0 25 16>)
+(   3,<2021-02-11 19:09:10.271 -0500>,<hung>,<600wb1.magnet.fsu.edu>,<dirdata>,<TopSpin 4.0.6>,
+      <wra from 206 "rb87_01" "/opt/topspin/data/hung/nmr"
+       data hash MD5: 512 * 128
+       3D 63 C0 D0 0A 68 28 6B C4 4D 13 56 5B F0 25 16>)
+$$ /opt/nmrdata/data/hung/nmr/rb87_01/284/audita.txt
+(   4,<2021-02-12 22:23:48.672 +0000>,<hung>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+(   5,<2021-02-12 22:23:48.674 +0000>,<hung>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+(   6,<2021-02-13 00:00:22.966 +0000>,<hung>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'hung'
+       on data set with UUID 'fa36cf38-6d80-11eb-97a6-00139526610d'
+       started at 2021-02-12 22:23:48.683 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-02-13 00:00:22.964 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512 * 129
+       F0 5B 81 DB 8E 59 65 46 2C E5 A8 03 F4 81 F5 27>)
+(   7,<2021-02-12 19:00:19.259 -0500>,<hung>,<600wb1.magnet.fsu.edu>,<sertoint>,<TopSpin 4.1.1>,
+      <sertoint
+       data hash MD5: 512 * 129
+       56 AF 18 95 CD 05 62 DB AF A8 94 C6 37 79 7D D2>)
+(   8,<2021-09-27 13:07:09.240 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<dirdata>,<TopSpin 4.1.1>,
+      <wrpa from 1 284 "RbNO3_MQMAS_Sept27_2021" "/opt/topspin4.1.1/data/altenhof/nmr"
+       data hash MD5: 512 * 129
+       56 AF 18 95 CD 05 62 DB AF A8 94 C6 37 79 7D D2>)
+$$ /opt/topspin4.1.1/data/altenhof/nmr/RbNO3_MQMAS_Sept27_2021/100/audita.txt
+(   9,<2021-09-27 13:14:18.387 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<sipar>,<TopSpin 4.1.1>,
+      <raw data deleted by change of acquisition dimension from 2D to 1D>)
+(  10,<2021-09-27 17:15:49.421 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+(  11,<2021-09-27 17:16:37.019 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '8f8012d8-1fb6-11ec-aa53-00139526610d'
+       started at 2021-09-27 17:15:49.431 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-09-27 17:16:37.016 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       C0 32 DE 35 2D 96 AB BC E5 EF 5D 8F 1E 4D 7D B1>)
+(  12,<2021-09-27 17:18:23.481 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+(  13,<2021-09-27 17:18:23.483 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+(  14,<2021-09-27 17:19:09.406 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID 'eb5331da-1fb6-11ec-9884-00139526610d'
+       started at 2021-09-27 17:18:23.491 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-09-27 17:19:09.404 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       48 7F 14 7C EB B5 B8 81 71 7D E7 45 61 3C 5F 0B>)
+(  15,<2021-09-27 17:25:32.133 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+(  16,<2021-09-27 17:25:32.135 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+(  17,<2021-09-27 17:26:08.478 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID 'ead33b82-1fb7-11ec-a03b-00139526610d'
+       started at 2021-09-27 17:25:32.143 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-09-27 17:26:08.476 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       C9 6B 8F EC CF 1D 31 0B 6E 1F B2 EC 10 62 BD BF>)
+(  18,<2021-09-27 17:26:09.811 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+(  19,<2021-09-27 17:26:09.813 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+(  20,<2021-09-27 17:26:46.249 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '01478666-1fb8-11ec-9902-00139526610d'
+       started at 2021-09-27 17:26:09.823 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-09-27 17:26:46.246 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       9B 7A 03 DF A5 47 14 77 AE C5 A8 88 94 0C 8B 08>)
+(  21,<2021-09-27 17:26:47.529 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+(  22,<2021-09-27 17:26:47.531 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+(  23,<2021-09-27 17:27:23.882 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '17c26fe6-1fb8-11ec-aa27-00139526610d'
+       started at 2021-09-27 17:26:47.541 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-09-27 17:27:23.879 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       66 D8 E1 FD 9C 76 72 F8 D1 E7 DC 64 9F 18 A1 D2>)
+(  24,<2021-09-27 17:27:25.146 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+(  25,<2021-09-27 17:27:25.148 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+(  26,<2021-09-27 17:28:01.342 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '2e2ef876-1fb8-11ec-8323-00139526610d'
+       started at 2021-09-27 17:27:25.157 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-09-27 17:28:01.340 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       58 CF 77 92 78 AE 72 E2 6D D9 87 F5 8C 8B 49 BD>)
+(  27,<2021-09-27 17:28:02.598 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+(  28,<2021-09-27 17:28:02.599 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+(  29,<2021-09-27 17:28:38.844 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '44821aae-1fb8-11ec-860a-00139526610d'
+       started at 2021-09-27 17:28:02.606 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-09-27 17:28:38.841 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       EB C8 EF C3 B2 5D 2C B8 CF D8 67 82 7D DD 56 52>)
+(  30,<2021-09-27 17:28:40.139 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+(  31,<2021-09-27 17:28:40.141 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+(  32,<2021-09-27 17:29:16.344 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '5ae1a936-1fb8-11ec-ba49-00139526610d'
+       started at 2021-09-27 17:28:40.152 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-09-27 17:29:16.342 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       5A FA F5 EE 50 6C 90 1B CE DB BA 1F 6B 69 69 15>)
+(  33,<2021-09-27 17:29:17.626 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+(  34,<2021-09-27 17:29:17.629 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+(  35,<2021-09-27 17:29:53.919 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '713964bc-1fb8-11ec-997e-00139526610d'
+       started at 2021-09-27 17:29:17.640 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-09-27 17:29:53.916 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       D7 32 05 C4 78 29 16 40 D9 06 49 FB 29 31 D4 16>)
+(  36,<2021-09-27 17:29:55.218 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+(  37,<2021-09-27 17:29:55.220 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+(  38,<2021-09-27 17:30:31.420 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '87a09252-1fb8-11ec-86e7-00139526610d'
+       started at 2021-09-27 17:29:55.230 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-09-27 17:30:31.418 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       96 E2 BB 93 7E F1 E8 78 E5 FB 86 4D BC F2 96 8C>)
+(  39,<2021-09-27 17:30:32.707 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+(  40,<2021-09-27 17:30:32.709 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+(  41,<2021-09-27 17:30:34.562 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <
+       started at 2021-09-27 17:30:32.717 +0000, POWCHK enabled, PULCHK disabled,
+       terminated by command 'stop' at 2021-09-27 17:30:34.559 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06>)
+(  42,<2021-09-27 17:31:15.356 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+(  43,<2021-09-27 17:31:15.358 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+(  44,<2021-09-27 17:31:51.577 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID 'b765c9da-1fb8-11ec-9aad-00139526610d'
+       started at 2021-09-27 17:31:15.367 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-09-27 17:31:51.575 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       16 77 E9 E4 C7 1A F0 17 0F 5E 8F 49 94 AA 84 8F>)
+(  45,<2021-09-27 17:31:52.900 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+(  46,<2021-09-27 17:31:52.903 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+(  47,<2021-09-27 17:32:29.135 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID 'cdc66932-1fb8-11ec-a7ed-00139526610d'
+       started at 2021-09-27 17:31:52.915 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-09-27 17:32:29.133 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       43 85 A7 23 D7 81 5A 57 F0 EF 95 39 33 21 18 10>)
+(  48,<2021-09-27 17:32:30.453 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+(  49,<2021-09-27 17:32:30.456 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+(  50,<2021-09-27 17:33:06.730 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID 'e4284b28-1fb8-11ec-acb0-00139526610d'
+       started at 2021-09-27 17:32:30.467 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-09-27 17:33:06.729 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       90 33 AF AC B5 50 77 4E D0 CF 34 1B C4 70 E6 FA>)
+(  51,<2021-09-27 17:33:08.028 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+(  52,<2021-09-27 17:33:08.030 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+(  53,<2021-09-27 17:33:44.653 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID 'fa8e8576-1fb8-11ec-9ee1-00139526610d'
+       started at 2021-09-27 17:33:08.041 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-09-27 17:33:44.650 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       4E 93 12 83 FE 51 59 19 E5 9B B6 3E 16 27 EB 6A>)
+(  54,<2021-09-27 17:33:45.942 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+(  55,<2021-09-27 17:33:45.944 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+(  56,<2021-09-27 17:34:22.993 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '1126e56c-1fb9-11ec-826d-00139526610d'
+       started at 2021-09-27 17:33:45.955 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-09-27 17:34:22.991 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       0B 94 0D 90 A2 4B 6C E2 0B EA 6E 8B FA AB A9 94>)
+(  57,<2021-09-27 17:34:24.386 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+(  58,<2021-09-27 17:34:24.388 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+(  59,<2021-09-27 17:35:00.670 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '28122f70-1fb9-11ec-a078-00139526610d'
+       started at 2021-09-27 17:34:24.399 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-09-27 17:35:00.669 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       FF 0F F3 8D 51 4F D9 6F 89 4E F8 39 46 E7 41 F7>)
+(  60,<2021-09-27 17:35:01.966 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+(  61,<2021-09-27 17:35:01.968 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+(  62,<2021-09-27 17:35:38.347 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '3e77bb22-1fb9-11ec-a04c-00139526610d'
+       started at 2021-09-27 17:35:01.979 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-09-27 17:35:38.344 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       26 CE CA 93 2A 8D CE 76 4F CF B1 AE 70 FC E1 78>)
+(  63,<2021-09-27 17:35:39.640 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+(  64,<2021-09-27 17:35:39.643 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+(  65,<2021-09-27 17:36:15.962 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '54ecdd7e-1fb9-11ec-9216-00139526610d'
+       started at 2021-09-27 17:35:39.654 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-09-27 17:36:15.960 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       DC 0E F3 94 54 54 E2 4C AB 9C BF 92 E9 4F C9 2B>)
+(  66,<2021-09-27 17:36:17.265 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+(  67,<2021-09-27 17:36:17.268 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+(  68,<2021-09-27 17:36:53.581 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '6b597496-1fb9-11ec-86ad-00139526610d'
+       started at 2021-09-27 17:36:17.280 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-09-27 17:36:53.579 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       3B E8 66 ED AB 2C 69 EA 6F 2A 49 6D 12 37 E0 D3>)
+(  69,<2021-09-27 17:36:54.876 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+(  70,<2021-09-27 17:36:54.878 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+(  71,<2021-09-27 17:37:31.107 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '81c3bcf0-1fb9-11ec-91fd-00139526610d'
+       started at 2021-09-27 17:36:54.890 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-09-27 17:37:31.106 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       7E D9 43 9F 9B 0A D4 99 2E 3B 83 46 C8 5E 27 D4>)
+(  72,<2021-09-27 17:37:32.395 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+(  73,<2021-09-27 17:37:32.397 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+(  74,<2021-09-27 17:38:08.724 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '982143a0-1fb9-11ec-9b10-00139526610d'
+       started at 2021-09-27 17:37:32.409 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-09-27 17:38:08.721 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       2B D4 3F B9 15 5F F7 49 F6 8D CF 80 51 70 92 AD>)
+(  75,<2021-09-27 17:38:38.608 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+(  76,<2021-09-27 17:38:38.611 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+(  77,<2021-09-27 17:39:14.924 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID 'bf96e778-1fb9-11ec-9864-00139526610d'
+       started at 2021-09-27 17:38:38.623 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-09-27 17:39:14.923 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       77 D8 BE 75 18 AB 4D 86 16 11 BE 95 3F 6A 27 71>)
+(  78,<2021-09-27 17:39:16.185 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+(  79,<2021-09-27 17:39:16.187 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+(  80,<2021-09-27 17:39:52.528 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID 'd5ffca20-1fb9-11ec-a1c5-00139526610d'
+       started at 2021-09-27 17:39:16.194 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-09-27 17:39:52.526 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       96 52 08 49 55 E8 9C ED 2B 0E E3 A4 FB F0 65 F7>)
+(  81,<2021-09-27 17:39:53.807 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+(  82,<2021-09-27 17:39:53.809 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+(  83,<2021-09-27 17:40:30.059 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID 'ec6a73c8-1fb9-11ec-9a95-00139526610d'
+       started at 2021-09-27 17:39:53.817 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-09-27 17:40:30.058 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       93 2C 3E 3F 01 4A EB 1B EC 7E 73 FF 52 69 7A 4C>)
+(  84,<2021-09-27 17:40:31.332 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+(  85,<2021-09-27 17:40:31.334 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+(  86,<2021-09-27 17:41:07.720 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '02c805fe-1fba-11ec-a1a5-00139526610d'
+       started at 2021-09-27 17:40:31.343 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-09-27 17:41:07.718 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       3C 70 06 DB 46 05 B0 1D 89 FD 7F CB 29 10 2E 11>)
+(  87,<2021-09-27 17:41:08.988 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+(  88,<2021-09-27 17:41:08.991 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+(  89,<2021-09-27 17:41:45.310 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '193b8e8c-1fba-11ec-a704-00139526610d'
+       started at 2021-09-27 17:41:09.001 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-09-27 17:41:45.307 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       8F 1F 6D 7E 12 AC 24 DA C5 CD E7 45 58 3E 62 18>)
+(  90,<2021-09-27 17:41:46.589 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+(  91,<2021-09-27 17:41:46.591 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+(  92,<2021-09-27 17:42:22.879 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '2fa2dca2-1fba-11ec-a135-00139526610d'
+       started at 2021-09-27 17:41:46.601 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-09-27 17:42:22.876 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       5E 5E 25 38 52 C5 39 E9 51 CF 01 10 D2 4F 21 E4>)
+(  93,<2021-09-27 17:42:24.145 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+(  94,<2021-09-27 17:42:24.147 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+(  95,<2021-09-27 17:43:00.466 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '4607bf62-1fba-11ec-b556-00139526610d'
+       started at 2021-09-27 17:42:24.155 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-09-27 17:43:00.464 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       A9 00 FA 33 F8 28 93 7E EC 25 04 F9 9D C3 00 F5>)
+(  96,<2021-09-27 17:43:01.720 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+(  97,<2021-09-27 17:43:01.722 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+(  98,<2021-09-27 17:43:37.943 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '5c6d76a2-1fba-11ec-bfa2-00139526610d'
+       started at 2021-09-27 17:43:01.729 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-09-27 17:43:37.940 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       AB 25 FE 20 54 27 18 1E EB 52 A7 EC 5D 11 49 CA>)
+(  99,<2021-09-27 17:44:14.401 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+( 100,<2021-09-27 17:44:14.402 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+( 101,<2021-09-27 17:44:50.622 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '87bfc710-1fba-11ec-91ea-00139526610d'
+       started at 2021-09-27 17:44:14.410 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-09-27 17:44:50.620 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       B4 39 74 7D 58 50 30 12 6C D3 68 09 5B E2 36 CD>)
+( 102,<2021-09-27 17:44:51.900 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+( 103,<2021-09-27 17:44:51.903 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+( 104,<2021-09-27 17:45:28.325 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '9e197330-1fba-11ec-8c84-00139526610d'
+       started at 2021-09-27 17:44:51.912 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-09-27 17:45:28.323 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       E3 85 FE C5 6F F6 B3 A1 E6 EE 78 6D ED FA 96 98>)
+( 105,<2021-09-27 17:45:29.576 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+( 106,<2021-09-27 17:45:29.577 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+( 107,<2021-09-27 17:46:05.790 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID 'b48ebaee-1fba-11ec-b752-00139526610d'
+       started at 2021-09-27 17:45:29.585 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-09-27 17:46:05.788 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       D1 BA F7 0C 8F 81 EF A0 B6 F0 EE 7A 33 FA 8D EA>)
+( 108,<2021-09-27 17:46:07.041 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+( 109,<2021-09-27 17:46:07.043 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+( 110,<2021-09-27 17:46:44.166 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID 'cae364ac-1fba-11ec-ab29-00139526610d'
+       started at 2021-09-27 17:46:07.051 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-09-27 17:46:44.164 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       23 73 82 50 5B 73 3E 8A 00 02 1E 6C 74 07 93 2C>)
+( 111,<2021-09-27 17:46:45.408 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+( 112,<2021-09-27 17:46:45.410 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+( 113,<2021-09-27 17:47:21.590 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID 'e1c1e1da-1fba-11ec-ad9e-00139526610d'
+       started at 2021-09-27 17:46:45.419 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-09-27 17:47:21.589 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       4B 70 B4 1B EA C8 65 49 93 C4 E7 30 DB 67 B6 DB>)
+( 114,<2021-09-27 17:48:38.140 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+( 115,<2021-09-27 17:48:38.143 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+( 116,<2021-09-27 17:49:35.337 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '24f24864-1fbb-11ec-813c-00139526610d'
+       started at 2021-09-27 17:48:38.154 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-09-27 17:49:35.336 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       F6 07 99 59 51 E1 07 36 F4 57 6F 0A EF 42 B6 5E>)
+( 117,<2021-11-09 12:03:10.359 -0500>,<rschurko>,<600wb1.magnet.fsu.edu>,<dirdata>,<TopSpin 4.1.1>,
+      <wrpa from 1 100 "RbNO3_MQMAS_Sept27_2021" "/opt/topspin4.1.1/data/altenhof/nmr"
+       double data hash MD5: 512
+       F6 07 99 59 51 E1 07 36 F4 57 6F 0A EF 42 B6 5E>)
+$$ /opt/topspin4.1.1/data/altenhof/nmr/RbNO3_MQMAS_Nov9_2021/10/audita.txt
+( 118,<2021-11-09 17:08:22.612 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+( 119,<2021-11-09 17:08:22.615 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+( 120,<2021-11-09 17:08:43.956 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID 'a4f145c0-417f-11ec-aa68-00139526610d'
+       started at 2021-11-09 17:08:22.627 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-11-09 17:08:43.954 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       F7 46 D2 9D A0 60 83 A9 A3 47 0F 03 32 44 1F 5B>)
+( 121,<2021-11-09 17:08:49.638 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+( 122,<2021-11-09 17:08:49.642 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+( 123,<2021-11-09 17:09:21.374 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <
+       started at 2021-11-09 17:08:49.653 +0000, POWCHK enabled, PULCHK disabled,
+       terminated by command 'stop' at 2021-11-09 17:09:21.373 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06>)
+( 124,<2021-11-09 17:09:26.484 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+( 125,<2021-11-09 17:09:26.487 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+( 126,<2021-11-09 17:09:45.363 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID 'cb036d24-417f-11ec-baec-00139526610d'
+       started at 2021-11-09 17:09:26.500 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-11-09 17:09:45.361 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       F4 EE A1 BE 80 5A 78 94 DE E0 7B E0 7D 37 A1 CF>)
+( 127,<2021-11-09 17:10:31.110 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+( 128,<2021-11-09 17:10:31.113 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+( 129,<2021-11-09 17:10:49.976 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID 'f1884654-417f-11ec-b664-00139526610d'
+       started at 2021-11-09 17:10:31.125 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-11-09 17:10:49.974 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       B7 49 82 99 E3 A8 47 C5 1A BD CB AC E3 03 9C 78>)
+( 130,<2021-11-09 17:10:51.347 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+( 131,<2021-11-09 17:10:51.351 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+( 132,<2021-11-09 17:11:10.239 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID 'fd96cd80-417f-11ec-98ae-00139526610d'
+       started at 2021-11-09 17:10:51.362 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-11-09 17:11:10.237 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       7E AB B4 15 E8 D2 C8 FA 8B 08 D2 F3 B6 C2 91 C4>)
+( 133,<2021-11-09 17:11:11.554 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+( 134,<2021-11-09 17:11:11.558 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+( 135,<2021-11-09 17:11:30.541 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '09a1dcdc-4180-11ec-9dc5-00139526610d'
+       started at 2021-11-09 17:11:11.570 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-11-09 17:11:30.540 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       22 C7 50 33 27 F0 6C E9 F7 3C 04 19 06 4F 2B 1B>)
+( 136,<2021-11-09 17:11:31.837 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+( 137,<2021-11-09 17:11:31.841 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+( 138,<2021-11-09 17:11:50.849 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '15b9289a-4180-11ec-9c36-00139526610d'
+       started at 2021-11-09 17:11:31.853 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-11-09 17:11:50.847 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       3A 21 EA 51 5C 4B 93 B7 0E CF 9C 52 DE 1F 63 73>)
+( 139,<2021-11-09 17:11:52.191 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+( 140,<2021-11-09 17:11:52.194 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+( 141,<2021-11-09 17:12:11.208 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '21dabad0-4180-11ec-a32f-00139526610d'
+       started at 2021-11-09 17:11:52.207 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-11-09 17:12:11.206 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       79 CD E2 F7 3D 2F 28 58 5F 58 DF A1 0B A6 09 D1>)
+( 142,<2021-11-09 17:12:12.515 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+( 143,<2021-11-09 17:12:12.519 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+( 144,<2021-11-09 17:12:31.389 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '2df7aa9e-4180-11ec-940d-00139526610d'
+       started at 2021-11-09 17:12:12.532 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-11-09 17:12:31.388 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       92 E4 D1 35 9B 2E 63 C6 AD 1D 8B BF 4D A1 7B DB>)
+( 145,<2021-11-09 17:12:32.707 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+( 146,<2021-11-09 17:12:32.711 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+( 147,<2021-11-09 17:12:51.628 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '3a006cf4-4180-11ec-a0db-00139526610d'
+       started at 2021-11-09 17:12:32.723 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-11-09 17:12:51.626 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       5C 8F 81 40 97 D6 6F 12 B3 D7 7D C1 0E 83 63 A4>)
+( 148,<2021-11-09 17:12:53.000 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+( 149,<2021-11-09 17:12:53.004 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+( 150,<2021-11-09 17:13:12.119 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '461947c2-4180-11ec-a6cd-00139526610d'
+       started at 2021-11-09 17:12:53.016 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-11-09 17:13:12.116 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       17 1F B2 29 5B 5D 4C B9 DF 5C 6B 1F CD 46 BE A4>)
+( 151,<2021-11-09 17:13:13.397 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+( 152,<2021-11-09 17:13:13.401 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+( 153,<2021-11-09 17:13:32.350 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '524515e4-4180-11ec-a280-00139526610d'
+       started at 2021-11-09 17:13:13.413 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-11-09 17:13:32.348 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       C9 17 FB 2C E0 09 D2 0C E7 20 BD 46 62 B1 68 92>)
+( 154,<2021-11-09 17:13:33.674 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+( 155,<2021-11-09 17:13:33.678 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+( 156,<2021-11-09 17:13:52.630 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '5e57c674-4180-11ec-a495-00139526610d'
+       started at 2021-11-09 17:13:33.690 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-11-09 17:13:52.628 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       65 F9 BE AE 2C 7F F2 51 CD 5B 76 5E 2E B4 90 9D>)
+( 157,<2021-11-09 17:13:53.925 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+( 158,<2021-11-09 17:13:53.929 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+( 159,<2021-11-09 17:14:12.852 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '6a69f0f4-4180-11ec-865d-00139526610d'
+       started at 2021-11-09 17:13:53.942 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-11-09 17:14:12.850 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       FC A5 33 64 42 90 B0 B6 6B D2 EE 63 14 53 0C BF>)
+( 160,<2021-11-09 17:19:06.981 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+( 161,<2021-11-09 17:19:06.983 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+( 162,<2021-11-09 17:19:25.901 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '250504f8-4181-11ec-9c5a-00139526610d'
+       started at 2021-11-09 17:19:06.992 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-11-09 17:19:25.900 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       65 06 CB 55 D1 17 2F B5 AD 7C 3E 24 BC CA 47 BF>)
+( 163,<2021-11-09 17:19:27.227 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+( 164,<2021-11-09 17:19:27.231 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+( 165,<2021-11-09 17:19:46.184 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '31154712-4181-11ec-abc4-00139526610d'
+       started at 2021-11-09 17:19:27.244 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-11-09 17:19:46.181 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       CB D4 47 75 BE 96 77 89 3E 02 8B 36 B6 EF 23 C2>)
+( 166,<2021-11-09 17:19:47.500 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+( 167,<2021-11-09 17:19:47.504 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+( 168,<2021-11-09 17:20:06.457 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '3d2b023a-4181-11ec-9c8c-00139526610d'
+       started at 2021-11-09 17:19:47.517 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-11-09 17:20:06.454 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       20 57 63 4B 10 F7 E6 4D AB 08 2F 75 D3 BF 9E 3B>)
+( 169,<2021-11-09 17:20:07.745 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+( 170,<2021-11-09 17:20:07.747 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+( 171,<2021-11-09 17:20:26.600 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '493d1036-4181-11ec-944e-00139526610d'
+       started at 2021-11-09 17:20:07.755 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-11-09 17:20:26.599 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       0E 99 F0 D3 85 8A B6 58 1B 23 EE 97 3B 40 70 CC>)
+( 172,<2021-11-09 17:20:27.919 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+( 173,<2021-11-09 17:20:27.922 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+( 174,<2021-11-09 17:20:46.842 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '55433676-4181-11ec-9062-00139526610d'
+       started at 2021-11-09 17:20:27.932 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-11-09 17:20:46.840 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       B8 34 39 F3 4D 70 63 5C 1D CD 19 95 34 73 DD 6D>)
+( 175,<2021-11-09 17:20:48.140 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+( 176,<2021-11-09 17:20:48.142 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+( 177,<2021-11-09 17:21:07.933 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '61506f6a-4181-11ec-8946-00139526610d'
+       started at 2021-11-09 17:20:48.151 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-11-09 17:21:07.932 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       B4 AE AA 69 DF D1 66 06 BC 69 C3 37 8D E6 FF 4D>)
+( 178,<2021-11-09 17:21:09.236 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+( 179,<2021-11-09 17:21:09.239 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+( 180,<2021-11-09 17:21:28.098 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '6de28592-4181-11ec-b0d8-00139526610d'
+       started at 2021-11-09 17:21:09.248 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-11-09 17:21:28.096 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       40 A4 E0 4C 67 E5 C7 44 47 43 F1 43 9A 46 BB 76>)
+( 181,<2021-11-09 17:21:29.421 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+( 182,<2021-11-09 17:21:29.423 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+( 183,<2021-11-09 17:21:48.737 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '79eb8366-4181-11ec-8463-00139526610d'
+       started at 2021-11-09 17:21:29.431 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-11-09 17:21:48.734 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       4B 12 68 BE 05 1F 15 1D 9B F5 5B 37 E4 DB 5E AC>)
+( 184,<2021-11-09 17:21:50.028 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+( 185,<2021-11-09 17:21:50.031 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+( 186,<2021-11-09 17:22:09.121 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '86347c22-4181-11ec-abae-00139526610d'
+       started at 2021-11-09 17:21:50.039 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-11-09 17:22:09.118 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       BD 8D 9E 68 49 DE 06 AC 85 CC 64 B8 A2 4A DD FB>)
+( 187,<2021-11-09 17:22:10.401 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+( 188,<2021-11-09 17:22:10.403 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+( 189,<2021-11-09 17:22:30.233 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '92591af8-4181-11ec-b838-00139526610d'
+       started at 2021-11-09 17:22:10.411 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-11-09 17:22:30.232 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       BD BB 2F 75 3C 31 78 07 C0 C1 BD 0C 7E 3D 1E B4>)
+( 190,<2021-11-09 17:22:31.534 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+( 191,<2021-11-09 17:22:31.537 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+( 192,<2021-11-09 17:22:50.516 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '9ef1bdb0-4181-11ec-bd6d-00139526610d'
+       started at 2021-11-09 17:22:31.545 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-11-09 17:22:50.514 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       7F 67 A7 4C 06 66 CA 6F FD 82 10 10 E2 EA 10 1B>)
+( 193,<2021-11-09 17:22:51.832 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+( 194,<2021-11-09 17:22:51.834 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+( 195,<2021-11-09 17:23:10.764 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID 'ab0abafc-4181-11ec-9a4c-00139526610d'
+       started at 2021-11-09 17:22:51.842 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-11-09 17:23:10.762 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       7A 4C 85 0D 7B 93 FA 4D 4C A9 95 17 57 9E B5 E2>)
+( 196,<2021-11-09 17:23:12.069 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+( 197,<2021-11-09 17:23:12.071 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+( 198,<2021-11-09 17:23:30.939 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID 'b7199e62-4181-11ec-98d4-00139526610d'
+       started at 2021-11-09 17:23:12.079 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-11-09 17:23:30.938 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       F3 F9 B9 E9 75 7B 5D 86 8D F5 C5 BB D9 CA 37 E5>)
+( 199,<2021-11-09 17:23:32.431 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+( 200,<2021-11-09 17:23:32.434 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+( 201,<2021-11-09 17:23:51.392 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID 'c33ce67c-4181-11ec-8a47-00139526610d'
+       started at 2021-11-09 17:23:32.442 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-11-09 17:23:51.390 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       92 37 E7 F5 BC 7D E8 87 8F 54 BA 56 3E 85 80 D2>)
+( 202,<2021-11-09 17:23:52.706 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+( 203,<2021-11-09 17:23:52.709 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+( 204,<2021-11-09 17:24:11.692 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID 'cf529f9c-4181-11ec-bfe0-00139526610d'
+       started at 2021-11-09 17:23:52.718 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-11-09 17:24:11.690 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       4E 49 3C 42 64 6A FE 2C 00 6D CD F4 CB AC 8B 00>)
+( 205,<2021-11-09 17:24:12.995 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+( 206,<2021-11-09 17:24:12.997 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+( 207,<2021-11-09 17:24:32.048 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID 'db6b1b2e-4181-11ec-8165-00139526610d'
+       started at 2021-11-09 17:24:13.006 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-11-09 17:24:32.047 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       F2 C3 BE A2 60 9F 3D 8F F7 B1 A3 25 76 AB E1 6C>)
+( 208,<2021-11-09 17:24:33.378 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+( 209,<2021-11-09 17:24:33.383 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+( 210,<2021-11-09 17:24:52.578 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID 'e78fa9e2-4181-11ec-a764-00139526610d'
+       started at 2021-11-09 17:24:33.396 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-11-09 17:24:52.576 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       FF 7A 1C DB AE B1 93 D5 7D E1 18 43 89 A8 B4 84>)
+( 211,<2021-11-09 17:24:53.880 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+( 212,<2021-11-09 17:24:53.885 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+( 213,<2021-11-09 17:25:12.888 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID 'f3c889c2-4181-11ec-867e-00139526610d'
+       started at 2021-11-09 17:24:53.898 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-11-09 17:25:12.886 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       1B CE 0F DA C5 72 51 10 17 95 86 3A 86 80 11 44>)
+( 214,<2021-11-09 17:25:14.180 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+( 215,<2021-11-09 17:25:14.184 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+( 216,<2021-11-09 17:25:33.180 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID 'ffe2e306-4181-11ec-b121-00139526610d'
+       started at 2021-11-09 17:25:14.196 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-11-09 17:25:33.178 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       9B 1B 8F 80 BC 5A 6A 3A 7A D8 9E 59 32 DD A0 6D>)
+( 217,<2021-11-09 17:25:34.493 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+( 218,<2021-11-09 17:25:34.497 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+( 219,<2021-11-09 17:25:53.651 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '0bfd64ae-4182-11ec-aab6-00139526610d'
+       started at 2021-11-09 17:25:34.510 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-11-09 17:25:53.649 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       D8 7C FF AB 1B 24 C5 99 E0 CF 51 9C A4 6F 37 81>)
+( 220,<2021-11-09 17:25:54.983 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+( 221,<2021-11-09 17:25:54.988 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+( 222,<2021-11-09 17:26:13.851 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '1833970c-4182-11ec-a7fe-00139526610d'
+       started at 2021-11-09 17:25:55.001 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-11-09 17:26:13.849 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 512
+       FD 02 6A E7 AA B3 F9 20 04 42 01 3D FF 6F 48 3D>)
+( 223,<2021-11-09 17:26:15.148 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <raw data deleted by zg>)
+( 224,<2021-11-09 17:26:15.152 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+( 225,<2021-11-09 17:26:31.783 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <
+       started at 2021-11-09 17:26:15.165 +0000, POWCHK enabled, PULCHK disabled,
+       terminated by command 'stop' at 2021-11-09 17:26:31.780 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06>)
+##END=
+
+$$ hash MD5
+$$ 1E 67 7C A6 90 52 AB 9C 1A E4 03 C5 BC C5 9A 3F

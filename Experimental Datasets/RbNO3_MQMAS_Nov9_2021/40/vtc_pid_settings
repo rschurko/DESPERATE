@@ -1,0 +1,2 @@
+VTC_REG_PID_SET_=\
+error in BsmsControl::getParameters: VTC_REG_PID_SET_ : Parameter does not exist

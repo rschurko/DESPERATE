@@ -12,7 +12,7 @@ import time
 start_time = time.time()
 
 cwd =  os.getcwd()
-os.chdir(cwd + '\\' + '203')
+os.chdir(cwd + '\\' + '204')
 fid = proc.loadfid2('ser',plot='no')
 #sys.exit()
 
@@ -36,7 +36,11 @@ ph = [243 + 10, 797420 + 140, 0, 0]
 spec = proc.phase(spec,ph,ax=1)
 
 #2D SWT
-spec, coeffs = wave.wavelet_denoise2(2, np.real(spec), 0, wave = 'bior2.2', threshold = 'mod', alpha = 0)
+spec, coeffin, coeffs = wave.wavelet_denoise2(2, np.real(spec), 0, wave = 'bior2.2', threshold = 'mod', alpha = 0)
+
+#PCA Denoise
+# spec = proc.PCA(spec,3)
+# plt.close()
 
 #SNRs
 a = np.unravel_index(spec.argmax(), spec.shape)
@@ -78,7 +82,7 @@ main_ax.set_ylabel("F$_{iso}$ (ppm)")
 main_ax.invert_yaxis()
 main_ax.invert_xaxis()
 main_ax.set_xlim(-24, -40) ##CHK BACK
-main_ax.set_ylim(-20, -37)  ##CHK BACK
+main_ax.set_ylim(-24, -40)  ##CHK BACK
 main_ax.minorticks_on()
 
 xplot.plot(freq2,(np.sum(np.real(spec),0)),'k')
@@ -86,7 +90,7 @@ xplot.plot(freq2,(np.sum(np.real(spec),0)),'k')
 yplot.plot(np.real(np.sum(spec,1)),fiso,'k')
 yplot.invert_xaxis()
 yplot.invert_yaxis()
-yplot.set_ylim(-20, -37)  ##CHK BACK
+yplot.set_ylim(-24, -40)  ##CHK BACK
 
 #Plot the sub-spectra
 s1 = fig.add_subplot(grid[1, 4], yticklabels=[])

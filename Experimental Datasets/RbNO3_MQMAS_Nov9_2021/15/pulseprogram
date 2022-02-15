@@ -1,0 +1,133 @@
+; lpmqmasse.ih - written by ivan, last mod 20AUG2021
+
+; 3Q MAS pulse program for S>3/2 half-integer spin nuclei
+; for 3/2 nuclei set: in10 = in0*7/9, in11 = 0
+; for 5/2 nuclei set: in10 = 0, in11 = in0*19/12
+; for 7/2 nuclei set: in10 = 0, in11 = in0*101/45
+; for 9/2 nuclei set: in10 = 0, in11 = in0*91/36
+; excitation - t1(3Q) - conversion - opt.t1(1Q) - tau - 180sel - acquistion
+; 3-pulse experiment with full echo acquisition
+
+;ns : 96*n
+;p1 : soft 90 pulse at PL1
+;p7 : ST inversion pulse at SP7
+;p8 : WURST sweep time for ST saturation
+;d0 : initial t1 value
+;d1 : recycle delay
+;d6 : delay to allow full echo to build up
+;d10 : =0
+;d11 : =0
+;in0 : =rotor period for synchronized experiment
+;in10 : =in0*7/9 for 3/2, =0 for 5/2 and higher
+;in11 : =in0*19/12 for 5/2, in0*101/45 for 7/2
+;pl1 : 90 power level
+;pl2 : 180 power level
+;sp6 : 1Q<->3Q ST inversion power level
+;sp7 : 1Q<->3Q ST inversion power level
+;sp8 : WURST power level
+;spnam6 : =square.1000
+;spnam7 : =dfpi or square.1000
+;spnam8 : =wursti
+;l1 : number of rotor cycles for D6
+;l7 : number of rotor cycles for P7
+;l30 : # rotor periods for WURST pulse
+;cnst0 : fraction rotor period ST pulse
+;cnst3 : ST pulse time resolution [ns]
+;cnst7 : frequency offset for ST pi-pulses
+;cnst31 : MAS spin rate [Hz]
+;FnMODE : QF
+;zgoptns : -DSTsat, -DcwSTinv, -DS3h, -Dsplit_t1
+
+#ifdef STsat
+"p8=1s*l30/cnst31"
+#endif /* STsat */
+
+#ifdef S3h
+"d6=(1s*l1/cnst31)-p1*2"
+#else
+"d6=(1s*l1/cnst31)-p1-0.5u"
+#endif /* S3h */
+
+"p7=1s*cnst0/cnst31"
+"in0=inf1"
+"d0=0"
+"d10=0"
+"d11=0"
+"d17=1u*cnst7*cnst0*cnst3/1e6"
+
+d17
+1 ze
+2 d1
+
+#ifdef STsat
+  (p8:sp8 ph0):f1
+#endif /* STsat */
+  0.5u fq=0:f1
+  5u pl1:f1
+  (3u ph1):f1
+  (p1 ph1 pl1):f1
+
+#ifdef cwSTinv
+  0.5u fq=cnst7:f1
+  (p7 ph1 pl7):f1
+#else
+  (p7:sp7 ph1):f1
+#endif /* cwSTinv */
+
+  d0
+
+#ifdef cwSTinv
+  (p7 ph2 pl7):f1
+  0.5u fq=0:f1
+#else
+  (p7:sp7 ph2):f1
+#endif /* cwSTinv */
+
+#ifndef split_t1
+#ifdef S3h
+  (p1*2 ph2 pl1):f1
+#endif /* S3h */
+#endif /* split_t1 */
+
+  d6
+#ifdef split_t1
+  d10
+#endif /* split_t1 */
+  (p1*2 ph3 pl1):f1
+#ifdef split_t1
+  d11
+#endif /* split_t1 */
+
+  go=2 ph31
+#ifdef split_t1
+  10m mc #0 to 2 F1QF(id0&id10&id11)
+#else
+  10m mc #0 to 2 F1QF( caldel(d0,+in0) )
+#endif /* split_t1 */
+exit
+
+ph0= 0
+
+#ifdef split_t1
+
+;p=0->+3->+1->-1
+ph1=(12) 0 1 2 3 4 5 6 7 8 9 10 11
+
+#else
+
+#ifdef S3h
+;S=3/2, p=0->-3->+1->-1
+ph1=(12) 0 11 10 9 8 7 6 5 4 3 2 1
+#else
+;S>3/2, p=0->+3->+1->-1
+ph1=(12) 0 1 2 3 4 5 6 7 8 9 10 11
+#endif /* S3h */
+
+#endif /* split_t1 */
+
+ph2= 0
+
+;96-step
+ph3=(8) {0}*12 {1}*12 {2}*12 {3}*12 {4}*12 {5}*12 {6}*12 {7}*12
+ph31={0 3 2 1 0 3 2 1 0 3 2 1}^1^2^3
+

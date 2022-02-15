@@ -1,0 +1,10 @@
+MQMAS
+HP(-3) - HP(0)pi/2(+1) - pi - echo
+96 phase cycle
+
+87Rb, 10kHz MAS
+RbNO3
+
+1D Cals
+
+exc (5.6 us @ 100 kHz) - conv (##us @ 100 kHz) - CT pi/2 (10 kHz) - CT pi (10 kHz)

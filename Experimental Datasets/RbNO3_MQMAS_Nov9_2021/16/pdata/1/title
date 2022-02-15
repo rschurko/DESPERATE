@@ -1,0 +1,14 @@
+lp / coscos - MQMAS - NUS
+40% NUS (102 pts.)
+96 phase cycle
+
+87Rb, 10kHz MAS
+RbNO3
+
+SW = 10 kHz
+
+WST (16 kHz) - pi/2 (10 kHz) - cos (14.9 kHz) - t1 - cos (=) - pi (10 kHz)
+
+2D
+256 t1 pts
+96 scans
