@@ -1,6 +1,6 @@
 import sys
 import os
-sys.path.insert(0,'/Users/SRG/Documents/Adam/Python/SSNMR/functions')
+sys.path.insert(0,'/Users/SRG/Documents/GitHub/SSNMR/functions')
 import numpy as np
 import functions as proc
 import simpson as simproc
@@ -15,8 +15,8 @@ start_time = time.time()
 zf = 2048
 gb = 16 #global gaussian broaden
 os.chdir( 'C:\\Users\\SRG\\Documents\\Adam\\Spectromter_Data\\SnO_May30_2021\\10' ) #1k scan EXP
-fid, SW = proc.loadfid('fid',plot='no')  
-cpmg, fidcoadd, dumspec = proc.coadd(fid,lb = 0, plot='no')
+fid = proc.loadfid('fid',plot='no')  
+cpmg, fidcoadd = proc.coadd(fid, plot='no')
 #freq = proc.freqaxis(fidcoadd,SW)
 fidcoadd = proc.gauss(fidcoadd,gb)
 #ph = [371.283066651318, 44952.976, -1690.231670275709, 99.559]
@@ -25,7 +25,7 @@ spec = proc.phase(proc.fft(fidcoadd,zf),ph)
 spec = np.real(spec)/np.max(np.real(spec))  ##UNCOMMENT
 #plt.plot(np.real(spec))
 #sys.exit()
-freq = proc.freqaxis(spec,SW,zf)
+freq = proc.freqaxis(spec)
 a = simproc.nearest(freq,23.38) ##Allows me to change ZF and retain peak indices
 b = simproc.nearest(freq,-175.94)
 
@@ -44,9 +44,9 @@ for i in range(m):
     kk = 10 + i
     print(kk)
     os.chdir( path + str(kk) )
-    fid, SW = proc.loadfid('fid',plot='no')  
+    fid = proc.loadfid('fid',plot='no')  
 
-    cpmg, fidcoadd, dumspec = proc.coadd(fid,lb = 0, plot='no') #save lb for cadzow
+    cpmg, fidcoadd = proc.coadd(fid, plot='no') #save lb for cadzow
     
     specintemp = proc.phase(proc.fft(proc.gauss(fidcoadd,gb),zf),ph)
     specin[:,i] = np.real(specintemp)/np.max(np.real(specintemp))
@@ -68,12 +68,13 @@ SSIMout = SSIMout - c
 ##Plotting
 mpl.rcParams['font.family'] = "arial"
 mpl.rcParams['font.size'] = 14
+mpl.rcParams['pdf.fonttype'] = 42
 
 plt.figure(1)
 for i in range(len(snrpin)):
     plt.plot(freq,np.real(specin[:,i]) - i*np.max(np.real(specin[:,i])), label = 'SNRpp_in = %.1f , SSIM_in = %.4f' % (snrpin[i],SSIMin[i]))
 plt.legend(loc='upper right')
-plt.title('Noisey Spectra')
+plt.title('Noisy Spectra')
 plt.xlabel('Frequency (kHz)')
 plt.gca().invert_xaxis()
 plt.yticks([])

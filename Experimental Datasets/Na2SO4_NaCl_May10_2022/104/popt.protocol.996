@@ -1,0 +1,19 @@
+
+Report of AU program poptau
+# Start time: 2022-05-10 13:14:15.571 -0400
+
+Number of experiments: 41
+total experiment time will be:  6 min 50 sec
+
+F1P=35.389ppm F2P=-47.784ppm
+PH_mode=1  FT_mod=6
+
+
+PROCNO=996
+
+Linear optimization of PLW 2 in 41 steps, as Step: Group 1
+starting at 1.200000000   endval= 2.000000000  
+OPTIMUM= ZERO
+VARMOD= LIN
+
+poptaustop was executed for PLW 2, step 14

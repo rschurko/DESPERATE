@@ -1,0 +1,149 @@
+CONFIGURATION INFORMATION
+=========================
+
+Path         : /opt/topspin/conf/instr/spect/uxnmr.info
+Date         : Sat Mar 19 15:27:24 2022
+Release      : TopSpin 4.1.1
+Installed in : /opt/topspin
+Host         : BladeEpu
+OS           : CentOS Linux release 7.2.1511 (Core) 
+SPECTR-OS    : Version 4.1.148.20201202
+CPU          : Intel(R) Core(TM) i7-4700EQ CPU @ 2.40GHz (8 cores at 2443 MHz with Hyperthreading)
+User         : root (root)
+System       : Avance Neo 600 NMR spectrometer
+1H-frequency : 600.10 MHz
+Description  : Avance NEO 600wb1
+Bruker Order : 10279840
+Configured in: BladeEpu:/opt/topspin/conf/instr/spect
+
+AQ-Rack:
+- EPU/2: AV4 EPU/2 Embedded Processing Unit H153448F1/00214 ECL 01.02
+- TRX 1200: AV4 TRANSCEIVER 1200 Z148391/01141 ECL 01.05
+  Location: slot 1 in rack 1
+  Connection: at IP 192.168.180.14 via PCIe #3
+  Firmware Version: 20190906082218
+  Devices: MTD at /dev/mtd1, DRX at /dev/bbu/drx3.5, RTD at /dev/bbu/rtd3.4
+  Sequencer: FCube
+  - FCube1
+- TRX 1200: AV4 TRANSCEIVER 1200 Z148391/01142 ECL 01.05
+  Location: slot 2 in rack 1
+  Connection: at IP 192.168.180.18 via PCIe #4
+  Firmware Version: 20190906082218
+  Devices: MTD at /dev/mtd4, DRX at /dev/bbu/drx4.5, RTD at /dev/bbu/rtd4.4
+  Sequencer: FCube
+  - FCube2
+- TRX 1200: AV4 TRANSCEIVER 1200 Z148391/01143 ECL 01.05
+  Location: slot 3 in rack 1
+  Connection: at IP 192.168.180.22 via PCIe #5
+  Firmware Version: 20190906082218
+  Devices: MTD at /dev/mtd7, DRX at /dev/bbu/drx5.5, RTD at /dev/bbu/rtd5.4
+  Sequencer: FCube
+  - FCube3
+- GTU: AV4 GT-CONTROLLER UNIT Z148393/00351 ECL 01.01
+  Location: slot 6 in rack 1
+  Connection: at IP 192.168.180.38 via PCIe #9
+  Firmware Version: 20190906085855
+  - Gradient resolution: 1.0 us
+  Devices: MTD at /dev/mtd10, RTD at /dev/bbu/rtd9.4, GPROC at /dev/bbu/gproc9.7
+  Sequencer: GCube, TCube
+  - GCube1
+  - TCube1
+- PSM-A: AV4 PSM-A Z149510/00381 ECL 01.03
+- HPPR/2 COVER2: HPPR/2 Cover2 Z124567/02566 ECL 00.05
+  HPPR2: - HPPR/2 preamplifier connected via AqRack
+      Type      : HPPR/2
+      Controller: Cover/2
+                  no LED display for tuning and matching
+      Module  1 : HPLNA 1H19F (virtual 50 Ohm reference: 101.0%/0.1deg, reflection meter with CRP-Bias capability)
+                  PN=Z103205, SN=00961 from 20180122
+      Module  2 : HPLNA BB31P (reflection meter without CRP-Bias capability)
+                  PN=Z111093, SN=00282 from 20180103
+      Module  3 : HPLNA BB31P (reflection meter without CRP-Bias capability)
+                  PN=Z111093, SN=00281 from 20180103
+  
+- HPLNA 1H19F: HPLNA 1H MODULE 600 Z103205/00961 ECL 06.02
+- HPLNA BB31P: HPLNA XBB 31P MODULE 600 Z111093/00282 ECL 04.03
+- HPLNA BB31P: HPLNA XBB 31P MODULE 600 Z111093/00281 ECL 04.03
+- RACK: AV4 AQS CHASSIS Z149500/00385 ECL 00.03
+- PSM-48V: AV4 PSM-48V Z149850/00755 ECL 01.01
+- PSM-D: AV4 PSM-D Z149520/00373 ECL 00.02
+- FANTRAY: AV4 AQS FAN TRAY Z149501/0416 ECL 00.02
+- REF 1200: AV4 REFERENCE 1200 Z148270/00408 ECL 02.01
+
+
+Transmitters at the spectrometer subnet:
+----------------------------------------
+BLA-W144059-000215 W144059/000215 ECL 10:
+- TCP/IP address = 192.168.99.15
+- Firmware VS    = 20160518
+- Amplifier      = AV4 BLABB500 15-600: W144059/000215 ECL 10
+- Controller     = BLA CONTROL BOARD 7: W133936/021065 ECL 21
+BLA-W144060-000058 W144060/000058 ECL 21:
+- TCP/IP address = 192.168.99.14
+- Firmware VS    = 20160518
+- Amplifier      = AV4 BLABB1000 15-600: W144060/000058 ECL 21
+- Controller     = BLA CONTROL BOARD 7: W133936/020392 ECL 21
+BLA-W144055-000046 W144055/000046 ECL 01:
+- TCP/IP address = 192.168.99.13
+- Firmware VS    = 20160518
+- Amplifier      = AV4 BLAH500 200-600: W144055/000046 ECL 01
+- Controller     = BLA CONTROL BOARD 7: W133936/020384 ECL 21
+
+BSMS: BSMS/2 connected to ethernet
+- TCP/IP address = 192.168.99.11
+- ELCB firmware version = 20170712
+- ELCB = BSMS/2 ELCB: Z100818/07240 ECL 07.02
+- Shim System = BOSS-WB
+- SCB channels = 40
+- Shim matrix file: 272623ab.dat
+- Active shims: Z Z2 Z3 Z4 Z5 X XZ XZ2 (X2-Y2) XY Y YZ YZ2 (X2-Y2)Z2 XZ4 XZ3 Z6 (X2-Y2)Z YZ4 YZ3 XYZ2 XYZ X3Z X3 Y3Z Y3 (X2-Y2)Z3 XYZ3
+- Magnet polarity: SN (Bruker), uses standard H0 polarity
+- 2HTX Amplifier: not available
+- Lock: not available
+- VTU_SPB = BSMS/2 SPB-E SENSOR & PNEUMATIC BD: Z115192/00706 ECL 05.02
+- VTU_VPSB1 = AV4 VARIABLE POWER SUPPLY BD DC-E: Z140144/00040 ECL 01.02
+
+VTU: in BSMS/2 connected to ethernet
+- TCP/IP address = 192.168.99.11
+
+- Firmware version = 20200617_1039
+MAS Control Unit: MAS_H139288_0430
+- TCP/IP address   = 192.168.98.2
+
+Line Distribution Units at the spectrometer subnet:
+-------------------------------------------------
+Line Distribution Unit 1: PDU1
+- TCP/IP address   = 192.168.99.99
+Line Distribution Unit 2: PDU2
+- TCP/IP address   = 192.168.99.101
+
+
+RF cable connections (detected)
+--------------------------------------------------------------------
+TRX1 NORM output -> input 1 of transmitter 3 (AV4 BLAH500 200-600 W144055/000046 at TCP/IP 192.168.99.13)
+TRX1 AUX  output -> open
+TRX2 NORM output -> input 1 of transmitter 1 (AV4 BLABB500 15-600 W144059/000215 at TCP/IP 192.168.99.15)
+TRX2 AUX  output -> open
+TRX3 NORM output -> input 1 of transmitter 2 (AV4 BLABB1000 15-600 W144060/000058 at TCP/IP 192.168.99.14)
+TRX3 AUX  output -> open
+
+Blanking cable connections (detected)
+--------------------------------------------------------------------
+transmitter 1 = AV4 BLABB500 15-600 W144059/000215 at TCP/IP 192.168.99.15:
+- amplifier B-500W uses blanking 2
+
+transmitter 2 = AV4 BLABB1000 15-600 W144060/000058 at TCP/IP 192.168.99.14:
+- amplifier B-1000W uses blanking 3
+- amplifier B-100W uses blanking 3
+
+transmitter 3 = AV4 BLAH500 200-600 W144055/000046 at TCP/IP 192.168.99.13:
+- amplifier 1H-500W uses blanking 1
+- amplifier 1H-100W uses blanking 1
+
+
+Preamplifier connections (detected)
+--------------------------------------------------------------------
+Tune-TRX1 -> HPLNA 1H19F -> REC1
+Tune-TRX2 -> HPLNA BB31P -> REC2
+Tune-TRX3 -> HPLNA BB31P -> REC3
+

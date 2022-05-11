@@ -1,12 +1,12 @@
-##TITLE= Parameter file, TopSpin 4.1.3
+##TITLE= Parameter file, TopSpin 4.0.7
 ##JCAMPDX= 5.0
 ##DATATYPE= Parameter Values
-##NPOINTS= 24	$$ modification sequence number
+##NPOINTS= 49	$$ modification sequence number
 ##ORIGIN= Bruker BioSpin GmbH
 ##OWNER= nmrsu
-$$ 2021-11-02 15:41:42.038 -0700  THE-LAB\mason42@mapfire470
-$$ C:/Bruker/TopSpin4.1.3/data/MAS 1 testing/24/pdata/1/proc2s
-$$ process C:\Bruker\TopSpin4.1.3\prog\mod\proc2d.exe
+$$ 2022-02-16 16:20:04.627 -0500  SRG@DESKTOP-R5S7N7V
+$$ C:/Users/SRG/Documents/GitHub/SSNMR/Experimental Datasets/Chlorin HetCor/24/pdata/1/proc2s
+$$ process C:\Bruker\TopSpin4.0.7\prog\mod\proc2d.exe
 ##$ABSF1= 0
 ##$ABSF2= 0
 ##$ABSG= 0
@@ -119,7 +119,7 @@ $$ process C:\Bruker\TopSpin4.1.3\prog\mod\proc2d.exe
 ##$STSR= 0
 ##$SW_p= 52962.3614151542
 ##$SYMM= 0
-##$S_DEV= 3533322
+##$S_DEV= 3580062
 ##$TDeff= 64
 ##$TDoff= 0
 ##$TI= <>
@@ -133,7 +133,7 @@ $$ process C:\Bruker\TopSpin4.1.3\prog\mod\proc2d.exe
 ##$USERP4= <>
 ##$USERP5= <>
 ##$WDW= 1
-##$XDIM= 512
-##$YMAX_p= 332394648
-##$YMIN_p= -44963743
+##$XDIM= 32
+##$YMAX_p= 348470107
+##$YMIN_p= -44346174
 ##END=

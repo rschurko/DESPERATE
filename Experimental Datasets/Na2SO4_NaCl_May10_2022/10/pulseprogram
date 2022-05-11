@@ -1,0 +1,82 @@
+;hahnecho
+;
+;
+;TS3 / 03.06.2011
+;
+;checked by SEWE 03.06.2011
+;
+; Hahn-Echo experiment
+; to be used in MAS experiments, echo delay is set to be an integer number
+; of rotor periods
+; acquisition starts immediately after 180 degree pulse to be able to sample whole echo
+; for short echo delays set parameter nsp equal to number of points before echo-top
+; in this case use digmod analog or digmod digital and dspfirm smooth
+; for full echo accumulation digmod digital and dspfirm sharp can also be used
+; set phc0=0 and phc1=d6*swh*360 and do straight fp, sine bell or squared sine bell
+; window functions may be used
+; for static experiments enter cnst31 = 1e6 and set l1 to desired echo delay in us
+;
+;
+;parameters:
+;pl1 : RF power level for 90/180
+;p1 : 90 degree pulse
+;p2 : =p1*2, 180 degree pulse
+;d1 : recycle delay
+;d6 : echo delay (calculated)
+;cnst31 : =MAS spin rate (or =1e6 for static)
+;l1 : # of rotor cycles (or tau in us)
+;ns : 16*n
+;zgoptns : -Ddec (if decoupling desired) or blank
+;
+;
+;$CLASS=Solids
+;$DIM=1D
+;$TYPE=direct excitation
+;$SUBTYPE=simple 1D
+;$COMMENT=Hahn-Echo experiment, MAS or static, standard parameters
+
+prosol relations=<solids_default>
+
+
+"p2=p1*2"
+"d6=((1s*l1)/cnst31)-(p1/2)-(p2/2)"
+;cnst11 : to adjust t=0 for acquisition, if digmod = baseopt
+"acqt0=0"
+
+# ifdef dec
+;pcpd2 : pulse length in decoupling sequence
+;pl2 : =120 dB, not used
+;pl12 : standard decoupling power level
+;pl13 : e.g. used in tppm13
+# endif /* dec */
+
+1 ze
+2 10m 
+# ifdef dec
+  d1 do:f2
+# else
+  d1
+# endif /* dec */
+  (p1 pl1 ph1):f1
+# ifdef dec
+  d6 cpds2:f2
+# else  
+  d6
+# endif /* dec */
+  (p2 ph2):f1
+  go=2 ph31
+# ifdef dec
+  1m do:f2
+# endif /* dec */
+  10m mc #0 to 2 F0(zd)
+exit
+
+ph0=0
+ph1=0 1 2 3
+ph2=0 0 0 0 1 1 1 1 2 2 2 2 3 3 3 3
+ph30=0
+ph31=0 3 2 1 2 1 0 3
+
+
+
+;$Id: hahnecho,v 1.7 2017/02/22 16:58:55 ber Exp $

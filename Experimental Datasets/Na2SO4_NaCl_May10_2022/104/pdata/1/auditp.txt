@@ -1,0 +1,1445 @@
+##TITLE= Audit trail, TopSpin 4.1.1
+##JCAMPDX= 5.01
+##ORIGIN= Bruker BioSpin GmbH
+##OWNER= rschurko
+$$ /opt/topspin4.1.1/data/altenhof/nmr/Na2SO4_NaCl_May10_2022/104/pdata/1/auditp.txt
+##AUDIT TRAIL=  $$ (NUMBER, WHEN, WHO, WHERE, PROCESS, VERSION, WHAT)
+(   1,<2021-03-21 17:53:54.522 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <acquisition in progress>)
+$$ /opt/topspin4.1.1/data/altenhof/nmr/Na2SO4_March20_2021/1/audita.txt
+(   2,<2021-03-21 17:54:57.528 +0000>,<rschurko>,<600wb1>,<go4>,<TopSpin 4.1.1>,
+      <created by zg on 'Avance NEO 600wb1' (600wb1) by user 'rschurko'
+       on data set with UUID '670943ca-8a6e-11eb-83de-00139526610d'
+       started at 2021-03-21 17:53:54.532 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-03-21 17:54:57.526 +0000
+       configuration hash MD5:
+       6C B7 A6 B6 3C 41 26 6B A8 C3 86 15 BC F8 06 06
+       double data hash MD5: 2K
+       CC 66 74 62 F7 DE 28 0F 6B BD 7A 34 55 D0 C5 20>)
+(   3,<2021-03-21 13:54:57.490 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       em LB = 5 SI = 4K 
+       data hash MD5: 4K
+       40 6B 6E 84 42 FA 69 D9 63 37 7F 92 5D D9 B1 09>)
+(   4,<2021-03-21 13:54:58.994 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <em LB = 5 
+       data hash MD5: 4K
+       99 E2 0A D2 09 7E 77 85 14 86 36 65 16 06 F1 93>)
+(   5,<2021-03-21 13:54:59.730 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <em LB = 5 
+       data hash MD5: 4K
+       2F 95 48 5C 51 DF 7C 87 A6 7D C3 D6 1A A0 98 E4>)
+(   6,<2021-03-21 13:55:00.218 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <em LB = 5 
+       data hash MD5: 4K
+       61 56 89 32 84 44 D8 9F 2F 9D 4E 6F 69 65 D3 E4>)
+(   7,<2021-03-21 13:55:05.018 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <em LB = 100 
+       data hash MD5: 4K
+       90 EA 3D 9D B4 70 CE DD 7D EE B8 14 BA A5 9E 42>)
+(   8,<2021-03-21 13:55:07.059 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <ft FT_mod = 6 PKNL = 1 SI = 4K 
+       data hash MD5: 4K
+       50 C9 1B 52 0E 6D 55 2A C9 A1 69 56 0F 23 47 7F>)
+(   9,<2021-03-21 13:55:22.350 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <pk fgphup PHC0 = -43.15 PHC1 = 0 
+       data hash MD5: 4K
+       01 EA 36 DC 95 1B 8B 28 C4 29 0A 6C 9A C5 17 C1>)
+(  10,<2021-03-21 13:55:28.194 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<dirdata>,<TopSpin 4.1.1>,
+      <wrpa from 1 1 "Na2SO4_March20_2021" "/opt/topspin4.1.1/data/altenhof/nmr"
+       data hash MD5: 4K
+       01 EA 36 DC 95 1B 8B 28 C4 29 0A 6C 9A C5 17 C1>)
+(  11,<2021-03-21 13:55:47.912 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<audit>,<TopSpin 4.1.1>,
+      <user comment:
+       TITLE=23Na Na2SO4
+       zg static
+       10 kHz MASTITLE_END
+       data hash MD5: 4K
+       01 EA 36 DC 95 1B 8B 28 C4 29 0A 6C 9A C5 17 C1>)
+(  12,<2021-03-21 13:55:48.053 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<audit>,<TopSpin 4.1.1>,
+      <user comment:
+       TITLE=23Na Na2SO4
+       zg static
+       10 kHz MASTITLE_END
+       data hash MD5: 4K
+       01 EA 36 DC 95 1B 8B 28 C4 29 0A 6C 9A C5 17 C1>)
+(  13,<2021-03-21 13:55:48.209 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<audit>,<TopSpin 4.1.1>,
+      <user comment:
+       TITLE=23Na Na2SO4
+       zg static
+       10 kHz MASTITLE_END
+       data hash MD5: 4K
+       01 EA 36 DC 95 1B 8B 28 C4 29 0A 6C 9A C5 17 C1>)
+(  14,<2021-03-21 13:59:15.148 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       ft FT_mod = 6 PKNL = 1 SI = 4K 
+       data hash MD5: 4K
+       57 AE 2A 39 6F D7 CD 3F 7D BD 36 3D 7D 0B 52 31>)
+(  15,<2021-03-21 13:59:22.694 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <pk fgphup PHC0 = -47.225 PHC1 = 0 
+       data hash MD5: 4K
+       66 6F 69 4B DA 6F 47 98 D3 1B F3 31 76 03 15 EA>)
+(  16,<2021-03-21 13:59:36.346 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<dirdata>,<TopSpin 4.1.1>,
+      <wrpa from 1 2 "Na2SO4_March20_2021" "/opt/topspin4.1.1/data/altenhof/nmr"
+       data hash MD5: 4K
+       66 6F 69 4B DA 6F 47 98 D3 1B F3 31 76 03 15 EA>)
+(  17,<2021-03-21 13:59:45.185 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<audit>,<TopSpin 4.1.1>,
+      <user comment:
+       TITLE=23Na Na2SO4
+       zg R3
+       10 kHz MASTITLE_END
+       data hash MD5: 4K
+       66 6F 69 4B DA 6F 47 98 D3 1B F3 31 76 03 15 EA>)
+(  18,<2021-03-21 13:59:45.344 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<audit>,<TopSpin 4.1.1>,
+      <user comment:
+       TITLE=23Na Na2SO4
+       zg R3
+       10 kHz MASTITLE_END
+       data hash MD5: 4K
+       66 6F 69 4B DA 6F 47 98 D3 1B F3 31 76 03 15 EA>)
+(  19,<2021-03-21 13:59:45.471 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<audit>,<TopSpin 4.1.1>,
+      <user comment:
+       TITLE=23Na Na2SO4
+       zg R3
+       10 kHz MASTITLE_END
+       data hash MD5: 4K
+       66 6F 69 4B DA 6F 47 98 D3 1B F3 31 76 03 15 EA>)
+(  20,<2021-03-21 14:02:44.382 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -47.225 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       F2 32 1A F0 D3 56 33 3E 1A 2A 7D 7A 40 2D 15 4C>)
+(  21,<2021-03-21 14:02:45.385 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<poptau>,<TopSpin 4.1.1>,
+      <created by poptau poptaustop was executed for PLW 2, step 2>)
+(  22,<2021-03-21 14:03:31.080 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -47.225 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       C4 BA 2B 36 FA C6 C4 15 20 9B C0 33 D3 0F 40 E8>)
+(  23,<2021-03-21 14:03:58.599 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -47.225 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       02 5C 60 54 8B 93 96 84 17 CB 3A 95 17 A1 9E 74>)
+(  24,<2021-03-21 14:04:26.086 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -47.225 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       0B 97 CF 9E 1D 28 D9 5B FD BE 96 E1 BE A0 93 A7>)
+(  25,<2021-03-21 14:04:53.624 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -47.225 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       31 A8 E4 1D E0 E3 50 8E BB 20 6A F5 24 7B D5 F3>)
+(  26,<2021-03-21 14:05:21.102 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -47.225 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       4C 0F 90 07 00 2E 25 57 AF 65 0B EB 59 F5 6A 2F>)
+(  27,<2021-03-21 14:05:48.665 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -47.225 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       69 B3 1F AC A1 33 DD 34 8E ED 62 3D CF F4 E6 C6>)
+(  28,<2021-03-21 14:06:16.120 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -47.225 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       74 B5 51 37 39 C4 60 A9 82 7F BC F6 DE FA 5B 44>)
+(  29,<2021-03-21 14:06:43.605 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -47.225 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       F7 B5 22 FB 2D AA 1A F2 65 9B 0E 3F DC A0 48 48>)
+(  30,<2021-03-21 14:07:11.047 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -47.225 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       9E B8 2B 0D CF 8C F1 05 62 C7 98 EB 8C 8D 79 9D>)
+(  31,<2021-03-21 14:07:38.584 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -47.225 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       EB 2E 49 DD 55 40 9D 30 98 C5 B2 52 D1 CF 58 79>)
+(  32,<2021-03-21 14:08:06.066 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -47.225 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       B1 A7 5C 2B 1C 97 99 A6 C0 27 EC 58 85 C1 9C 19>)
+(  33,<2021-03-21 14:08:33.753 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -47.225 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       4E 46 0C B9 F0 2B 09 28 C0 58 D8 78 67 79 7A 95>)
+(  34,<2021-03-21 14:09:01.253 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -47.225 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       17 DE BE 1A FC F6 E3 C0 EE F1 F9 96 E5 44 0F 7F>)
+(  35,<2021-03-21 14:09:29.794 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -47.225 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       47 A9 5A 42 74 29 A5 68 65 FB F9 A1 39 89 42 48>)
+(  36,<2021-03-21 14:09:57.254 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -47.225 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       DF 00 7E 68 9C 77 83 3E 8B 8B 1C D2 2E 5E F9 98>)
+(  37,<2021-03-21 14:10:24.858 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -47.225 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       D0 C0 C0 74 E8 92 E6 BD 36 78 70 BA 00 DE A8 41>)
+(  38,<2021-03-21 14:10:52.337 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -47.225 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       D8 A8 82 C0 37 B7 91 89 25 2D 37 F9 35 60 11 1F>)
+(  39,<2021-03-21 14:11:19.814 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -47.225 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       6D 2E 40 14 DA 2B 6A D1 B0 5D 4A 2F 93 CE 17 BE>)
+(  40,<2021-03-21 14:11:47.374 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -47.225 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       44 1E 7A AB B2 7D C5 24 67 F6 40 AE CA 4E E3 01>)
+(  41,<2021-03-21 14:12:15.867 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -47.225 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       CB 92 A9 39 FE AF 26 72 4F 3D 45 AD 46 BC 45 BC>)
+(  42,<2021-03-21 14:12:43.536 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -47.225 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       54 2F 20 4C 4E 06 B3 14 BD 30 A1 C1 4E E7 BE 35>)
+(  43,<2021-03-21 14:12:59.935 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<poptau>,<TopSpin 4.1.1>,
+      <created by poptau poptaustop was executed for PLW 2, step 23>)
+(  44,<2021-03-21 14:13:58.383 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -47.225 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       25 95 DC 22 1E B8 2A F9 91 65 FE 79 3A AE 4F EF>)
+(  45,<2021-03-21 14:14:25.938 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -47.225 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       EE F3 A5 D6 BD F5 9B 6C 12 F7 E2 8F 66 5E 65 81>)
+(  46,<2021-03-21 14:14:53.361 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -47.225 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       53 11 83 4D DA E9 EF 69 58 8E 1B 53 7F F0 78 B5>)
+(  47,<2021-03-21 14:15:20.841 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -47.225 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       F6 EB E7 2F F2 C9 40 F0 A8 89 44 28 01 98 52 20>)
+(  48,<2021-03-21 14:15:48.363 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -47.225 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       49 66 B8 15 27 34 27 5B 7F DA 1E 9B A2 31 00 50>)
+(  49,<2021-03-21 14:16:15.818 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -47.225 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       8F 59 1A 44 8B 59 30 39 8F 5F 8D 1A B9 21 FC 2E>)
+(  50,<2021-03-21 14:16:43.353 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -47.225 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       5C 02 68 C0 B1 AE 06 84 1A 2B F3 0F A0 5E A7 76>)
+(  51,<2021-03-21 14:17:10.787 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -47.225 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       ED 0A 5A 58 02 F8 83 D9 B7 37 A7 AA 19 36 61 0B>)
+(  52,<2021-03-21 14:17:38.331 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -47.225 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       15 33 C8 BE 83 5C 00 90 27 94 DA 13 E8 FB 8A BA>)
+(  53,<2021-03-21 14:18:05.838 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -47.225 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       09 BE 2A 01 BC 25 8B 4D A3 6A 6B 5A 2E F1 A4 BD>)
+(  54,<2021-03-21 14:18:33.599 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -47.225 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       8D 5B 1F 89 CF AC BF FD F1 17 FA 90 98 1B 3E 44>)
+(  55,<2021-03-21 14:19:18.796 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -47.225 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       66 B3 34 BF 34 7E CC CA 6F BB 08 7E 83 5F D6 4A>)
+(  56,<2021-03-21 14:19:47.204 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -47.225 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       D0 57 D8 58 7D D8 7F 60 F8 07 98 88 38 FD 04 03>)
+(  57,<2021-03-21 14:20:14.638 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -47.225 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       32 2E 5B 70 67 90 E3 69 F2 3F 4B A5 5A DB 55 4C>)
+(  58,<2021-03-21 14:20:42.275 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -47.225 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       49 D0 E6 A1 F1 50 DD B9 C0 DD 92 24 1B 1B A0 A4>)
+(  59,<2021-03-21 14:21:09.932 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -47.225 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       1B C9 83 A4 17 09 0B 54 C7 44 6E 66 F3 EE 45 F0>)
+(  60,<2021-03-21 14:21:37.449 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -47.225 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       17 A9 E5 F2 69 70 19 C3 5C A9 2A A3 6D 75 E3 E2>)
+(  61,<2021-03-21 14:22:04.908 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -47.225 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       88 55 CC 01 2D 54 4C F2 76 C0 7E 93 47 DD 93 34>)
+(  62,<2021-03-21 14:22:32.464 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -47.225 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       B1 03 0E 4D 86 1B 44 19 6B D3 1A DD 04 74 08 A6>)
+(  63,<2021-03-21 14:22:59.982 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -47.225 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       C5 E4 E2 62 5D 83 D1 19 FA 5E 38 31 91 E2 D3 05>)
+(  64,<2021-03-21 14:23:27.516 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -47.225 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       F5 70 39 25 18 D2 D7 7F FE 7C 7F 66 47 3E 83 0D>)
+(  65,<2021-03-21 14:23:54.997 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -47.225 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       5D 01 E6 E5 E1 20 F2 27 5B 17 00 48 E4 E9 E8 4E>)
+(  66,<2021-03-21 14:24:22.509 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -47.225 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       F5 49 6B D9 24 87 5B C0 EE B0 10 BC 27 DB 62 A3>)
+(  67,<2021-03-21 14:24:49.933 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -47.225 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       1B E1 F0 47 8A 5C 0B D6 49 AB 67 1D 43 F3 FE 02>)
+(  68,<2021-03-21 14:25:18.229 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -47.225 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       E2 29 7D 19 FB D4 5F EB 0B DA B0 B2 40 A8 9B 4E>)
+(  69,<2021-03-21 14:25:46.889 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -47.225 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       9C D2 7C 42 93 97 E3 C2 31 99 E3 2D C5 0B 57 A1>)
+(  70,<2021-03-21 14:26:14.353 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -47.225 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       5C 0F BF F3 F8 28 11 6D 65 A3 33 12 CB 2B 51 2E>)
+(  71,<2022-05-10 12:31:59.035 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<dirdata>,<TopSpin 4.1.1>,
+      <wrpa from 1 3 "Na2SO4_March20_2021" "/opt/topspin4.1.1/data/altenhof/nmr"
+       data hash MD5: 4K
+       5C 0F BF F3 F8 28 11 6D 65 A3 33 12 CB 2B 51 2E>)
+(  72,<2022-05-10 12:32:11.372 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<audit>,<TopSpin 4.1.1>,
+      <user comment:
+       TITLE=23Na Na2SO4:NaCl MIx
+       zg R3
+       10 kHz MASTITLE_END
+       data hash MD5: 4K
+       5C 0F BF F3 F8 28 11 6D 65 A3 33 12 CB 2B 51 2E>)
+(  73,<2022-05-10 12:44:03.533 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       ft FT_mod = 6 PKNL = 1 SI = 4K 
+       data hash MD5: 4K
+       09 DB A3 AC 31 CD 42 FC 51 C8 98 39 82 D2 94 87>)
+(  74,<2022-05-10 12:44:11.914 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <pk fgphup PHC0 = -42.55 PHC1 = 0 
+       data hash MD5: 4K
+       ED EB 29 05 E3 4A FC 2B 25 47 B5 AA 32 66 93 3F>)
+(  75,<2022-05-10 12:45:49.207 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       fp FT_mod = 6 PKNL = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       C1 96 31 B8 94 AC 6B D8 A8 01 B7 26 A5 DA B1 CA>)
+(  76,<2022-05-10 12:47:23.194 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       66 79 C0 A3 D8 78 43 51 91 34 83 0E 8D E1 41 86>)
+(  77,<2022-05-10 12:47:34.718 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<poptau>,<TopSpin 4.1.1>,
+      <created by poptau poptaustop was executed for PLW 2, step 3>)
+(  78,<2022-05-10 12:48:16.415 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       91 22 A1 8D FA D5 D3 BC 5A 04 41 93 C1 2D F0 D2>)
+(  79,<2022-05-10 12:48:28.944 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       5C D5 77 60 69 C7 2B BE 51 F9 22 41 B2 A7 52 42>)
+(  80,<2022-05-10 12:48:41.741 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       71 FC 63 72 F0 80 17 53 CD C8 B2 F5 16 76 AE 00>)
+(  81,<2022-05-10 12:48:54.412 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       19 58 79 55 0A 44 9C F7 41 34 DE 37 B8 9D 18 6C>)
+(  82,<2022-05-10 12:49:06.932 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       03 36 4E 71 70 97 C7 DD 06 FC B0 10 EE 36 C0 29>)
+(  83,<2022-05-10 12:49:20.449 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       98 44 D3 64 A5 C9 04 B5 B4 41 5C A1 4F 1B 59 3D>)
+(  84,<2022-05-10 12:49:33.010 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       8B 38 D4 1E CD C1 8A C3 11 B2 FB FD 41 8D 17 75>)
+(  85,<2022-05-10 12:49:45.670 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       AB 03 FE E0 93 2D 45 FF 2B B2 49 E9 74 D2 27 0E>)
+(  86,<2022-05-10 12:49:58.233 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       EC 0B B0 11 93 55 4D 6E E6 81 3D E1 1C 74 E9 AC>)
+(  87,<2022-05-10 12:50:11.830 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       0A 63 7A DE 8B E6 AF DE FB 2F BE 90 F6 97 ED 44>)
+(  88,<2022-05-10 12:50:24.432 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       99 52 2A 7F 36 5B 24 AC 24 9E 29 E3 E0 B8 7F 53>)
+(  89,<2022-05-10 12:50:37.115 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       F9 06 0D 70 1C 52 46 CC 3A 7A A5 4F C2 41 18 6B>)
+(  90,<2022-05-10 12:50:49.772 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       1D F0 19 73 67 6D 53 18 7A 06 63 93 6D 19 22 8D>)
+(  91,<2022-05-10 12:51:02.308 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       4D BD 6B C7 83 3E 69 91 32 4C A0 18 89 5A 18 D1>)
+(  92,<2022-05-10 12:51:15.163 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       CF 63 99 DE 17 9B 09 BE 30 7F 4F 1F ED 82 1D E3>)
+(  93,<2022-05-10 12:51:27.791 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       0E D8 DB 89 5E 6F 00 C6 2C 5A 23 BA 42 73 95 EF>)
+(  94,<2022-05-10 12:51:40.512 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       B6 F2 E6 92 69 36 1B 6F C2 11 CF 61 21 02 9B 13>)
+(  95,<2022-05-10 12:51:53.269 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       B8 50 7C 23 B0 40 B9 DF 74 AA D9 4C 17 5F 1E D3>)
+(  96,<2022-05-10 12:52:06.673 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       E7 A6 2D 92 BE 40 34 4B EC E4 4F 37 97 8B 86 FB>)
+(  97,<2022-05-10 12:52:19.415 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       8C 97 45 C5 C7 4B 6F D4 10 52 6B 5A F9 BE 40 37>)
+(  98,<2022-05-10 12:52:32.153 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       69 CB F9 35 3A A6 74 D0 3C 33 11 39 25 E2 F6 25>)
+(  99,<2022-05-10 12:52:44.673 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       2C 6E 81 65 DC AF 66 C8 E5 F9 72 EA 87 E2 48 32>)
+( 100,<2022-05-10 12:52:57.291 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       5A 4C 37 D0 ED 4A F9 D0 B0 27 79 F5 4E B4 92 70>)
+( 101,<2022-05-10 12:53:09.802 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       E3 88 89 0D B7 17 64 C9 AD F7 D0 F0 20 31 A0 14>)
+( 102,<2022-05-10 12:53:22.600 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       EE FB E3 B8 4A E8 12 A1 29 70 C4 FE 12 53 E3 24>)
+( 103,<2022-05-10 12:53:35.250 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       02 0B 83 12 72 F2 8F CA 30 8C D6 96 FF 3F 96 09>)
+( 104,<2022-05-10 12:53:47.793 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       A6 99 FF 3A 14 32 A6 36 85 5D FB 8F 22 4F D1 76>)
+( 105,<2022-05-10 12:54:00.651 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       65 B7 5A 4E F1 3B 0F 28 25 92 50 C0 3E 17 DC 8B>)
+( 106,<2022-05-10 12:54:13.251 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       13 AE 47 89 3E 00 07 98 B6 4E E7 12 AE BC 2F F3>)
+( 107,<2022-05-10 12:54:25.831 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       9B 60 D4 A5 5A 7B 44 F9 86 7A 73 C8 69 95 A7 0C>)
+( 108,<2022-05-10 12:54:39.184 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       59 B5 82 03 2C 75 43 8B 55 98 B9 FA 50 6A 0B D8>)
+( 109,<2022-05-10 12:54:52.054 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       A0 95 39 87 60 C6 C7 E0 52 83 E1 C9 46 1C 77 7C>)
+( 110,<2022-05-10 12:55:04.658 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       4D 92 CD 65 94 23 87 92 47 CF 0D 65 E8 97 FF 61>)
+( 111,<2022-05-10 12:55:17.453 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       AC CE 88 57 90 30 2D 0C 9E BE 42 70 7C E0 18 23>)
+( 112,<2022-05-10 12:55:29.982 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       F3 E2 7F 5E 84 10 4C 4F 43 27 55 CB 29 9A B7 70>)
+( 113,<2022-05-10 12:55:42.685 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       A7 7C 37 88 17 64 81 EA 5F 14 EB 4B 17 32 86 D4>)
+( 114,<2022-05-10 12:55:55.189 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       E9 9E D9 C1 24 67 70 3E D1 21 C7 78 8C 41 01 53>)
+( 115,<2022-05-10 12:56:08.128 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       BD 4D 8C 1A FB 5E C3 9C A9 EA EF 1B 2E E5 34 D2>)
+( 116,<2022-05-10 12:56:20.858 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       8A 27 E3 7D D2 90 E9 D6 14 35 60 A7 2E 90 7D 58>)
+( 117,<2022-05-10 12:56:33.377 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       BD 93 46 A7 84 08 28 11 68 93 06 B1 97 6F EE 8F>)
+( 118,<2022-05-10 12:56:46.077 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       82 23 81 E5 C1 36 54 4C 42 68 C3 8C AF 77 0D 09>)
+( 119,<2022-05-10 12:56:58.834 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       D2 CB 36 A5 24 16 2C 33 29 18 77 F2 00 B4 25 E5>)
+( 120,<2022-05-10 12:57:12.322 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       3E AC 7F 78 C5 D3 94 6D BB B4 7D 22 68 15 61 D1>)
+( 121,<2022-05-10 12:57:24.911 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       B9 05 32 A3 21 E3 64 90 A9 A3 95 AA 0E 09 70 11>)
+( 122,<2022-05-10 12:57:37.425 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       A8 08 C3 FB 71 7F 14 E7 58 23 EC E0 5D 57 16 1A>)
+( 123,<2022-05-10 12:57:50.014 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       55 6B 3F 61 AD B2 08 AB 0F E4 3D EA FA 63 B2 13>)
+( 124,<2022-05-10 12:58:02.762 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       3C B1 D3 07 1B 80 56 A6 EE E7 3E 8B BA 8C 32 93>)
+( 125,<2022-05-10 12:58:15.364 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       EA 05 DE 8C 0B CF AD 53 E0 27 8F 8A DB D2 60 99>)
+( 126,<2022-05-10 12:58:21.992 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<poptau>,<TopSpin 4.1.1>,
+      <created by poptau poptaustop was executed for PLW 2, step 50>)
+( 127,<2022-05-10 13:01:10.612 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       3E 0F DE C8 D4 44 4D A3 A8 12 F8 77 81 0F 15 7F>)
+( 128,<2022-05-10 13:01:23.225 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       6A B3 61 15 69 E7 1C 94 8D 9A 31 30 72 22 FB 4E>)
+( 129,<2022-05-10 13:01:35.780 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       A8 5B BF EE 87 3F 7F 6D D0 AE D5 57 69 24 4D AE>)
+( 130,<2022-05-10 13:01:48.374 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       AB F9 E3 3B 95 D9 5E B0 75 11 72 5B 8D 9D 8D 05>)
+( 131,<2022-05-10 13:02:00.862 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       5C 67 E5 A1 2D 4A 9D 00 AB 31 50 DA 3D 50 03 B2>)
+( 132,<2022-05-10 13:02:13.528 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       C5 CF 07 AE 52 BF CC CF 03 F6 BA 35 9A 27 EA 3D>)
+( 133,<2022-05-10 13:02:26.075 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       9E 1B 42 1E 4B 96 B2 95 B2 F1 AC 50 23 A0 03 38>)
+( 134,<2022-05-10 13:02:39.970 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       B0 C3 AA F0 6D 86 1E 64 C2 D4 06 A3 99 CE 3B 3E>)
+( 135,<2022-05-10 13:02:52.642 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       C1 B6 5F D9 B3 07 72 74 06 5A 32 D2 DF A0 2E 05>)
+( 136,<2022-05-10 13:03:05.252 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       3C DD C0 76 6F 61 9E 95 D9 C5 FC 6E 3E 8C A3 97>)
+( 137,<2022-05-10 13:03:17.911 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       32 A5 2C 54 61 AF C0 07 A2 13 BA 87 4B 71 BE 42>)
+( 138,<2022-05-10 13:03:30.496 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       3B 5C 9C D0 9C F3 7D 98 48 D0 5B F8 DB 34 72 0D>)
+( 139,<2022-05-10 13:03:43.927 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       FA 2E F2 1F 6F F2 3D 6A 2D 3B 19 14 47 A8 B1 55>)
+( 140,<2022-05-10 13:03:56.539 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       5A 99 46 41 3E 47 3A D8 7F 53 57 48 67 6D CB 64>)
+( 141,<2022-05-10 13:04:09.178 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       2F 43 BA F8 68 C5 22 70 CF 65 47 16 C9 8E 6D 56>)
+( 142,<2022-05-10 13:04:21.869 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       33 B4 28 59 3C EF BE F5 2F 74 69 2F ED 7B FB CE>)
+( 143,<2022-05-10 13:04:35.404 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       F8 AB 6B 91 3D D0 64 18 C0 3F BA 65 EA FC 14 60>)
+( 144,<2022-05-10 13:04:48.113 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       02 60 6D 0A 64 5D 79 A4 55 EB 0E 0A 83 F9 3D CB>)
+( 145,<2022-05-10 13:05:00.705 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       E8 31 F0 DB 0E F3 1E 70 23 B6 63 EB 30 39 0B EB>)
+( 146,<2022-05-10 13:05:13.406 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       E8 F5 74 85 93 BE D2 05 4A 67 88 64 C1 0C 3D CA>)
+( 147,<2022-05-10 13:05:26.855 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       7B 15 FF B9 C5 80 AB C5 7F E3 BF D7 58 84 96 CB>)
+( 148,<2022-05-10 13:05:39.490 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       47 4D EF DE AD 31 43 B5 C1 A0 57 C1 7F AB 70 2B>)
+( 149,<2022-05-10 13:05:52.384 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       56 45 D0 2F A4 93 7E 1E AD 59 E2 18 E3 F2 4D AA>)
+( 150,<2022-05-10 13:06:05.091 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       89 FF 14 0A 8D 72 DF 69 FB DF 33 86 8B 3E D4 FD>)
+( 151,<2022-05-10 13:06:17.902 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       CC 32 26 E7 E4 77 37 37 D5 CD 2B 64 F1 6B E9 49>)
+( 152,<2022-05-10 13:06:30.784 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       CD 7F C5 D8 2A 4D A0 15 2A 5F 62 8A 2E CF 16 D6>)
+( 153,<2022-05-10 13:06:43.431 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       58 5F 61 9D CC E4 62 1E F5 CE C6 BD A7 0C 4D B8>)
+( 154,<2022-05-10 13:06:56.013 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       B4 23 2A 60 6A 1B C0 29 23 89 47 1C EA 8D 92 C1>)
+( 155,<2022-05-10 13:07:08.877 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       04 7E 23 EC 5C 81 C1 46 05 9C 12 D7 27 9D 42 58>)
+( 156,<2022-05-10 13:07:21.515 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       4B 64 FF DC 2D E0 E8 72 71 42 0B 3B F7 28 CC 48>)
+( 157,<2022-05-10 13:07:34.051 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       E8 CB 0D 6A 61 1A 65 15 0E 3F B5 83 80 F6 C9 06>)
+( 158,<2022-05-10 13:07:46.782 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       7D C1 E0 AD CB 3A 2A 1D 3C 3B D1 F9 78 75 BB 9D>)
+( 159,<2022-05-10 13:07:59.409 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       96 DF 0F 5A 46 29 D4 16 C1 52 C7 81 A1 28 75 32>)
+( 160,<2022-05-10 13:08:12.059 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       F5 0D 65 EA DF 7D FD 71 CC 96 CB 3B BD 26 C1 BC>)
+( 161,<2022-05-10 13:08:24.729 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       B9 11 8E 6B 9E F7 0C C7 CA 46 35 81 C8 96 2B 76>)
+( 162,<2022-05-10 13:08:37.287 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       E0 85 3E B4 0D CD 1E 8C 0E DF 19 6C C3 97 83 20>)
+( 163,<2022-05-10 13:08:50.075 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       86 E1 95 75 BA 2D B3 E6 F6 C5 7A 21 38 C4 7D 9F>)
+( 164,<2022-05-10 13:09:02.783 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       D2 83 53 04 99 EF 46 FC 53 DD 4A 11 0E 10 7F 86>)
+( 165,<2022-05-10 13:09:15.340 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       01 97 02 D7 E9 0D 9A 7F BA CF CC 7B 1E 85 78 31>)
+( 166,<2022-05-10 13:09:28.104 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       45 8B 86 35 53 29 7F D0 F5 CB 87 8A 07 AF BF A8>)
+( 167,<2022-05-10 13:09:41.488 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       C2 4F 65 73 FF EE 19 0D 4B A7 89 4D F1 45 0B 4B>)
+( 168,<2022-05-10 13:09:54.354 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       A2 EE E6 F1 79 3F 2A 6A BF 4E BA BE 2E A2 45 DF>)
+( 169,<2022-05-10 13:10:07.955 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       C1 C6 C8 C1 20 18 06 55 0C F4 4C 81 DD 69 43 83>)
+( 170,<2022-05-10 13:10:20.607 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       69 80 9E B3 C5 6E 50 4A BA E7 28 05 D9 46 EA 32>)
+( 171,<2022-05-10 13:10:33.273 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       59 4F 77 C3 91 95 1B FE 85 FD CD FB BD 71 21 26>)
+( 172,<2022-05-10 13:10:45.855 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       E3 3B 2A E5 35 A7 1A 76 98 ED 73 62 3D F4 D9 51>)
+( 173,<2022-05-10 13:10:58.538 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       E1 FD C2 F7 27 9B A8 42 6C C5 32 41 AB 7E E6 D5>)
+( 174,<2022-05-10 13:11:11.241 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       B9 8B 1B 26 6D 52 CB 96 62 FB A1 48 82 73 9F A9>)
+( 175,<2022-05-10 13:11:23.778 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       8E 34 57 21 E7 02 1C 4F FC 54 E2 11 05 97 CF DA>)
+( 176,<2022-05-10 13:11:36.468 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       1F 46 6C 65 20 4F 6F 69 AC 04 2C F1 1D CC A5 FD>)
+( 177,<2022-05-10 13:11:49.202 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       BD A8 7C FA 54 C2 4E 5C CD 31 66 52 E2 D7 75 1A>)
+( 178,<2022-05-10 13:12:01.734 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       24 F1 7C F1 62 C4 45 AF 54 0F 43 1E B5 8B 31 84>)
+( 179,<2022-05-10 13:12:14.507 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       62 22 7C 54 6F AA 3B BF E0 A0 F4 54 FC 7F 2B 59>)
+( 180,<2022-05-10 13:12:27.061 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       C4 7F A3 D5 97 AC E0 57 B1 D2 9F CD 2F 40 8F 37>)
+( 181,<2022-05-10 13:12:39.725 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       7D 31 33 B5 2A 4B A0 8F BB E1 6E A7 4F 7F D8 18>)
+( 182,<2022-05-10 13:12:52.377 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       AF 7B 78 B0 42 6D 5A 6D 88 5A C7 B6 8E 2A 5D 27>)
+( 183,<2022-05-10 13:13:04.944 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       20 DC 0A 91 13 BD 1A 2B 98 BD 5D E9 8D 3A CA EC>)
+( 184,<2022-05-10 13:13:17.664 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       C4 F9 87 77 B5 25 BF 0F E0 83 7F C7 15 AD 57 CA>)
+( 185,<2022-05-10 13:13:30.314 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       23 8A 82 76 E5 AE D6 66 1B 68 28 0A 52 DD AE 82>)
+( 186,<2022-05-10 13:13:42.982 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       D8 BD 2D E1 0A 20 3B E6 BD E7 D9 7F 31 73 29 1E>)
+( 187,<2022-05-10 13:13:55.817 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       47 0A 6F 0C 82 F9 FC 7C 8F 9A 33 17 C9 E0 F5 72>)
+( 188,<2022-05-10 13:14:27.271 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       6C FF B7 56 23 62 2C 25 62 1C 31 3C 38 F2 FF DF>)
+( 189,<2022-05-10 13:14:39.827 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       F5 66 48 C4 BA EB 09 A4 C0 A9 36 55 10 79 CB 76>)
+( 190,<2022-05-10 13:14:52.495 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       4F F6 31 06 57 3D 7B 23 9F 29 A2 F7 BA 3F 7B 86>)
+( 191,<2022-05-10 13:15:05.899 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       C8 A6 88 02 C1 4D FA D9 7B 5D 6F 19 B6 E3 51 01>)
+( 192,<2022-05-10 13:15:18.871 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       C2 26 F9 B3 A1 BF 9E A8 2C DE 3B F6 84 8B C5 87>)
+( 193,<2022-05-10 13:15:31.717 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       32 8A FE FF CA FA B8 57 46 DF 80 1B 53 B8 72 1E>)
+( 194,<2022-05-10 13:15:44.367 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       A7 11 FB 8F BA 83 18 C2 E4 DA 14 EB 02 33 2C E2>)
+( 195,<2022-05-10 13:15:56.895 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       05 52 CE 00 99 BB BD 78 F3 4A 0A 73 90 EF 90 30>)
+( 196,<2022-05-10 13:16:09.565 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       86 C2 4D F6 73 AE 20 76 18 23 ED 12 56 0B 06 4B>)
+( 197,<2022-05-10 13:16:22.142 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       BF 60 F9 5B 64 93 C6 6C 3D BC F9 06 C4 31 59 49>)
+( 198,<2022-05-10 13:16:34.885 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       3F B3 29 4D E6 94 57 19 46 74 62 49 10 8F 03 98>)
+( 199,<2022-05-10 13:16:47.528 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 200 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -42.55 PHC1 = 0 SI = 4K 
+       data hash MD5: 4K
+       94 94 BF 8D 29 F5 9B AC B3 94 C4 CE E4 DB BB AD>)
+( 200,<2022-05-10 13:16:56.173 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<poptau>,<TopSpin 4.1.1>,
+      <created by poptau poptaustop was executed for PLW 2, step 14>)
+( 201,<2022-05-10 13:17:02.147 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<dirdata>,<TopSpin 4.1.1>,
+      <wrpa from 1 1 "Na2SO4_NaCl_May10_2022" "/opt/topspin4.1.1/data/altenhof/nmr"
+       data hash MD5: 4K
+       94 94 BF 8D 29 F5 9B AC B3 94 C4 CE E4 DB BB AD>)
+( 202,<2022-05-10 13:17:08.972 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<audit>,<TopSpin 4.1.1>,
+      <user comment:
+       TITLE=23Na Na2SO4:NaCl MIx
+       zg
+       10 kHz MASTITLE_END
+       data hash MD5: 4K
+       94 94 BF 8D 29 F5 9B AC B3 94 C4 CE E4 DB BB AD>)
+( 203,<2022-05-10 13:18:09.556 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       ft FT_mod = 6 PKNL = 1 SI = 4K 
+       data hash MD5: 4K
+       A0 C3 7E A0 C6 50 0E D3 E9 A0 55 D5 D6 C4 E9 9B>)
+( 204,<2022-05-10 13:18:22.973 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <pk fgphup PHC0 = 4.124707 PHC1 = -90.6 
+       data hash MD5: 4K
+       15 95 77 86 E1 BE 9B 99 EB 84 00 1A DE FC 54 6B>)
+( 205,<2022-05-10 13:19:10.992 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       ft FT_mod = 6 PKNL = 1 SI = 32K 
+       data hash MD5: 32K
+       65 98 B5 3A 33 12 D8 87 FE EB 69 CB 56 04 34 E7>)
+( 206,<2022-05-10 13:19:47.599 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <pk fgphup PHC0 = -61.91463 PHC1 = -673.4 
+       data hash MD5: 32K
+       80 E0 F1 8B 1B 2C 3E FB 9C 69 EC 5B 15 96 22 D1>)
+( 207,<2022-05-10 13:21:27.140 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<audit>,<TopSpin 4.1.1>,
+      <user comment:
+       TITLE=23Na Na2SO4:NaCl MIx
+       zg
+       10 kHz MAS
+       DE = ?TITLE_END
+       data hash MD5: 32K
+       80 E0 F1 8B 1B 2C 3E FB 9C 69 EC 5B 15 96 22 D1>)
+( 208,<2022-05-10 13:21:27.300 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<audit>,<TopSpin 4.1.1>,
+      <user comment:
+       TITLE=23Na Na2SO4:NaCl MIx
+       zg
+       10 kHz MAS
+       DE = ?TITLE_END
+       data hash MD5: 32K
+       80 E0 F1 8B 1B 2C 3E FB 9C 69 EC 5B 15 96 22 D1>)
+( 209,<2022-05-10 13:24:59.466 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       fp FT_mod = 6 PKNL = 1 PHC0 = -61.91463 PHC1 = -673.4 SI = 32K 
+       data hash MD5: 32K
+       C6 71 E1 87 A6 E1 31 6E C3 09 2B 8D 1D 0B 56 B5>)
+( 210,<2022-05-10 13:25:22.243 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       fp FT_mod = 6 PKNL = 1 PHC0 = -61.91463 PHC1 = -673.4 SI = 32K 
+       data hash MD5: 32K
+       83 FD D7 B0 73 B3 CF E8 70 42 5D 64 4B 22 7A 7B>)
+( 211,<2022-05-10 13:25:57.082 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 0 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -61.91463 PHC1 = -673.4 SI = 32K 
+       data hash MD5: 32K
+       FD 24 F1 2E 2B 72 70 70 94 69 84 E1 A2 FC 86 27>)
+( 212,<2022-05-10 13:26:04.808 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 0 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -61.91463 PHC1 = -673.4 SI = 32K 
+       data hash MD5: 32K
+       56 1C F1 FB D2 7A DC 53 05 4F 20 37 DF 76 04 47>)
+( 213,<2022-05-10 13:26:12.563 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 0 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -61.91463 PHC1 = -673.4 SI = 32K 
+       data hash MD5: 32K
+       EA 6F B8 2C 21 29 9A 4A 36 D9 20 05 DD 6F 14 EA>)
+( 214,<2022-05-10 13:26:20.427 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 0 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -61.91463 PHC1 = -673.4 SI = 32K 
+       data hash MD5: 32K
+       B0 80 D2 68 BE 81 7D 61 E1 E9 F6 7A EC 46 82 8F>)
+( 215,<2022-05-10 13:26:28.113 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 0 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -61.91463 PHC1 = -673.4 SI = 32K 
+       data hash MD5: 32K
+       A7 5F 88 28 F5 29 F6 85 58 97 04 54 C1 4B 1C E3>)
+( 216,<2022-05-10 13:26:35.771 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 0 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -61.91463 PHC1 = -673.4 SI = 32K 
+       data hash MD5: 32K
+       91 7F 57 ED 5B 72 FA 41 F7 FE ED 23 70 7F A0 D2>)
+( 217,<2022-05-10 13:26:43.424 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 0 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -61.91463 PHC1 = -673.4 SI = 32K 
+       data hash MD5: 32K
+       F5 9C 33 52 30 09 50 09 F7 CA 32 EC DA 98 90 DD>)
+( 218,<2022-05-10 13:26:51.030 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 0 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -61.91463 PHC1 = -673.4 SI = 32K 
+       data hash MD5: 32K
+       10 A3 0A 2F 0C F4 69 F5 F4 94 34 12 74 94 41 7A>)
+( 219,<2022-05-10 13:26:58.619 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 0 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -61.91463 PHC1 = -673.4 SI = 32K 
+       data hash MD5: 32K
+       CE 07 27 AC DF E2 F0 A7 F8 06 03 8E D6 07 AA 0D>)
+( 220,<2022-05-10 13:27:06.251 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 0 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -61.91463 PHC1 = -673.4 SI = 32K 
+       data hash MD5: 32K
+       C8 F0 90 BD F0 02 D5 ED D7 19 F5 E7 B0 BF 73 D3>)
+( 221,<2022-05-10 13:27:28.686 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<audit>,<TopSpin 4.1.1>,
+      <user comment:
+       TITLE=23Na Na2SO4:NaCl MIx
+       zg
+       10 kHz MAS
+       DE = 5 us
+       RG = 101TITLE_END
+       data hash MD5: 32K
+       C8 F0 90 BD F0 02 D5 ED D7 19 F5 E7 B0 BF 73 D3>)
+( 222,<2022-05-10 13:27:28.859 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<audit>,<TopSpin 4.1.1>,
+      <user comment:
+       TITLE=23Na Na2SO4:NaCl MIx
+       zg
+       10 kHz MAS
+       DE = 5 us
+       RG = 101TITLE_END
+       data hash MD5: 32K
+       C8 F0 90 BD F0 02 D5 ED D7 19 F5 E7 B0 BF 73 D3>)
+( 223,<2022-05-10 13:29:40.647 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       fp FT_mod = 6 PKNL = 1 PHC0 = -61.91463 PHC1 = -673.4 SI = 32K 
+       data hash MD5: 32K
+       91 0D D7 22 30 7A A6 57 1E 00 09 36 F5 EF 65 80>)
+( 224,<2022-05-10 13:45:45.784 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<dirdata>,<TopSpin 4.1.1>,
+      <wrpa from 1 2 "Na2SO4_NaCl_May10_2022" "/opt/topspin4.1.1/data/altenhof/nmr"
+       data hash MD5: 32K
+       91 0D D7 22 30 7A A6 57 1E 00 09 36 F5 EF 65 80>)
+( 225,<2022-05-10 13:45:54.704 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<audit>,<TopSpin 4.1.1>,
+      <user comment:
+       TITLE=23Na Na2SO4:NaCl MIx
+       RAPT-zg
+       10 kHz MAS
+       DE = 5 us
+       RG = 101TITLE_END
+       data hash MD5: 32K
+       91 0D D7 22 30 7A A6 57 1E 00 09 36 F5 EF 65 80>)
+( 226,<2022-05-10 13:45:54.873 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<audit>,<TopSpin 4.1.1>,
+      <user comment:
+       TITLE=23Na Na2SO4:NaCl MIx
+       RAPT-zg
+       10 kHz MAS
+       DE = 5 us
+       RG = 101TITLE_END
+       data hash MD5: 32K
+       91 0D D7 22 30 7A A6 57 1E 00 09 36 F5 EF 65 80>)
+( 227,<2022-05-10 13:47:27.680 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       fp FT_mod = 6 PKNL = 1 PHC0 = -61.91463 PHC1 = -673.4 SI = 32K 
+       data hash MD5: 32K
+       94 BF AB 15 AD D0 EA 58 6B 17 AB CD F4 6C 9B CA>)
+( 228,<2022-05-10 13:48:27.810 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 0 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -61.91463 PHC1 = -673.4 SI = 32K 
+       data hash MD5: 32K
+       D4 A3 D9 9D F3 98 16 61 D9 47 37 45 28 23 ED 11>)
+( 229,<2022-05-10 13:48:40.503 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 0 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -61.91463 PHC1 = -673.4 SI = 32K 
+       data hash MD5: 32K
+       BF 6C 2F F4 9A 35 B8 7F 5D A3 BA 95 A1 08 35 86>)
+( 230,<2022-05-10 13:48:53.324 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 0 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -61.91463 PHC1 = -673.4 SI = 32K 
+       data hash MD5: 32K
+       01 A5 CC CF E1 C2 A8 DF 85 10 63 A6 09 A9 0F 8E>)
+( 231,<2022-05-10 13:49:06.173 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 0 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -61.91463 PHC1 = -673.4 SI = 32K 
+       data hash MD5: 32K
+       34 D6 47 2E A5 4F 83 BA C2 5D F3 17 B6 B6 54 7A>)
+( 232,<2022-05-10 13:49:19.742 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 0 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -61.91463 PHC1 = -673.4 SI = 32K 
+       data hash MD5: 32K
+       A5 3A 40 91 73 70 6E D3 18 8E FA 1A 24 1D 48 48>)
+( 233,<2022-05-10 13:49:32.612 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 0 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -61.91463 PHC1 = -673.4 SI = 32K 
+       data hash MD5: 32K
+       88 56 A6 25 10 A2 AC 5D A0 6F 22 9A B9 80 DC 05>)
+( 234,<2022-05-10 13:49:45.439 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 0 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -61.91463 PHC1 = -673.4 SI = 32K 
+       data hash MD5: 32K
+       26 5A EA 8F DB 60 09 3A B5 21 28 D8 6C EC CF 02>)
+( 235,<2022-05-10 13:49:58.323 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 0 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -61.91463 PHC1 = -673.4 SI = 32K 
+       data hash MD5: 32K
+       23 C1 2B 3F 38 57 FC CE 94 FE 68 83 D4 AA 33 C7>)
+( 236,<2022-05-10 13:50:11.192 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 0 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -61.91463 PHC1 = -673.4 SI = 32K 
+       data hash MD5: 32K
+       AB 2C 48 6E DB 58 10 7F 2A CD 65 B9 FE 46 90 FB>)
+( 237,<2022-05-10 13:50:51.474 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 0 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -61.91463 PHC1 = -673.4 SI = 32K 
+       data hash MD5: 32K
+       36 68 AD D9 EE 16 FF 25 8F 1E 50 A7 2A 5A A5 2A>)
+( 238,<2022-05-10 13:51:05.086 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 0 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -61.91463 PHC1 = -673.4 SI = 32K 
+       data hash MD5: 32K
+       17 D0 04 54 07 67 33 3B B9 BF 43 3A C6 6E A3 45>)
+( 239,<2022-05-10 13:51:17.860 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 0 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -61.91463 PHC1 = -673.4 SI = 32K 
+       data hash MD5: 32K
+       12 05 18 DE 05 F2 CB D2 87 73 7E C7 04 F1 BE B6>)
+( 240,<2022-05-10 13:51:30.833 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 0 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -61.91463 PHC1 = -673.4 SI = 32K 
+       data hash MD5: 32K
+       B4 FB 6D 51 7D 01 B5 85 72 89 D8 6E 2F 74 61 7B>)
+( 241,<2022-05-10 13:51:43.654 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 0 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -61.91463 PHC1 = -673.4 SI = 32K 
+       data hash MD5: 32K
+       17 08 C2 1A 7B E9 DE 99 33 EE C6 ED 33 BF AF CA>)
+( 242,<2022-05-10 13:51:56.403 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 0 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -61.91463 PHC1 = -673.4 SI = 32K 
+       data hash MD5: 32K
+       1D 34 B3 78 8E A4 4F 44 5F 52 FF E2 97 96 9B B8>)
+( 243,<2022-05-10 13:52:09.152 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 0 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -61.91463 PHC1 = -673.4 SI = 32K 
+       data hash MD5: 32K
+       E7 D8 39 C9 CB D7 34 A5 91 D3 8E 53 C5 CD AD 62>)
+( 244,<2022-05-10 13:52:22.361 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 0 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -61.91463 PHC1 = -673.4 SI = 32K 
+       data hash MD5: 32K
+       96 D9 DB 81 ED 6E BB 50 87 C5 61 FF 7D AC 70 8C>)
+( 245,<2022-05-10 13:52:35.164 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 0 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -61.91463 PHC1 = -673.4 SI = 32K 
+       data hash MD5: 32K
+       34 05 5F F1 4E 3F 13 9A C9 50 33 EE 79 5D 49 ED>)
+( 246,<2022-05-10 13:52:47.969 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       trf BC_mod = 2 WDW = 1 LB = 0 FT_mod = 6 PKNL = 1 PH_mod = 1 PHC0 = -61.91463 PHC1 = -673.4 SI = 32K 
+       data hash MD5: 32K
+       A2 23 4F D4 DE 24 91 21 60 57 68 F5 A5 F9 BA EF>)
+( 247,<2022-05-10 13:53:41.498 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       fp FT_mod = 6 PKNL = 1 PHC0 = -61.91463 PHC1 = -673.4 SI = 32K 
+       data hash MD5: 32K
+       F1 8E 22 BC EB 64 7C 84 2D F1 7B 6D 40 86 34 FF>)
+( 248,<2022-05-10 13:54:11.667 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <pk fgphup PHC0 = -126.2084 PHC1 = 248.2 
+       data hash MD5: 32K
+       1A 7B 05 D3 29 F6 7A 30 45 12 09 08 F3 BA C3 F0>)
+( 249,<2022-05-10 13:54:29.277 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<dirdata>,<TopSpin 4.1.1>,
+      <wrpa from 1 8 "Na2SO4_NaCl_May10_2022" "/opt/topspin4.1.1/data/altenhof/nmr"
+       data hash MD5: 32K
+       1A 7B 05 D3 29 F6 7A 30 45 12 09 08 F3 BA C3 F0>)
+( 250,<2022-05-10 13:56:33.491 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       fp FT_mod = 6 PKNL = 1 PHC0 = -188.123 PHC1 = -425.2 SI = 32K 
+       data hash MD5: 32K
+       8F 47 E3 2A 52 0B 8E 64 51 7D 1B 5A DE FF 2A 13>)
+( 251,<2022-05-10 13:57:06.557 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <pk fgphup PHC0 = 73.75056 PHC1 = 195 
+       data hash MD5: 32K
+       00 C8 97 93 57 F9 BA 2E 6D 90 0A 4C E3 FB BB 51>)
+( 252,<2022-05-10 13:57:44.947 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<audit>,<TopSpin 4.1.1>,
+      <user comment:
+       TITLE=23Na Na2SO4:NaCl MIx
+       RAPT-zg
+       10 kHz MAS
+       DE = 5 us
+       RG = 0.25TITLE_END
+       data hash MD5: 32K
+       00 C8 97 93 57 F9 BA 2E 6D 90 0A 4C E3 FB BB 51>)
+( 253,<2022-05-10 13:57:45.115 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<audit>,<TopSpin 4.1.1>,
+      <user comment:
+       TITLE=23Na Na2SO4:NaCl MIx
+       RAPT-zg
+       10 kHz MAS
+       DE = 5 us
+       RG = 0.25TITLE_END
+       data hash MD5: 32K
+       00 C8 97 93 57 F9 BA 2E 6D 90 0A 4C E3 FB BB 51>)
+( 254,<2022-05-10 13:59:16.867 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       fp FT_mod = 6 PKNL = 1 PHC0 = -114.3724 PHC1 = -230.2 SI = 32K 
+       data hash MD5: 32K
+       64 B8 AA 2E CE D3 2E F1 CE F2 4F C9 A2 6C 16 23>)
+( 255,<2022-05-10 13:59:51.522 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<audit>,<TopSpin 4.1.1>,
+      <user comment:
+       TITLE=23Na Na2SO4:NaCl MIx
+       RAPT-zg
+       10 kHz MAS
+       DE = 5 us
+       RG = 0.25
+       AXISTITLE_END
+       data hash MD5: 32K
+       64 B8 AA 2E CE D3 2E F1 CE F2 4F C9 A2 6C 16 23>)
+( 256,<2022-05-10 13:59:51.668 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<audit>,<TopSpin 4.1.1>,
+      <user comment:
+       TITLE=23Na Na2SO4:NaCl MIx
+       RAPT-zg
+       10 kHz MAS
+       DE = 5 us
+       RG = 0.25
+       AXISTITLE_END
+       data hash MD5: 32K
+       64 B8 AA 2E CE D3 2E F1 CE F2 4F C9 A2 6C 16 23>)
+( 257,<2022-05-10 13:59:57.587 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<audit>,<TopSpin 4.1.1>,
+      <user comment:
+       TITLE=23Na Na2SO4:NaCl MIx
+       RAPT-zg
+       10 kHz MAS
+       DE = 5 us
+       RG = 0.25
+       CAl. AXISTITLE_END
+       data hash MD5: 32K
+       64 B8 AA 2E CE D3 2E F1 CE F2 4F C9 A2 6C 16 23>)
+( 258,<2022-05-10 13:59:57.754 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<audit>,<TopSpin 4.1.1>,
+      <user comment:
+       TITLE=23Na Na2SO4:NaCl MIx
+       RAPT-zg
+       10 kHz MAS
+       DE = 5 us
+       RG = 0.25
+       CAl. AXISTITLE_END
+       data hash MD5: 32K
+       64 B8 AA 2E CE D3 2E F1 CE F2 4F C9 A2 6C 16 23>)
+( 259,<2022-05-10 14:00:18.824 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<dataserver>,<TopSpin 4.1.1>,
+      <Spectrum calibrated, SF was set. Old value: 158.730947 New value: 158.731870. Peak list modified: Yes
+       data hash MD5: 32K
+       64 B8 AA 2E CE D3 2E F1 CE F2 4F C9 A2 6C 16 23>)
+( 260,<2022-05-10 14:00:18.832 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<dataserver>,<TopSpin 4.1.1>,
+      <Spectrum calibrated, OFFSET was set. Old value: 151.301800 New value: 145.486182. Peak list modified: Yes
+       data hash MD5: 32K
+       64 B8 AA 2E CE D3 2E F1 CE F2 4F C9 A2 6C 16 23>)
+( 261,<2022-05-10 14:00:22.827 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       fp FT_mod = 6 PKNL = 1 PHC0 = -114.3724 PHC1 = -230.2 SI = 32K 
+       data hash MD5: 32K
+       64 B8 AA 2E CE D3 2E F1 CE F2 4F C9 A2 6C 16 23>)
+( 262,<2022-05-10 14:02:54.548 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<dirdata>,<TopSpin 4.1.1>,
+      <wrpa from 1 50 "Na2SO4_NaCl_May10_2022" "/opt/topspin4.1.1/data/altenhof/nmr"
+       data hash MD5: 32K
+       64 B8 AA 2E CE D3 2E F1 CE F2 4F C9 A2 6C 16 23>)
+( 263,<2022-05-10 14:03:12.226 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<audit>,<TopSpin 4.1.1>,
+      <user comment:
+       TITLE=23Na Na2SO4:NaCl MIx
+       RAPT-zg
+       10 kHz MAS
+       DE = 5 us
+       RG = 0.25
+       CAl. AXIS
+       NS arrayTITLE_END
+       data hash MD5: 32K
+       64 B8 AA 2E CE D3 2E F1 CE F2 4F C9 A2 6C 16 23>)
+( 264,<2022-05-10 14:03:12.394 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<audit>,<TopSpin 4.1.1>,
+      <user comment:
+       TITLE=23Na Na2SO4:NaCl MIx
+       RAPT-zg
+       10 kHz MAS
+       DE = 5 us
+       RG = 0.25
+       CAl. AXIS
+       NS arrayTITLE_END
+       data hash MD5: 32K
+       64 B8 AA 2E CE D3 2E F1 CE F2 4F C9 A2 6C 16 23>)
+( 265,<2022-05-10 14:03:12.560 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<audit>,<TopSpin 4.1.1>,
+      <user comment:
+       TITLE=23Na Na2SO4:NaCl MIx
+       RAPT-zg
+       10 kHz MAS
+       DE = 5 us
+       RG = 0.25
+       CAl. AXIS
+       NS arrayTITLE_END
+       data hash MD5: 32K
+       64 B8 AA 2E CE D3 2E F1 CE F2 4F C9 A2 6C 16 23>)
+( 266,<2022-05-10 14:03:40.569 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<dirdata>,<TopSpin 4.1.1>,
+      <wrpa from 1 100 "Na2SO4_NaCl_May10_2022" "/opt/topspin4.1.1/data/altenhof/nmr"
+       data hash MD5: 32K
+       64 B8 AA 2E CE D3 2E F1 CE F2 4F C9 A2 6C 16 23>)
+( 267,<2022-05-10 14:03:45.876 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<dirdata>,<TopSpin 4.1.1>,
+      <wrpa from 1 101 "Na2SO4_NaCl_May10_2022" "/opt/topspin4.1.1/data/altenhof/nmr"
+       data hash MD5: 32K
+       64 B8 AA 2E CE D3 2E F1 CE F2 4F C9 A2 6C 16 23>)
+( 268,<2022-05-10 14:03:53.173 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<dirdata>,<TopSpin 4.1.1>,
+      <wrpa from 1 102 "Na2SO4_NaCl_May10_2022" "/opt/topspin4.1.1/data/altenhof/nmr"
+       data hash MD5: 32K
+       64 B8 AA 2E CE D3 2E F1 CE F2 4F C9 A2 6C 16 23>)
+( 269,<2022-05-10 14:04:01.565 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<dirdata>,<TopSpin 4.1.1>,
+      <wrpa from 1 103 "Na2SO4_NaCl_May10_2022" "/opt/topspin4.1.1/data/altenhof/nmr"
+       data hash MD5: 32K
+       64 B8 AA 2E CE D3 2E F1 CE F2 4F C9 A2 6C 16 23>)
+( 270,<2022-05-10 14:07:09.659 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<audit>,<TopSpin 4.1.1>,
+      <user comment:
+       TITLE=23Na Na2SO4:NaCl MIx
+       RAPT-zg
+       10 kHz MAS
+       DE = 5 us
+       RG = 0.25
+       CAl. AXIS
+       NS array
+       NS = 16TITLE_END
+       data hash MD5: 32K
+       64 B8 AA 2E CE D3 2E F1 CE F2 4F C9 A2 6C 16 23>)
+( 271,<2022-05-10 14:07:09.826 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<audit>,<TopSpin 4.1.1>,
+      <user comment:
+       TITLE=23Na Na2SO4:NaCl MIx
+       RAPT-zg
+       10 kHz MAS
+       DE = 5 us
+       RG = 0.25
+       CAl. AXIS
+       NS array
+       NS = 16TITLE_END
+       data hash MD5: 32K
+       64 B8 AA 2E CE D3 2E F1 CE F2 4F C9 A2 6C 16 23>)
+( 272,<2022-05-10 14:21:13.191 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       fp FT_mod = 6 PKNL = 1 PHC0 = -114.3724 PHC1 = -230.2 SI = 32K 
+       data hash MD5: 32K
+       55 87 64 F5 C7 9C 73 DC 67 23 56 12 66 EC 5C B4>)
+( 273,<2022-05-10 14:23:07.463 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       fp FT_mod = 6 PKNL = 1 PHC0 = -114.3724 PHC1 = -230.2 SI = 32K 
+       data hash MD5: 32K
+       55 87 64 F5 C7 9C 73 DC 67 23 56 12 66 EC 5C B4>)
+( 274,<2022-05-10 14:23:45.329 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       fp FT_mod = 6 PKNL = 1 PHC0 = -114.3724 PHC1 = -230.2 SI = 32K 
+       data hash MD5: 32K
+       55 87 64 F5 C7 9C 73 DC 67 23 56 12 66 EC 5C B4>)
+( 275,<2022-05-10 14:32:19.225 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<proc1d>,<TopSpin 4.1.1>,
+      <Start of raw data processing
+       fp FT_mod = 6 PKNL = 1 PHC0 = -114.3724 PHC1 = -230.2 SI = 32K 
+       data hash MD5: 32K
+       55 87 64 F5 C7 9C 73 DC 67 23 56 12 66 EC 5C B4>)
+##END=
+
+$$ hash MD5
+$$ D8 E3 8D 93 D0 2C AD DE BA 14 3C 6D 11 0C E0 4F

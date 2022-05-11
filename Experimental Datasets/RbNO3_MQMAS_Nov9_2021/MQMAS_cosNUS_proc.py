@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import sys
 import os
-sys.path.insert(0,'/Users/SRG/Documents/Adam/Python/SSNMR/functions')
+sys.path.insert(0,'/Users/SRG/Documents/GitHub/SSNMR/functions')
 import numpy as np
 import functions as proc
 import simpson as simproc
@@ -10,32 +10,66 @@ import matplotlib.pyplot as plt
 import matplotlib as mpl
 import time
 import nmrglue as ng
+import NUS as nus
 start_time = time.time()
 
 cwd =  os.getcwd()
 os.chdir(cwd + '\\16')
 
-##Recover FID from NUS spectrum##
-os.chdir(os.getcwd() + '\\pdata\\1')
-dic, data = ng.bruker.read_pdata(dir=os.getcwd(), bin_files = ['2rr', '2ii'], 
-                                 all_components=False)
-os.chdir(cwd + '\\16')
-fid = data[0] +1j*data[1]
-fid = np.fft.ifft2(fid)
-fid = fid[0:256,0:512] ##Not totally needed, but can remove 0-fill
-fid = np.fft.fftshift(np.fft.fft(fid, axis = 1 ),axes = 1)
-fid = np.fft.ifft(fid, axis = 1)
+##Recover FID from NUS TS spectrum##
+# os.chdir(os.getcwd() + '\\pdata\\1')
+# dic, data = ng.bruker.read_pdata(dir=os.getcwd(), bin_files = ['2rr', '2ii'], 
+#                                  all_components=False)
+# os.chdir(cwd + '\\16')
+# fid = data[0] +1j*data[1]
+# fid = np.fft.ifft2(fid)
+# fid = fid[0:256,0:512] ##Not totally needed, but can remove 0-fill
+# fid = np.fft.fftshift(np.fft.fft(fid, axis = 1 ),axes = 1)
+# fid = np.fft.ifft(fid, axis = 1)
 ##End FID recovery
 
 #Params:
 nzf1 = 512
 nzf2 = 4096
 base = 2 #base contour %'age
+# ph0 = [0, 0, 0, 0]
+# ph0 = [696+168, 94750+2820, 0, 0]
+# ph0 = [359 +32.5, 700794 +240, 0, 0]
+# ph0 = [359 +32.5+94, 700794 +240-96960+420, 0, 0]
+ph0 = [-43, 798080-240, 0, 0]
+
+# os.chdir(cwd + '\\' + str(exp[j]))
+dct, data = ng.bruker.read(cwd+ '\\' + '16') #load FID
+##NUS fcn
+f1nus = nus.prep(data, nzf2, ph0)
+
+##Shear first to find phases? Comment out 
+# f = np.fft.ifft(f1nus,axis=1)
+# g = proc.mqproc(f,7/9,0,data.shape[0],nzf2)
+
+# g = np.fft.ifft(g,axis=0)
+# g = np.roll(g,1,axis=0)   #shift 1 point in t1 to correct phase since t1 = 0 is not acq'd
+# g = np.fft.fft(g,axis=0)
+# g = np.fft.fftshift(g,axes=1)
+# # proc.autophase(g[0,:],25,phase2='no')
+# g = proc.phase(g,[192, 687551, 0, 0],ax=1)
+# proc.mphase(g[0,:],fine= 10)
+# sys.exit()
+
+#IST recon
+spec = nus.IST_D(f1nus, nzf1, threshold = 0.99,max_iter=10) #IST_S or _D
+
+spec = np.fliplr(spec)
+
+fid = np.fft.ifft2(spec)
+fid = np.fft.fftshift(np.fft.fft(fid, axis = 1 ),axes = 1)
+fid = np.fft.ifft(fid, axis = 1)
+##end 
 
 ##Shearing
-spec = proc.mqproc(fid, SH = -7/9, zf1=nzf1, zf2=nzf2, lb1=0, lb2=15) 
+spec = proc.mqproc(fid, SH = -7/9, zf1=nzf1, zf2=nzf2, lb1=0, lb2=0) 
 
-fid2 = np.fft.ifft(spec,axis = 0)
+fid2 = np.fft.ifft(spec,axis=0)
 fid2 = np.roll(fid2,1,axis=0)   #shift 1 point in t1 to correct phase since t1 = 0 is not acq'd
 spec = np.fft.fft(fid2,axis=0)
 
@@ -51,16 +85,17 @@ spec = np.flip(spec,axis=0)
 
 #Phase
 #ph = [0,0, 0, 0]
-ph = [359 +32.5, 700794 +240, 0, 0]
+# ph = [359 +32.5, 700794 +240, 0, 0]
 #ph = [44, 700524, 0, 0]
 #ph = [341, 701583, 0, 0]
+# ph = [100-28, 679480 -2340, 0, 0]
 #ph = proc.autophase(spec[169,:],50,phase2='no')
-spec = proc.phase(spec,ph,ax=1)
-# proc.mphase(spec,fine=1000)
+# spec = proc.phase(spec,ph,ax=1)
+# proc.mphase(spec,fine=100)
 # sys.exit()
 
 #2D SWT
-#spec, coeffin, coeffs = wave.wavelet_denoise2(2, np.real(spec), 0, wave = 'bior2.2', threshold = 'mod', alpha = 0)
+#spec, coeffin, coeffs = wave.wavelet_denoise2(2, np.real(spec), 0)
 
 #SNRs
 a = np.unravel_index(spec.argmax(), spec.shape)

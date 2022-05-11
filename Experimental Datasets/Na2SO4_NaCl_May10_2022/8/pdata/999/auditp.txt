@@ -1,0 +1,14 @@
+##TITLE= Audit trail, TopSpin 4.1.1
+##JCAMPDX= 5.01
+##ORIGIN= Bruker BioSpin GmbH
+##OWNER= rschurko
+$$ /opt/topspin4.1.1/data/altenhof/nmr/Na2SO4_NaCl_May10_2022/8/pdata/999/auditp.txt
+##AUDIT TRAIL=  $$ (NUMBER, WHEN, WHO, WHERE, PROCESS, VERSION, WHAT)
+(   1,<2022-05-10 13:50:15.240 -0400>,<rschurko>,<600wb1.magnet.fsu.edu>,<poptau>,<TopSpin 4.1.1>,
+      <created by poptau
+       data hash MD5: 43260
+       ED 07 0D CD 70 53 9C 3B 82 54 F8 69 BA E3 45 03>)
+##END=
+
+$$ hash MD5
+$$ DD 9B B0 09 A3 BB 3F 52 CA 4E 2A BA FC 2C 13 7D

@@ -1,0 +1,18 @@
+##TITLE= Audit trail, TopSpin 4.0.7
+##JCAMPDX= 5.01
+##ORIGIN= Bruker BioSpin GmbH
+##OWNER= SRG
+$$ C:/Users/SRG/Documents/GitHub/SSNMR/Experimental Datasets/Na2SO4_NaCl_May10_2022/108/pdata/1/auditp.txt
+##AUDIT TRAIL=  $$ (NUMBER, WHEN, WHO, WHERE, PROCESS, VERSION, WHAT)
+(   1,<2022-05-10 18:54:31.843 -0400>,<SRG>,<DESKTOP-R5S7N7V>,<proc1d>,<TopSpin 4.0.7>,
+      <efp LB = 0 FT_mod = 6 PKNL = 1 STSR = 0 STSI = 32K PHC0 = -114.3724 PHC1 = -230.2 SI = 32K 
+       data hash MD5: 32K
+       D9 B2 4B E6 4D 7A 90 D1 11 5D 5E C9 41 AD C0 AC>)
+(   2,<2022-05-10 18:54:31.948 -0400>,<SRG>,<DESKTOP-R5S7N7V>,<proc1d>,<TopSpin 4.0.7>,
+      <abs n ABSG = 0 
+       data hash MD5: 32K
+       46 89 06 80 4A 2D 46 E9 EE 21 39 24 C6 64 42 C7>)
+##END=
+
+$$ hash MD5
+$$ E6 63 F0 19 0D B7 20 46 D6 C6 18 EE 71 32 DB ED

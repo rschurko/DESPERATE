@@ -82,7 +82,28 @@ $$ C:/Bruker/TopSpin4.1.3/data/MAS 1 testing/25/pdata/1/auditp.txt
       <xf1 F1: SI = 512 WDW = 1 LB = 1 FT_mod = 4 FCOR = 0.5
        data hash MD5: 512 * 512
        28 A3 BE 50 FC E0 B0 71 40 64 93 F1 6A 4C D9 E4>)
+$$ C:/Users/SRG/Documents/GitHub/SSNMR/Experimental Datasets/Chlorin HetCor/25/pdata/1/auditp.txt
+(  16,<2022-03-11 16:55:07.541 -0500>,<SRG>,<DESKTOP-R5S7N7V>,<audit>,<TopSpin 4.0.7>,
+      <user comment:
+       TITLE=Chlorin-e6
+       13C{1H} CP HetCor
+       vrot = 10 kHz
+       NUS 40 %
+       64 t1
+       16 scansTITLE_END
+       data hash MD5: 512 * 512
+       28 A3 BE 50 FC E0 B0 71 40 64 93 F1 6A 4C D9 E4>)
+(  17,<2022-03-11 16:55:07.716 -0500>,<SRG>,<DESKTOP-R5S7N7V>,<audit>,<TopSpin 4.0.7>,
+      <user comment:
+       TITLE=Chlorin-e6
+       13C{1H} CP HetCor
+       vrot = 10 kHz
+       NUS 40 %
+       64 t1
+       16 scansTITLE_END
+       data hash MD5: 512 * 512
+       28 A3 BE 50 FC E0 B0 71 40 64 93 F1 6A 4C D9 E4>)
 ##END=
 
 $$ hash MD5
-$$ DA 2B 96 CA C2 4F 49 EC 01 D9 78 AE 00 63 F2 CB
+$$ 35 8C CA 70 45 A2 61 B2 F1 F8 C9 CE DC B5 30 4B

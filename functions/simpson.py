@@ -14,6 +14,7 @@ def read(name,lb,plot):
     
     g=open(name, mode='r')
     lines=g.readlines()
+    g.close()
     td = int(lines[1].split('=')[1])
     SW = float(lines[2].split('=')[1])
     DW = 1/SW
@@ -24,6 +25,36 @@ def read(name,lb,plot):
     
     if lb!=0:
         fid = np.multiply( fid, np.exp(-time/lb) )
+        
+    if plot == 'yes':
+        plt.subplot(211)
+        plt.plot(time,np.real(fid),'b')
+        plt.title('Real')
+        plt.subplot(212)
+        plt.plot(time,np.imag(fid),'r')
+        plt.title('Imaginary')
+        plt.xlabel('Time (s)')
+    
+    return fid, SW
+
+def read2(name,plot):
+    """Read SIMPSON file; preferrably the FID"""
+    
+    refid = np.array(pandas.read_csv(name, sep=' ',skiprows=[0,1,2,3], skipfooter=1,
+                    engine='python',index_col=0))
+    imfid = np.array(pandas.read_csv(name, sep=' ',skiprows=[0,1,2,3], skipfooter=1,
+                    engine='python',index_col=1))
+    fid = refid+1j*(imfid)
+    
+    g=open(name, mode='r')
+    lines=g.readlines()
+    g.close()
+    td = int(lines[1].split('=')[1])
+    SW = float(lines[2].split('=')[1])
+    DW = 1/SW
+    time = np.linspace(0, DW*float(td), num=td)
+    
+    fid = np.reshape(fid,(td,))
         
     if plot == 'yes':
         plt.subplot(211)

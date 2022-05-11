@@ -23,9 +23,7 @@ def loadfid(name,plot='no'):
     f=open(name, mode='rb')
     fid = np.frombuffer(f.read(), dtype = [np.dtype(np.int32), np.dtype(np.float32), np.dtype(np.float64)][dt]) #float or int #Need to look for byt
     l = int(len(fid))
-    Re = fid[0:l:2]
-    Im = 1j*fid[1:l:2]
-    fid = Re + Im
+    fid = fid[0:l:2] + 1j*fid[1:l:2]
     
     td = len(fid)
     time = np.linspace(0, DW*td, num=td)
@@ -48,24 +46,30 @@ def loadfid2(name,plot='no'):
         if lines[i].split()[0] == '##$SW_h=': #SW actual index
             SW2 = float(lines[i].split()[1])
             
-        if lines[i].split()[0] == '##$TD=': #TD actual index
-            td2 = int(int(lines[i].split()[1]) / 2)
-            
-        if lines[i] == '##$TD_INDIRECT= (0..7)\n': #TD1 index -1
-            td1 = int(lines[i+1].split()[1])
+        # if lines[i].split()[0] == '##$TD=': #TD actual index
+            # td2 = int(int(lines[i].split()[1]) / 2)
             
         if lines[i] == '##$IN= (0..63)\n': #Assumes in0 for DW1
             DW1 = float(lines[i+1].split()[0])
+            
         if lines[i].split()[0] == '##$DTYPA=': #TD actual index
             dt = int(lines[i].split()[1])
+        # if lines[i] == '##$TD_INDIRECT= (0..7)\n': #TD1 index -1
+            # td1 = int(lines[i+1].split()[1])
             
-    f=open(name, mode='rb') #open(path + "fid", mode='rb')
+    h=open("acqu2s", mode='r')
+    lines=h.readlines()
+    for i in range(len(lines)):
+        if lines[i].split()[0] == '##$TD=': #TD actual index
+            td1 = int(lines[i].split()[1])
+            
+    f=open(name, mode='rb')
     fid = np.frombuffer(f.read(), dtype = [np.dtype(np.int32), np.dtype(np.float32), np.dtype(np.float64)][dt]) #float or int #Need to look for byt
-    l = int(len(fid))
-    fid = fid[0:l:2] + 1j*fid[1:l:2]
+    fid = fid[0::2] + 1j*fid[1::2]
             
     DW2 = 1/SW2
-    td1 = int(len(fid)/td2)  ##TD1 from acqus seems to miss
+    # td1 = int(len(fid)/td2)  ##TD1 from acqus seems to miss
+    td2 = int(len(fid)/td1)  ##TD2 from acqus seems to miss
     fid = np.reshape(fid,(td1,td2))
     
     t2 = np.linspace(0, DW2*td2, num=td2)
@@ -106,6 +110,44 @@ def freqaxis(spec,unit='kHz'):
     os.chdir(cwd)
     return freq
 
+def freqaxis1(spec,unit='kHz'):
+    """Generate the referenced F1 axis for 2D data.
+    """
+    
+    zfi = spec.size
+    cwd = os.getcwd()
+    
+    g=open("acqus", mode='r')
+    lines=g.readlines()
+    for i in range(len(lines)):
+        if lines[i] == '##$IN= (0..63)\n': #Assumes in0 for DW1
+            DW1 = float(lines[i+1].split()[0])
+    SW1 = 1/DW1 #Hz
+            
+    path = cwd + "\pdata\\1"
+    os.chdir(path)
+    h=open("proc2s", mode='r') ##Pulling from proc2
+    lines=h.readlines()
+    for i in range(len(lines)):
+        if lines[i].split()[0] == '##$OFFSET=': #Offset actual index
+            OFFSET = float(lines[i].split()[1])
+        
+        if lines[i].split()[0] == '##$SF=': #SW actual index
+            SF = float(lines[i].split()[1])
+    
+    off = ((OFFSET*SF)-SW1/2)*1e-3  #ref off in Hz
+    freq = np.linspace(-SW1/2e3+off, SW1/2e3+off, num=zfi)
+    
+    # freq =  np.linspace(-(SW1)/2, (SW1)/2, zfi) ##F1 in Hz 
+    # fiso =  ( (freq1+off) / (1 + abs(SH)) )/1e3 ##F1iso in kHz 
+    #freq1 = np.linspace(-SW1/2,SW1/2,zfi)
+    # off = ((OFFSET*SF)-SW1/2)*1e-3
+    # freq = np.linspace(-SW/2e3+off, SW/2e3+off, num=zfi)
+    if unit == 'ppm':
+        freq = (freq*1e3)/SF
+    os.chdir(cwd)
+    return freq
+
 def autozero(fid,n=0):
     """Automatically calculate zero fill amount for fid"""
     if n == 0:
@@ -120,21 +162,39 @@ def autozero(fid,n=0):
         zfi = int(n)
     return zfi
 
-def gauss(fid,lb,c=0.5):
-    """Gaussian line broadening for whole of half echo fid
+def gauss(fid,lb,c=0.5,ax=0):
+    """Gaussian line broadening for whole or half echo fid
     Parameters
     ----------
+    fid : ndarray
+        1D or 2D NMR FID
     lb : int or float
         Amount of line-broadening
     c : float
-        center of the gaussian curve, between 0 and 1, 0.5 is center (default)
+        center of the gaussian curve, between 0 and 1; 0.5 is symmetric (default)
+    ax : int
+        axis to Gaussian broaden over for 2D (0 or 1)
     """
     td = len(fid)
     if lb != 0: 
         sd = 1e3/(lb)
         n = np.linspace(-int(c*td)/2,int((1-c)*td)/2,td)
         gauss = ((1/(2*np.pi*sd))*np.exp(-((n)**2)/(2*sd**2)))
-        gbfid = np.multiply(fid,gauss)
+        if fid.ndim == 1:
+            gbfid = np.multiply(fid,gauss)
+        elif fid.ndim == 2:
+            [a,b] = fid.shape
+            gbfid = np.zeros((a,b),dtype='complex64')
+            if ax == 1:
+                n = np.linspace(-int(c*b)/2,int((1-c)*b)/2,b)
+                gauss = ((1/(2*np.pi*sd))*np.exp(-((n)**2)/(2*sd**2)))
+                for i in range(a):
+                    gbfid[i,:] = np.multiply(fid[i,:],gauss)    
+            if ax == 0:
+                n = np.linspace(-int(c*a)/2,int((1-c)*a)/2,a)
+                gauss = ((1/(2*np.pi*sd))*np.exp(-((n)**2)/(2*sd**2)))
+                for i in range(b):
+                    gbfid[:,i] = np.multiply(fid[:,i],gauss)        
     else:
         gbfid = fid
     return gbfid
@@ -150,7 +210,18 @@ def em(fid,lb):
         lbfid = fid
     return lbfid
 
+def wurst(fid,N):
+    """Use a WURST ampltidue profile to line broaden"""
+    td = len(fid)
+    n = np.linspace(0,td,td)
+    
+    w = (1 - abs(np.cos((np.pi*n)/td))**N)
+    lbfid = np.multiply(fid,w)
+    
+    return lbfid
+
 def fft(fid,n=0):
+    """1D fftshift and fft"""
     zfi = autozero(fid,n)
     spec = np.fft.fftshift(np.fft.fft(fid,n=zfi))
     return spec
@@ -163,12 +234,7 @@ def fmc(fid,SW):
     """Calculates a FT and magnitude calculation of the FID"""
     
     zfi = autozero(fid)
-    spec = np.fft.fftshift(scipy.fft(fid,n=zfi))
-    freq = freqaxis(fid,SW)
-    
-    plt.gca().invert_xaxis()
-    plt.plot(freq,np.abs(spec),'m')
-    plt.xlabel('Frequency (kHz)')
+    spec = np.fft.fftshift(np.fft.fft(fid,n=zfi)).abs()
     return spec
 
 def mesh(matrix):
@@ -218,13 +284,23 @@ def phase(spec, phases, ax=0):
     return spec
 
 def mphase(data,fine=0,ax=1):
-    """Manual phasing with matplotlib widget for 1D or 2D data"""
+    """Manual phasing with matplotlib widget for 1D or 2D data
+    Parameters
+    ----------
+    spec : numpy array
+        Complex spectrum (or FID)
+    fine : float
+        scale the ph1 value range by some factor as (ph1/fine)
+    ax : int
+        For 2D phasing choose which axis to apply phases over (default = 1)
+    """
     
     if data.ndim == 1:
         fig = plt.figure()
         plt.subplots_adjust(bottom=0.35)
         ax = fig.subplots()
         p, = ax.plot(np.real(data),'k')
+        z, = ax.plot(np.zeros((len(data),1)),'m--')
         
         but = plt.axes([0.25, 0.25, 0.65, 0.03])
         off_slide = plt.axes([0.25, 0.2, 0.65, 0.03])
@@ -234,7 +310,7 @@ def mphase(data,fine=0,ax=1):
         
         off = Slider(off_slide, 'Offset', valmin= 0, valmax = len(data), 
                           valinit=0, valstep=10)
-        ph0 = Slider(ph0_slide, "Zero", valmin= 0, valmax = 360, 
+        ph0 = Slider(ph0_slide, "Zero", valmin= -180, valmax = 180, 
                           valinit=0, valstep=0.5)
         if fine == 0:
             ph1 = Slider(ph1_slide, 'First', valmin= -1e6, valmax = 1e6, 
@@ -249,6 +325,7 @@ def mphase(data,fine=0,ax=1):
         def update(val):
             y = phase(data,[ph0.val,ph1.val,ph2.val,off.val])
             p.set_ydata(np.real(y))
+            z.set_ydata(np.zeros((len(data),1)))
             fig.canvas.draw()
             
         def press(val):
@@ -258,6 +335,7 @@ def mphase(data,fine=0,ax=1):
         ph2.on_changed(update); off.on_changed(update)
         b.on_clicked(press)
         plt.show(block=True)
+        plt.close('all')
         
     elif data.ndim == 2:
         fig = plt.figure()
@@ -289,7 +367,7 @@ def mphase(data,fine=0,ax=1):
                               valinit=0, valstep=20)
         ph2 = Slider(ph2_slide, 'Second', valmin= -1e4, valmax = 1e4, 
                           valinit=0, valstep=10)
-        b = Button(but, 'Print Phases and Exit')
+        b = Button(but, 'Print Phases')
         # Updating the plot
         def update(val):
             y = phase(data,[ph0.val,ph1.val,ph2.val,off.val],ax=ax)
@@ -304,7 +382,6 @@ def mphase(data,fine=0,ax=1):
             
         def press(val):
             print('[%d, %d, %d, %d]' % (ph0.val,ph1.val,ph2.val,off.val))
-            plt.close()
             
         # Calling the function "update" when the value of the slider is changed
         ph0.on_changed(update)
@@ -313,7 +390,8 @@ def mphase(data,fine=0,ax=1):
         off.on_changed(update)
         b.on_clicked(press)
         plt.show(block=True)
-    return
+        plt.close('all')
+    return [ph0.val,ph1.val,ph2.val,off.val]
 
 def autophase(spec,n,phase2='no'):
     """Automatically phases spectrum up to second order. Reccommended to use heavy line broadening prior to use"""
@@ -329,10 +407,9 @@ def autophase(spec,n,phase2='no'):
     BestOffset = np.zeros(n)
     #offsets = np.arange(td,-td+1,-4)
     offsets = np.linspace(-td/2,td/2,10)
-    Iter1 = np.zeros((n,size))
+    Iter1 = np.zeros((n,size)); Iter3 = np.zeros((n,size))
     M_ph1 = np.zeros(n); M_ph0 = np.zeros(n)
     ph1_1 = np.zeros(n)
-    Iter3 = np.zeros((n,size))
     area1 = np.zeros(n)
     ph2_1 = np.zeros(n)
     if phase2 == 'yes':
@@ -340,13 +417,13 @@ def autophase(spec,n,phase2='no'):
         M_ph2 = np.zeros((n,len(offsets)))
         
     for k in range(n):
-        #Find first order phase 
+        #Find first-order phase 
         for r in range(len(i)):
             Iter1[k,r] = np.sum(np.real(phase(spec,[ph0_1[k],360*i[r],ph2_1[k],round(BestOffset[k])])))
         M_ph1[k] = np.max(np.abs(Iter1[k,:]))
         ph1_1[k] = i[np.argwhere(abs(Iter1[k,:]) == M_ph1[k])]
         
-        #Find zero order phase
+        #Find zero-order phase
         for r in range(len(j)):
             Iter3[k,r] = np.sum(np.real(phase(spec,[j[r],360*ph1_1[k],ph2_1[k],round(BestOffset[k])])))
         M_ph0[k] = np.max(np.real(Iter3[k,:]))
@@ -356,7 +433,7 @@ def autophase(spec,n,phase2='no'):
         ph0_1[k] = j[a]
         
         if phase2 == 'yes':
-        #Find second order phase
+        #Find second-order phase and offset
             for mm in range(len(offsets)):
                 for r in range(len(l)):
                     Iter2[k,mm,r] = np.sum(np.real(phase(spec,[ph0_1[k],360*ph1_1[k],l[r],(offsets[mm])])))
@@ -395,7 +472,7 @@ def autophase(spec,n,phase2='no'):
     print('[%d, %d, %d, %d]' % (phases[0],phases[1],phases[2],phases[3]))
     return phases
 
-def coadd(fid,MAS='no',plot='no'):
+def coadd(fid,al='no',MAS='no',plot='no'):
     """Automatically coadd all spin echos and FT;
     Specifically works for WCPMG data acquired on NEO with
     or without inconsistent spacings"""
@@ -426,19 +503,20 @@ def coadd(fid,MAS='no',plot='no'):
     cpmg = np.transpose( np.reshape(fid, (l22, int(len(fid)/l22) )) )
     
     #For echo trains that aren't equally spaced, this roll algorithm will align them
-    if MAS == 'yes':
-        M = 2*l15-1
-        rot = int((d6/DW)/(M)) #If MAS, this is the approx pts. per rotor echo
-        l = int(len(cpmg[:,0])/2)
-        q = np.argmax(np.abs(np.real( gauss(cpmg[l-rot:l+rot,0],10 ) ))) + (l-rot)
-        for i in range(l22):
-            r = np.argmax(np.abs(np.real( gauss(cpmg[l-rot:l+rot,i],10) ))) + (l-rot)
-            cpmg[:,i] = np.roll(cpmg[:,i],(q-r))
-    else:
-        q = np.argmax(np.abs(np.real(cpmg[:,0])))
-        for i in range(l22):
-            r = q - np.argmax(np.abs(np.real(cpmg[:,i]))) #amount to roll by is difference of index of echo tops
-            cpmg[:,i] = np.roll(cpmg[:,i],r)
+    if al == 'yes':
+        if MAS == 'yes':
+            M = 2*l15-1
+            rot = int((d6/DW)/(M)) #If MAS, this is the approx pts. per rotor echo
+            l = int(len(cpmg[:,0])/2)
+            q = np.argmax(np.abs(np.real( gauss(cpmg[l-rot:l+rot,0],10 ) ))) + (l-rot)
+            for i in range(l22):
+                r = np.argmax(np.abs(np.real( gauss(cpmg[l-rot:l+rot,i],10) ))) + (l-rot)
+                cpmg[:,i] = np.roll(cpmg[:,i],(q-r))
+        else:
+            q = np.argmax(np.abs(np.real(cpmg[:,0])))
+            for i in range(l22):
+                r = q - np.argmax(np.abs(np.real(cpmg[:,i]))) #amount to roll by is difference of index of echo tops
+                cpmg[:,i] = np.roll(cpmg[:,i],r)
         
     fidcoadd = np.sum(cpmg, axis=1) 
  
@@ -447,7 +525,7 @@ def coadd(fid,MAS='no',plot='no'):
         plt.title('Real Coadded FID')
     return cpmg, fidcoadd
 
-def coaddgen(fid,pw=11,dring=3,dwindow=6,loop=22,lrot = 15,MAS='no',plot='no'):
+def coaddgen(fid,pw=11,dring=3,dwindow=6,loop=22,lrot = 15,MAS='no'):
     """Automatically coadd all spin echos. Attempt at generic coaddition.
     Assumes that the CPMG pulse sequence has the following structure:
         
@@ -509,15 +587,10 @@ def coaddgen(fid,pw=11,dring=3,dwindow=6,loop=22,lrot = 15,MAS='no',plot='no'):
             cpmg[:,i] = np.roll(cpmg[:,i],r)
         
     fidcoadd = np.sum(cpmg, axis=1) #note that it's more robust to do 2D FT and then coadd
- 
-    if plot=='yes':
-        plt.plot(np.real(fidcoadd),'m')
-        plt.title('Real Coadded FID')
-        #plt.xlabel('Time (s)')
     
     return cpmg, fidcoadd
 
-def mqproc(fid, SH = -7/9,q = 0, zf1=0, zf2=0, lb1=0, lb2=0):
+def mqproc(fid, SH = -7/9, q = 0, zf1=0, zf2=0, lb1=0, lb2=0):
     """Process whole-echo MQMAS data with shearing.
     
     Parameters
@@ -546,9 +619,7 @@ def mqproc(fid, SH = -7/9,q = 0, zf1=0, zf2=0, lb1=0, lb2=0):
         fid[:,i] = gauss(fid[:,i],lb1,c=0)
     
     #FT t2
-    spec1 = np.zeros((np1,zf2),dtype='complex')
-    for i in range(np1):
-        spec1[i,:] = fft(fid[i,:],zf2)
+    spec1 = (np.fft.fftshift(np.fft.fft(fid,zf2,axis=1),axes=1))
     
     #Shearing t1-F2 matrix
     g=open("acqus", mode='r')
@@ -560,7 +631,7 @@ def mqproc(fid, SH = -7/9,q = 0, zf1=0, zf2=0, lb1=0, lb2=0):
             DW1 = float(lines[i+1].split()[0])
     
     freq2 = np.linspace(-SW2/2,SW2/2,zf2) #F2 freq. (Hz)
-    t1 = np.arange(0,np1*DW1,DW1)             #t1 time vector (s)
+    t1 = np.linspace(0,np1*DW1,np1)             #t1 time vector (s)
     
     if q != 0:
         p = int((zf1-np1)/2)
@@ -570,16 +641,18 @@ def mqproc(fid, SH = -7/9,q = 0, zf1=0, zf2=0, lb1=0, lb2=0):
         specq = np.zeros((np1,zf2),dtype='complex') ##rename spec
         for i in range(zf2):
             specq[:,i] = fft(spec1[:,i],np1) #dont ZF the FT here
-            
+        
+        specq = np.roll(specq,6,axis = 0) #kill
+        
         specq2 = np.pad(specq, [(p,p), (0,0)], mode='constant',constant_values=0) #0-filled
         
         l = (zf1/np1)
-        for i in range(zf2): #IFT to un-Q-shear
+        for i in range(zf2): #IFT for reverse-Q-shear
             spec[:,i] = np.fft.ifft(specq2[:,i]) #dont ZF the FT here
 
         t1s = np.arange(0,zf1*(DW1/l),(DW1/l)) #faster t1 from 0-fill
-        spec = np.multiply(spec, np.exp(-1j*q*2*np.pi*np.outer(t1s,freq2)) ) #un-q-shear
-        spec = np.multiply(spec, np.exp(1j*SH*2*np.pi*np.outer(t1s,freq2)) ) #normal shear
+        spec = np.multiply(spec, np.exp(-1j*q*2*np.pi*np.outer(t1s,freq2)) ) #reverse-Q-shear
+        spec = np.multiply(spec, np.exp(1j*SH*2*np.pi*np.outer(t1s,freq2)) ) #isotropic shear
         
         for i in range(zf2): #FT t1 post shear
             spec[:,i] = np.fft.fft(spec[:,i]) ##rename spec #dont ZF the FT here
@@ -763,3 +836,4 @@ def cadzow(fid,p=10, plot ='no'):
     
     fidrecon = np.append( ad, ad2 ) #instead of rebuilding hank, just extract the fid
     return fidrecon
+

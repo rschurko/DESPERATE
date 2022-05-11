@@ -1,0 +1,32 @@
+
+Report of AU program poptau
+# Start time: 2022-05-10 13:50:39.542 -0400
+
+Number of experiments: 10
+total experiment time will be:  1 min 40 sec
+
+F1P=35.389ppm F2P=-47.784ppm
+PH_mode=1  FT_mod=6
+
+
+PROCNO=998
+
+Linear optimization of SPW 1 in 10 steps, as Step: Group 1
+starting at 0.200000000   endval= 2.000000000  
+OPTIMUM= ZERO
+VARMOD= LIN
+
+Experiment      SPW 1         Maximum point   Minimum point       Integral
+     1       0.200000000000       275054434       -10985130       7207034.982432
+     2       0.400000000000       243636775       -11194260       7334512.665973
+     3       0.600000000000       231950676       -11338504       7675337.465326
+     4       0.800000000000       228651882       -11703420       8003179.976422
+     5       1.000000000000       228059956       -13310707       8456898.780166
+     6       1.200000000000       228720604       -12622823       8538662.641470
+     7       1.400000000000       227952453       -13898850       8642408.536523
+     8       1.600000000000       225664074       -12945929       8961731.303514
+     9       1.800000000000       228057969       -13442007       9103581.740176
+    10       2.000000000000       229008511       -13569191       9040239.910541
+poptau for SPW 1 finished.
+ZERO : No zero crossing found.  
+

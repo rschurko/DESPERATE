@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import sys
-sys.path.insert(0,'/Users/SRG/Documents/Adam/Python/SSNMR/functions')
+sys.path.insert(0,'/Users/SRG/Documents/GitHub/SSNMR/functions')
 import numpy as np
 import functions as proc
 import simpson as simproc

@@ -1,8 +1,8 @@
-##TITLE= Audit trail, TopSpin 4.0.9
+##TITLE= Audit trail, TopSpin 4.0.7
 ##JCAMPDX= 5.01
 ##ORIGIN= Bruker BioSpin GmbH
-##OWNER= nmrsu
-$$ D:/nmrdata/mason42/MAS 1 testing/24/pdata/1/auditp.txt
+##OWNER= SRG
+$$ C:/Users/SRG/Documents/GitHub/SSNMR/Experimental Datasets/Chlorin HetCor/24/pdata/1/auditp.txt
 ##AUDIT TRAIL=  $$ (NUMBER, WHEN, WHO, WHERE, PROCESS, VERSION, WHAT)
 (   1,<2021-10-25 16:48:26.750 +0000>,<CZC950B486\nmrsu>,<CZC950B486>,<go4>,<TopSpin 4.0.9>,
       <acquisition in progress>)
@@ -16,111 +16,31 @@ $$ D:/nmrdata/mason42/MAS 1 testing/24/audita.txt
        85 B0 29 43 50 7C A6 24 6B B9 4B 48 9C DF FD 2A
        double data hash MD5: 4K * 26
        34 E9 5C 38 A9 45 2B 05 A6 A7 56 1B 2F 26 C9 C2>)
-(   3,<2021-10-25 11:26:54.656 -0700>,<nmrsu>,<CZC950B486>,<proc2d>,<TopSpin 4.0.9>,
+(   3,<2022-02-16 16:19:58.849 -0500>,<SRG>,<DESKTOP-R5S7N7V>,<proc2d>,<TopSpin 4.0.7>,
       <Start of raw data processing
-       xf2 td1 64 nodisp F2: TDeff = 1K SI = 2K WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PHC0 = -258.6515 PHC1 = -54.4 F1: SI = 2K
-       data hash MD5: 2K * 2K
-       2C 7A B8 5A 89 32 83 E9 8C 93 1E 95 11 AD D1 82>)
-(   4,<2021-10-25 11:26:54.906 -0700>,<nmrsu>,<CZC950B486>,<proc2d>,<TopSpin 4.0.9>,
-      <Start of raw data processing
-       xf2 nd2d nodisp n F2: TDeff = 1K SI = 2K WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PHC0 = -258.6515 PHC1 = -54.4 F1: SI = 2K
-       data hash MD5: 2K * 2K
-       A5 70 D3 DD 40 05 F6 AA B2 A9 4D A7 37 D1 E2 63>)
-(   5,<2021-10-25 11:26:55.656 -0700>,<nmrsu>,<CZC950B486>,<mddnmr>,<TopSpin 4.0.9>,
-      <mdd: parameter modification due to missing license
-       Mdd_mod = cs Mdd_CsALG = ist
-       data hash MD5: 2K * 2K
-       18 93 FC DC BF 82 5C 54 01 93 ED 4F C5 11 A7 61>)
-(   6,<2021-10-25 11:26:57.390 -0700>,<nmrsu>,<CZC950B486>,<proc2d>,<TopSpin 4.0.9>,
-      <xf1 F1: SI = 2K WDW = 1 LB = 1 FT_mod = 4 FCOR = 0.5
-       data hash MD5: 2K * 2K
-       DD 47 2A A0 81 6B 0A AC 4B B3 20 1D B5 30 35 CC>)
-$$ C:/Bruker/TopSpin4.1.3/data/MAS 1 testing/24/pdata/1/auditp.txt
-(   7,<2021-10-25 11:44:28.087 -0700>,<THE-LAB\mason42>,<mapfire470>,<proc2d>,<TopSpin 4.1.3>,
-      <Start of raw data processing
-       xf2 td1 64 nodisp F2: TDeff = 1K SI = 2K WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PHC0 = -258.6515 PHC1 = -54.4 F1: SI = 2K
-       data hash MD5: 2K * 2K
-       2C 7A B8 5A 89 32 83 E9 8C 93 1E 95 11 AD D1 82>)
-(   8,<2021-10-25 11:44:28.178 -0700>,<THE-LAB\mason42>,<mapfire470>,<proc2d>,<TopSpin 4.1.3>,
-      <Start of raw data processing
-       xf2 nd2d nodisp n F2: TDeff = 1K SI = 2K WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PHC0 = -258.6515 PHC1 = -54.4 F1: SI = 2K
-       data hash MD5: 2K * 2K
-       A5 70 D3 DD 40 05 F6 AA B2 A9 4D A7 37 D1 E2 63>)
-(   9,<2021-10-25 11:44:28.446 -0700>,<THE-LAB\mason42>,<mapfire470>,<mddnmr>,<TopSpin 4.1.3>,
-      <mdd: parameter modification due to missing license
-       Mdd_mod = cs Mdd_CsALG = ist
-       data hash MD5: 2K * 2K
-       18 93 FC DC BF 82 5C 54 01 93 ED 4F C5 11 A7 61>)
-(  10,<2021-10-25 11:44:28.652 -0700>,<THE-LAB\mason42>,<mapfire470>,<proc2d>,<TopSpin 4.1.3>,
-      <xf1 F1: SI = 2K WDW = 1 LB = 1 FT_mod = 4 FCOR = 0.5
-       data hash MD5: 2K * 2K
-       DD 47 2A A0 81 6B 0A AC 4B B3 20 1D B5 30 35 CC>)
-(  11,<2021-11-02 15:31:00.574 -0700>,<THE-LAB\mason42>,<mapfire470>,<audit>,<TopSpin 4.1.3>,
+       xf2 nd2d nodisp n F2: SI = 8K WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PHC0 = -258.6515 PHC1 = -54.4 F1: SI = 512
+       data hash MD5: 8K * 512
+       4A 3E C3 86 B7 5E ED 02 6B 09 26 30 0C 85 0F 15>)
+$$ C:/Users/SRG/Documents/GitHub/SSNMR/Experimental Datasets/Chlorin HetCor/24/pdata/1/auditp.txt
+(   4,<2022-02-16 16:20:04.253 -0500>,<SRG>,<DESKTOP-R5S7N7V>,<mddnmr>,<TopSpin 4.0.7>,
+      <mdd: Mdd_mod = cs Mdd_CsALG = ist
+       data hash MD5: 8K * 512
+       63 A1 4B A0 AE 8A 23 DA B1 15 E6 7E 61 49 A7 69>)
+(   5,<2022-02-16 16:20:04.695 -0500>,<SRG>,<DESKTOP-R5S7N7V>,<proc2d>,<TopSpin 4.0.7>,
+      <xf1 F1: SI = 512 WDW = 1 LB = 1 FT_mod = 4 FCOR = 0.5
+       data hash MD5: 8K * 512
+       EE 2E CB C8 68 43 C5 E7 7B D9 A8 61 83 20 9F 93>)
+(   6,<2022-03-11 16:54:37.126 -0500>,<SRG>,<DESKTOP-R5S7N7V>,<audit>,<TopSpin 4.0.7>,
       <user comment:
        TITLE=Chlorin-e6
        13C{1H} CP HetCor
-       NUS 64 scans
-       vrot = 10 kHzTITLE_END
-       data hash MD5: 2K * 2K
-       DD 47 2A A0 81 6B 0A AC 4B B3 20 1D B5 30 35 CC>)
-(  12,<2021-11-02 15:34:28.153 -0700>,<THE-LAB\mason42>,<mapfire470>,<proc2d>,<TopSpin 4.1.3>,
-      <Start of raw data processing
-       xf2 td1 64 nodisp F2: TDeff = 1K SI = 1K WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PHC0 = -258.6515 PHC1 = -54.4 F1: SI = 512
-       data hash MD5: 1K * 512
-       B2 D1 23 6C 28 6A 3C 07 04 22 4F E4 10 5E CA 49>)
-(  13,<2021-11-02 15:34:28.204 -0700>,<THE-LAB\mason42>,<mapfire470>,<proc2d>,<TopSpin 4.1.3>,
-      <Start of raw data processing
-       xf2 nd2d nodisp n F2: TDeff = 1K SI = 1K WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PHC0 = -258.6515 PHC1 = -54.4 F1: SI = 512
-       data hash MD5: 1K * 512
-       5A E2 BC FE 36 98 78 59 F4 6E B9 61 3C 5B 94 43>)
-(  14,<2021-11-02 15:34:28.323 -0700>,<THE-LAB\mason42>,<mapfire470>,<mddnmr>,<TopSpin 4.1.3>,
-      <mdd: parameter modification due to missing license
-       Mdd_mod = cs Mdd_CsALG = ist
-       data hash MD5: 1K * 512
-       74 54 4D 8B A8 A1 44 2E AB 8E 61 E8 D4 17 63 71>)
-(  15,<2021-11-02 15:34:28.385 -0700>,<THE-LAB\mason42>,<mapfire470>,<proc2d>,<TopSpin 4.1.3>,
-      <xf1 F1: SI = 512 WDW = 1 LB = 1 FT_mod = 4 FCOR = 0.5
-       data hash MD5: 1K * 512
-       B2 6B 0E 26 DD 4D 7C E6 4B 64 E9 5E F4 2A 63 FA>)
-(  16,<2021-11-02 15:38:15.721 -0700>,<THE-LAB\mason42>,<mapfire470>,<proc2d>,<TopSpin 4.1.3>,
-      <Start of raw data processing
-       xf2 td1 64 nodisp F2: TDeff = 1K SI = 1K WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PHC0 = -258.6515 PHC1 = -54.4 F1: SI = 512
-       data hash MD5: 1K * 512
-       B2 D1 23 6C 28 6A 3C 07 04 22 4F E4 10 5E CA 49>)
-(  17,<2021-11-02 15:38:15.772 -0700>,<THE-LAB\mason42>,<mapfire470>,<proc2d>,<TopSpin 4.1.3>,
-      <Start of raw data processing
-       xf2 nd2d nodisp n F2: TDeff = 1K SI = 1K WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PHC0 = -258.6515 PHC1 = -54.4 F1: SI = 512
-       data hash MD5: 1K * 512
-       5A E2 BC FE 36 98 78 59 F4 6E B9 61 3C 5B 94 43>)
-(  18,<2021-11-02 15:38:15.885 -0700>,<THE-LAB\mason42>,<mapfire470>,<mddnmr>,<TopSpin 4.1.3>,
-      <mdd: parameter modification due to missing license
-       Mdd_mod = cs Mdd_CsALG = ist
-       data hash MD5: 1K * 512
-       74 54 4D 8B A8 A1 44 2E AB 8E 61 E8 D4 17 63 71>)
-(  19,<2021-11-02 15:38:15.951 -0700>,<THE-LAB\mason42>,<mapfire470>,<proc2d>,<TopSpin 4.1.3>,
-      <xf1 F1: SI = 512 WDW = 1 LB = 1 FT_mod = 4 FCOR = 0.5
-       data hash MD5: 1K * 512
-       B2 6B 0E 26 DD 4D 7C E6 4B 64 E9 5E F4 2A 63 FA>)
-(  20,<2021-11-02 15:41:41.865 -0700>,<THE-LAB\mason42>,<mapfire470>,<proc2d>,<TopSpin 4.1.3>,
-      <Start of raw data processing
-       xf2 td1 64 nodisp F2: TDeff = 1K SI = 512 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PHC0 = -258.6515 PHC1 = -54.4 F1: SI = 512
-       data hash MD5: 512 * 512
-       B6 D8 1B 36 0A 56 72 D8 0C 27 43 0F 39 15 3E 2C>)
-(  21,<2021-11-02 15:41:41.923 -0700>,<THE-LAB\mason42>,<mapfire470>,<proc2d>,<TopSpin 4.1.3>,
-      <Start of raw data processing
-       xf2 nd2d nodisp n F2: TDeff = 1K SI = 512 WDW = 1 LB = 100 FT_mod = 6 PKNL = 1 PHC0 = -258.6515 PHC1 = -54.4 F1: SI = 512
-       data hash MD5: 512 * 512
-       40 34 CF 23 11 34 3E C0 FF 8C 59 F9 D9 D2 B6 26>)
-(  22,<2021-11-02 15:41:41.986 -0700>,<THE-LAB\mason42>,<mapfire470>,<mddnmr>,<TopSpin 4.1.3>,
-      <mdd: parameter modification due to missing license
-       Mdd_mod = cs Mdd_CsALG = ist
-       data hash MD5: 512 * 512
-       EC 3C 52 FF DC 1C AD 92 95 DD F3 82 B5 BC E6 40>)
-(  23,<2021-11-02 15:41:42.039 -0700>,<THE-LAB\mason42>,<mapfire470>,<proc2d>,<TopSpin 4.1.3>,
-      <xf1 F1: SI = 512 WDW = 1 LB = 1 FT_mod = 4 FCOR = 0.5
-       data hash MD5: 512 * 512
-       58 32 E1 70 72 8D A3 E5 33 AD 47 88 FC 9B E2 99>)
+       vrot = 10 kHz
+       NUS 40 %
+       64 t1
+       64 scansTITLE_END
+       data hash MD5: 8K * 512
+       EE 2E CB C8 68 43 C5 E7 7B D9 A8 61 83 20 9F 93>)
 ##END=
 
 $$ hash MD5
-$$ 64 E9 92 02 FC 5A F6 18 39 04 E1 B5 68 6A 26 47
+$$ 55 CB F5 CD 89 DC 31 F7 18 36 F4 8F BB 47 94 01

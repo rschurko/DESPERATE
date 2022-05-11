@@ -15,6 +15,12 @@ cwd =  os.getcwd()
 os.chdir(cwd + '\\' + '15')
 fid = proc.loadfid2('ser',plot='no')
 
+# pad zero at front for coscos
+# fid = np.pad(fid, [(0,1), (0,0)], mode='constant',constant_values=0) #0-filled
+
+# plt.contour(abs(fid))
+# sys.exit()
+
 #Params:
 nzf1 = 512
 nzf2 = 4096
@@ -22,7 +28,7 @@ base = 1 #base contour %'age
 sh = -7/9
 
 ##SH = -7/9 for this coherence selection
-spec = proc.mqproc(fid, SH = sh, zf1=nzf1, zf2=nzf2, lb1=0, lb2=15) 
+spec = proc.mqproc(fid, SH = sh, q=0, zf1=nzf1, zf2=nzf2, lb1=0, lb2=15) 
 
 fid2 = np.fft.ifft(spec,axis = 0)
 fid2 = np.roll(fid2,1,axis=0)   #shift 1 point in t1 to correct phase since t1 = 0 is not acq'd in cos/cos
@@ -36,13 +42,14 @@ spec = np.flip(spec,axis=0)
 
 #Phase
 #ph = [0,0, 0, 0]
-ph = [361-32-6, 798382-340-80, 0, 0]
-#ph = [362-25 - 10, 798157 - 150, 0, 0]
-#ph = proc.autophase(spec[313,:],50,phase2='no')
+ph = [-43, 798080-240, 0, 0]
+# ph = [361-32-6, 798382-340-80, 0, 0]
+# ph = [362-25 - 10, 798157 - 150, 0, 0]
+# ph = proc.autophase(spec[313,:],50,phase2='no')
 # ph = proc.autophase(spec[:,1766],10,phase2='no')
 spec = proc.phase(spec,ph,ax=1)
-# proc.mphase(spec,fine=1000)
-#sys.exit()
+# proc.mphase(spec,fine=100)
+# sys.exit()
 
 #2D SWT
 #spec, coeffin, coeffs = wave.wavelet_denoise2(2, np.real(spec), 0, wave = 'bior2.2', threshold = 'mod', alpha = 0)

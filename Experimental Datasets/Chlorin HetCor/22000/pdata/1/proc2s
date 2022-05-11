@@ -1,10 +1,10 @@
 ##TITLE= Parameter file, TopSpin 4.0.7
 ##JCAMPDX= 5.0
 ##DATATYPE= Parameter Values
-##NPOINTS= 1	$$ modification sequence number
+##NPOINTS= 2	$$ modification sequence number
 ##ORIGIN= Bruker BioSpin GmbH
 ##OWNER= SRG
-$$ 2022-02-14 17:07:41.037 -0500  SRG@DESKTOP-R5S7N7V
+$$ 2022-02-15 15:32:04.656 -0500  SRG@DESKTOP-R5S7N7V
 $$ C:/Users/SRG/Documents/GitHub/SSNMR/Experimental Datasets/Chlorin HetCor/22000/pdata/1/proc2s
 $$ process C:\Bruker\TopSpin4.0.7\prog\mod\proc2d.exe
 ##$ABSF1= 0
@@ -19,8 +19,8 @@ $$ process C:\Bruker\TopSpin4.0.7\prog\mod\proc2d.exe
 ##$ASSWID= 0
 ##$AUNMP= <>
 ##$AXLEFT= 0
-##$AXNAME= <>
-##$AXNUC= <off>
+##$AXNAME= <F1>
+##$AXNUC= <1H>
 ##$AXRIGHT= 0
 ##$AXTYPE= 0
 ##$AXUNIT= <>
@@ -38,19 +38,19 @@ $$ process C:\Bruker\TopSpin4.0.7\prog\mod\proc2d.exe
 ##$ERETIC= no
 ##$F1P= 0
 ##$F2P= 0
-##$FCOR= 0
-##$FTSIZE= 0
-##$FT_mod= 0
+##$FCOR= 0.5
+##$FTSIZE= 512
+##$FT_mod= 4
 ##$GAMMA= 0
 ##$GB= 0
 ##$INTBC= 1
 ##$INTSCL= 1
 ##$ISEN= 128
-##$LB= 0
+##$LB= 1
 ##$LEV0= 0
 ##$LPBIN= 0
 ##$MAXI= 10000
-##$MC2= 0
+##$MC2= 4
 ##$MEAN= 0
 ##$ME_mod= 0
 ##$MI= 0
@@ -78,7 +78,7 @@ $$ process C:\Bruker\TopSpin4.0.7\prog\mod\proc2d.exe
 ##$Mdd_LrZF= 0
 ##$Mdd_mod= 0
 ##$NCOEF= 0
-##$NC_proc= 0
+##$NC_proc= 9
 ##$NLEV= 6
 ##$NOISF1= 0
 ##$NOISF2= 0
@@ -106,7 +106,7 @@ $$ process C:\Bruker\TopSpin4.0.7\prog\mod\proc2d.exe
 ##$RDPOS= 0
 ##$REVERSE= no
 ##$SF= 301.102860021415
-##$SI= 0
+##$SI= 512
 ##$SIGF1= 0
 ##$SIGF2= 0
 ##$SINO= 0
@@ -115,12 +115,12 @@ $$ process C:\Bruker\TopSpin4.0.7\prog\mod\proc2d.exe
 ##$SREF_mod= 1
 ##$SREGLST= <>
 ##$SSB= 0
-##$STSI= 0
+##$STSI= 512
 ##$STSR= 0
 ##$SW_p= 52962.3614151543
 ##$SYMM= 0
-##$S_DEV= 1560173
-##$TDeff= 0
+##$S_DEV= 1643607
+##$TDeff= 128
 ##$TDoff= 0
 ##$TI= <>
 ##$TILT= no
@@ -132,8 +132,8 @@ $$ process C:\Bruker\TopSpin4.0.7\prog\mod\proc2d.exe
 ##$USERP3= <>
 ##$USERP4= <>
 ##$USERP5= <>
-##$WDW= 0
-##$XDIM= 0
-##$YMAX_p= 105349156
-##$YMIN_p= -8302844
+##$WDW= 1
+##$XDIM= 512
+##$YMAX_p= 106185074
+##$YMIN_p= -8720854
 ##END=

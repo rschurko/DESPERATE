@@ -1,0 +1,188 @@
+#*******************************************************************
+#
+# $Source: /sc/CvsTree/sc/gen/src/form/ased_acqu.form,v $
+#
+# Copyright (c) 1995 - 2008
+# BRUKER BioSpin GmbH
+# D-76287 Rheinstetten, Germany
+#
+# All Rights Reserved
+#
+#
+# $Id: ased_acqu.form,v 1.40 2020/07/10 16:17:06 alexander.herbig Exp $
+#*******************************************************************
+EDIT_PAR COMMAND FILE
+
+DI_MODE         LONG
+ED_ENTRY        ACQU
+ORDER           FILE
+
+
+HEADER		"====== General ======"
+NAME		PULPROG
+END
+NAME		TD
+END
+NAME		SW
+END
+T_NAME		SWH
+		TYPE	R32
+		CLASS	ACQU
+		SUBRANGE 0.0 1e38
+		REL	"SWH=SW*SFO1"
+		INV_REL "SW=SWH/SFO1"
+		UNIT	"Hz"
+		FORMAT	"%14.2f Hz"
+		TEXT	"sweep width in acquisition direction"
+END
+T_NAME          AQ
+		TYPE	R32
+		CLASS	ACQU
+		SUBRANGE 0.0 1e38
+		REL	"AQ=aqcalc(SW,SFO1,TD,DIGTYP,FnMODE)"
+		INV_REL	"TD=tdcalc(SW,SFO1,1.0e6*AQ,DIGTYP,FnMODE)"
+		UNIT	"sec"
+		FORMAT	"%14.7f sec"
+                TEXT	"acquisition time"
+END
+NAME		RG
+END
+T_NAME          DW
+		TYPE	R32
+		CLASS	ACQU
+		SUBRANGE 0.0 1e38
+		REL	"DW=1/(2*SW*SFO1)"
+		INV_REL	"SW=1000000/(2*(0.005+DW)*SFO1)"
+		UNIT	"usec"
+		FORMAT	"%14.3f usec"
+		TEXT	"dwell time "
+END
+NAME		DE
+		FORMAT	"%14.2f usec"
+END
+T_NAME		GRPDLY
+		TYPE	R64
+		SUBRANGE 0 1e38
+		CLASS	ACQU
+		REL	"GRPDLY=GRPDLY"
+		INV_REL	"GRPDLY=GRPDLY"				
+		UNIT	"no"
+		TEXT	"group delay of digital filter"
+		FORMAT	"%14.0f"
+		NONEDIT
+END
+T_NAME		CNST31
+TYPE	R32
+CLASS	ACQU
+SUBRANGE -1e38 1e38
+REL	"CNST31=CNST[31]"
+INV_REL	"CNST[31]=CNST31"
+FORMAT	"%14.7f"
+		TEXT		"=MAS spin rate (or =1e6 for static)"
+END
+T_NAME		D1
+TYPE	R32
+CLASS	ACQU
+SUBRANGE 0.0 1e38
+REL	"D1=D[1]"
+INV_REL	"D[1]=D1"
+UNIT	"sec"
+FORMAT	"%14.9f sec"
+		TEXT		"recycle delay"
+END
+T_NAME		d6
+		TYPE	R32
+		SUBRANGE 0.0 1e8
+		CLASS	ACQU
+		REL	"d6=((1s*l1)/cnst31)-(p1/2)-(p2/2)"
+		INV_REL	"D[0]=d6"
+		UNIT	"sec"
+		TEXT		"echo delay (calculated)"
+		FORMAT	"%14.10f sec"
+		NONEDIT
+END
+NAME		DS
+		TEXT	"number of dummy scans"
+END
+T_NAME		L1
+TYPE	R32
+CLASS	ACQU
+SUBRANGE 0.0 1e38
+REL	"L1=L[1]"
+INV_REL	"L[1]=L1"
+FORMAT	"%14.0f"
+		TEXT		"# of rotor cycles (or tau in us)"
+END
+NAME		NS
+		TEXT	"scans to execute"
+END
+NAME		TD0	
+		TEXT	"number of averages in 1D"
+END
+NAME		ZGOPTNS
+		TEXT 	"options for zg"
+END
+HEADER		"======== CHANNEL f1 ========"
+NAME		SFO1
+FORMAT	"%14.7f MHz"
+TEXT	"frequency of ch. 1"
+END
+NAME		O1
+FORMAT	"%14.2f Hz"
+TEXT	"frequency of ch. 1"
+END
+T_NAME		O1P
+TYPE	R64
+CLASS	ACQU
+SUBRANGE -1e38 1e38
+REL	"O1P=O1/BF1"
+INV_REL	"O1=O1P*BF1"
+UNIT	"ppm"
+FORMAT	"%14.3f ppm"
+TEXT	"frequency of ch. 1"
+END
+NAME		NUC1
+NONEDIT
+TEXT	"nucleus for channel 1"
+END
+T_NAME		P1
+TYPE	R32
+CLASS	ACQU
+SUBRANGE 0.0 1.0e10
+REL	"P1=P[1]"
+INV_REL	"P[1]=P1"
+UNIT	"usec"
+FORMAT	"%14.3f usec"
+		TEXT		"90 degree pulse"
+END
+T_NAME		p2
+		TYPE	R32
+		SUBRANGE -1e38 1e38
+		CLASS	ACQU
+		REL	"p2=p1*2"
+		INV_REL	"D[0]=p2"
+		UNIT	"usec"
+		TEXT		"=p1*2, 180 degree pulse"
+		FORMAT	"%14.2f usec"
+		NONEDIT
+END
+T_NAME		PLW1
+TYPE	R32
+CLASS	ACQU
+SUBRANGE 0 1098.87
+REL	"PLW1=PLW[1]"
+INV_REL	"PLW[1]=PLW1"
+UNIT	"W"
+FORMAT	"%14.5g W"
+		TEXT		"RF power level for 90/180"
+END
+T_NAME		PLdB1
+TYPE	R32
+CLASS	ACQU
+SUBRANGE -30.5095 1000
+REL	"if(PLW[1]>0)PLdB1=-10*log(PLW[1])/LN10;else PLdB1=1000;"
+INV_REL	"PLW[1]=0;if(PLdB1<1000)PLW[1]=pow(10.0,(-PLdB1)/10.0)"
+UNIT	"dB"
+FORMAT	"%14.2f dB"
+TEXT	"power PL1 in dB"
+END

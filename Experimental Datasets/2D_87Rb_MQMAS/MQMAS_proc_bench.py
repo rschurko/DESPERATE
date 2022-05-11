@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import sys
 import os
-sys.path.insert(0,'/Users/SRG/Documents/Adam/Python/SSNMR/functions')
+sys.path.insert(0,'/Users/SRG/Documents/GitHub/SSNMR/functions')
 import numpy as np
 import functions as proc
 import simpson as simproc
@@ -106,9 +106,9 @@ yplot = fig.add_subplot(grid[1:, 0], yticklabels=[])
 xplot = fig.add_subplot(grid[0, 1:4], yticklabels=[], sharex=main_ax)
 
 main_ax.contour(freq2,fiso,(np.real(specin[:,:,aa])),lvls,cmap='jet')
-main_ax.set_xlabel('F$_{2}$ (ppm)')#, fontfamily = 'Arial')
+main_ax.set_xlabel('{F}$_{2}$ (ppm)')#, fontfamily = 'Arial')
 #main_ax.set_ylabel('F1_iso Frequency (ppm)')#, fontfamily = 'Arial')
-main_ax.set_ylabel("F$_{iso}$ (ppm)",labelpad=-429)
+main_ax.set_ylabel("F$_{1}$ (ppm)",labelpad=-429)
 main_ax.invert_yaxis()
 main_ax.invert_xaxis()
 main_ax.set_xlim(-24, -40) ##CHK BACK

@@ -1,0 +1,2 @@
+; Minimal Bruker pulseprogram created by write_pprog
+"p8=1s*l30/cnst31"

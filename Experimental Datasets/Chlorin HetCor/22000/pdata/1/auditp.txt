@@ -1,0 +1,45 @@
+##TITLE= Audit trail, TopSpin 4.0.7
+##JCAMPDX= 5.01
+##ORIGIN= Bruker BioSpin GmbH
+##OWNER= SRG
+$$ C:/Users/SRG/Documents/GitHub/SSNMR/Experimental Datasets/Chlorin HetCor/22000/pdata/1/auditp.txt
+##AUDIT TRAIL=  $$ (NUMBER, WHEN, WHO, WHERE, PROCESS, VERSION, WHAT)
+(   1,<2021-10-18 22:52:16.983 +0000>,<CZC950B486\nmrsu>,<CZC950B486>,<go4>,<TopSpin 4.0.9>,
+      <acquisition in progress>)
+$$ D:/nmrdata/mason42/MAS 1 testing/22/audita.txt
+(   2,<2021-10-19 00:06:02.972 +0000>,<CZC950B486\nmrsu>,<CZC950B486>,<go4>,<TopSpin 4.0.9>,
+      <created by zg on 'AV NEO 300 WB Double' (CZC950B486) by user 'CZC950B486\nmrsu'
+       on data set with UUID '0ad5d7be-3066-11ec-b889-0030d622da91'
+       started at 2021-10-18 22:52:17.002 +0000, POWCHK enabled, PULCHK disabled,
+       terminated by command 'stop' at 2021-10-19 00:06:02.971 +0000
+       configuration hash MD5:
+       85 B0 29 43 50 7C A6 24 6B B9 4B 48 9C DF FD 2A
+       double data hash MD5: 4K * 8
+       55 D7 1B 18 62 39 BA 83 9D 54 9A 8A 45 B6 79 E4>)
+(   3,<2021-10-19 00:06:21.384 +0000>,<CZC950B486\nmrsu>,<CZC950B486>,<go4>,<TopSpin 4.0.9>,
+      <raw data deleted by zg>)
+(   4,<2021-10-19 00:06:21.388 +0000>,<CZC950B486\nmrsu>,<CZC950B486>,<go4>,<TopSpin 4.0.9>,
+      <acquisition in progress>)
+(   5,<2021-10-19 18:32:57.815 +0000>,<CZC950B486\nmrsu>,<CZC950B486>,<go4>,<TopSpin 4.0.9>,
+      <created by zg on 'AV NEO 300 WB Double' (CZC950B486) by user 'CZC950B486\nmrsu'
+       on data set with UUID '63f42fb2-3070-11ec-bb3a-0030d622da91'
+       started at 2021-10-19 00:06:21.406 +0000, POWCHK enabled, PULCHK disabled,
+       completed at 2021-10-19 18:32:57.815 +0000
+       configuration hash MD5:
+       85 B0 29 43 50 7C A6 24 6B B9 4B 48 9C DF FD 2A
+       double data hash MD5: 4K * 128
+       62 44 E3 11 05 23 E9 C7 89 86 79 44 72 BE 63 7F>)
+(   6,<2022-02-14 17:07:40.946 -0500>,<SRG>,<DESKTOP-R5S7N7V>,<proc2d>,<TopSpin 4.0.7>,
+      <convdta from
+       22 "Chlorin HetCor" "C:/Users/SRG/Documents/GitHub/SSNMR/Experimental Datasets" 
+       data hash MD5: 3960 * 128
+       A9 BD 71 5E 12 D9 A5 AB EF 4E CD 9C 35 35 96 9A>)
+(   7,<2022-02-15 15:32:04.658 -0500>,<SRG>,<DESKTOP-R5S7N7V>,<proc2d>,<TopSpin 4.0.7>,
+      <Start of raw data processing
+       xfb F2: SI = 512 WDW = 1 LB = 20 FT_mod = 6 PKNL = 0 PHC0 = -172.3796 PHC1 = -207.1 F1: SI = 512 WDW = 1 LB = 1 FT_mod = 4 FCOR = 0.5
+       data hash MD5: 512 * 512
+       0C 9A CC A4 24 A0 42 AA B2 82 B0 69 42 88 15 BE>)
+##END=
+
+$$ hash MD5
+$$ B2 02 C5 5E 24 80 7D A1 1D DE 79 DE 90 1E C0 7E

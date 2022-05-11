@@ -1,0 +1,11 @@
+##TITLE= Parameter file, TopSpin 4.0.7
+##JCAMPDX= 5.0
+##DATATYPE= Parameter Values
+##NPOINTS= 1	$$ modification sequence number
+##ORIGIN= Bruker BioSpin GmbH
+##OWNER= SRG
+$$ 2022-05-10 16:59:33.817 -0400  SRG@DESKTOP-R5S7N7V
+$$ C:/Users/SRG/Documents/GitHub/SSNMR/Experimental Datasets/Na2SO4_NaCl_May10_2022/107/pdata/1/assocs
+$$ process C:\Bruker\TopSpin4.0.7\prog\mod\dataserver.exe
+##$MULTDISP= <C:/Users/SRG/Documents/GitHub/SSNMR/Experimental Datasets/Na2SO4_NaCl_May10_2022/108/pdata/1>
+##END=

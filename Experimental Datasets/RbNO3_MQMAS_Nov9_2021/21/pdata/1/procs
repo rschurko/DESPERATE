@@ -1,11 +1,11 @@
 ##TITLE= Parameter file, TopSpin 4.0.7
 ##JCAMPDX= 5.0
 ##DATATYPE= Parameter Values
-##NPOINTS= 12	$$ modification sequence number
+##NPOINTS= 13	$$ modification sequence number
 ##ORIGIN= Bruker BioSpin GmbH
 ##OWNER= rschurko
-$$ 2022-02-10 11:40:56.529 -0500  SRG@DESKTOP-R5S7N7V
-$$ C:/Users/SRG/Documents/Adam/Spectromter_Data/RbNO3_MQMAS_Nov9_2021/21/pdata/1/procs
+$$ 2022-03-08 22:26:24.409 -0500  SRG@DESKTOP-R5S7N7V
+$$ C:/Users/SRG/Documents/GitHub/SSNMR/Experimental Datasets/RbNO3_MQMAS_Nov9_2021/21/pdata/1/procs
 $$ process C:\Bruker\TopSpin4.0.7\prog\mod\dataserver.exe
 ##$ABSF1= 0
 ##$ABSF2= 0

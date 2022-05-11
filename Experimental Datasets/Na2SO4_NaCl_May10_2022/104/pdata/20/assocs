@@ -1,0 +1,11 @@
+##TITLE= Parameter file, TopSpin 4.1.1
+##JCAMPDX= 5.0
+##DATATYPE= Parameter Values
+##NPOINTS= 1	$$ modification sequence number
+##ORIGIN= Bruker BioSpin GmbH
+##OWNER= rschurko
+$$ 2022-05-10 15:27:22.038 -0400  rschurko@600wb1.magnet.fsu.edu
+$$ /opt/topspin4.1.1/data/altenhof/nmr/Na2SO4_NaCl_May10_2022/104/pdata/20/assocs
+$$ process /opt/topspin4.1.1/prog/mod/dirdata
+##$MULTDISP= </opt/topspin4.1.1/data/altenhof/nmr/Na2SO4_NaCl_May10_2022/103/pdata/1|/opt/topspin4.1.1/data/altenhof/nmr/Na2SO4_NaCl_May10_2022/100/pdata/1>
+##END=

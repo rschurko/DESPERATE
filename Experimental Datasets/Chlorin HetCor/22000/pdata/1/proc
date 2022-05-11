@@ -1,10 +1,10 @@
 ##TITLE= Parameter file, TopSpin 4.0.7
 ##JCAMPDX= 5.0
 ##DATATYPE= Parameter Values
-##NPOINTS= 2	$$ modification sequence number
+##NPOINTS= 3	$$ modification sequence number
 ##ORIGIN= Bruker BioSpin GmbH
 ##OWNER= SRG
-$$ 2022-02-14 17:07:41.230 -0500  SRG@DESKTOP-R5S7N7V
+$$ 2022-02-15 15:32:00.609 -0500  SRG@DESKTOP-R5S7N7V
 $$ C:/Users/SRG/Documents/GitHub/SSNMR/Experimental Datasets/Chlorin HetCor/22000/pdata/1/proc
 $$ process C:\Bruker\TopSpin4.0.7\prog\mod\dataserver.exe
 ##$ABSF1= 196.4919

@@ -1,0 +1,229 @@
+; -*-pulsprog-*-
+;/* 
+;*******************************************************************
+;*
+;* $Source: /sc/CvsTree/sc/gen/src/prg/lists/wobble/pp_drx,v $
+;*
+;* Copyright (c) 2019
+;* BRUKER BIOSPIN GMBH
+;* D-76287 Rheinstetten, Germany
+;*
+;* All Rights Reserved
+;*
+;* $Id: pp_drx,v 1.45 2019/10/09 07:46:13 chjo Exp $
+;*
+;*******************************************************************
+;*/
+; wobble pulseprogram for Avance NEO spectrometers
+
+#ifdef WOBB_GRAD
+#include     <Grad.incl>
+#endif
+
+#define DWELL_HOLD	bitMask|1
+#define DWELL_RELEASE	bitMask^1
+#define START_NEXT_SCAN	bitMask|0
+#define AQ_GATE_OFF	bitMask^26
+#define AQ_GATE_ON	bitMask|26
+#define TUNE_REC_ON	AQ_GATE_ON|27
+#define TUNE_REC_OFF	AQ_GATE_OFF^27
+#define OUTPUT_TUNE_OUT bitMask|14|13
+#define EOSCNP1		eoscnp1
+#define EOSCNP2		eoscnp2
+#define EOSCNP3		eoscnp3
+#define EOSCNP4		eoscnp4
+#define EOSCNP5		eoscnp5
+#define EOSCNP6		eoscnp6
+#define EOSCNP7		eoscnp7
+#define EOSCNP8		eoscnp8
+#define RCYC		rcyc_undefined
+
+#ifdef WOBB_F1
+#define     EOSCNP1 1u
+#define     RCYC rcyc1 = 1
+#elif defined WOBB_F2
+#define     EOSCNP2 1u
+#define     RCYC rcyc2 = 1
+#elif defined WOBB_F3
+#define     EOSCNP3 1u
+#define     RCYC rcyc3 = 1
+#elif defined WOBB_F4
+#define     EOSCNP4 1u
+#define     RCYC rcyc4 = 1
+#elif defined WOBB_F5
+#define     EOSCNP5 1u
+#define     RCYC rcyc5 = 1
+#elif defined WOBB_F6
+#define     EOSCNP6 1u
+#define     RCYC rcyc6 = 1
+#elif defined WOBB_F7
+#define     EOSCNP7 1u
+#define     RCYC rcyc7 = 1
+#elif defined WOBB_F8
+#define     EOSCNP8 1u
+#define     RCYC rcyc8 = 1
+#endif
+
+
+
+#ifdef WOBB_F1
+define list <frequency> freqList1=<$FQ1LIST>
+#endif
+#ifdef WOBB_F2
+define list <frequency> freqList2=<$FQ2LIST>
+#endif
+#ifdef WOBB_F3
+define list <frequency> freqList3=<$FQ3LIST>
+#endif
+#ifdef WOBB_F4
+define list <frequency> freqList4=<$FQ4LIST>
+#endif
+#ifdef WOBB_F5
+define list <frequency> freqList4=<$FQ5LIST>
+#endif
+#ifdef WOBB_F6
+define list <frequency> freqList4=<$FQ6LIST>
+#endif
+#ifdef WOBB_F7
+define list <frequency> freqList4=<$FQ7LIST>
+#endif
+#ifdef WOBB_F8
+define list <frequency> freqList4=<$FQ8LIST>
+#endif
+
+
+; BEGIN SOUBROUTINE DEFINITION
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+subroutine WOBB_ON_CHAN(any fqList, any bitMask, any fx, any adcx, any eoscnpx)
+{
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+	exec_on_chan:fx
+
+
+	10u OUTPUT_TUNE_OUT
+
+        ; tell receiver not to acquire until next DWELL_RELEASE
+        1u DWELL_HOLD
+
+        ; use PL2 to be compatible with old wobble procedure
+	10u pl2:fx
+
+	;********
+	; next wobble curve
+
+    	100m fqList.res ;speed adjustment
+	
+ 	1m adcx ph0 syrec
+
+	1u reset:fx
+
+	; tell receiver to acquire WBST points 
+	1u START_NEXT_SCAN
+
+	;--------------
+	; now acquire WBST points
+
+    2   1u fqList(receive):fx
+
+        ; note that at least 150u are required here 
+        ; to avoid spikes after PLL change
+        150u fqList:fx 
+
+        ; send tune signal and acquire simultaneously
+	10u TUNE_REC_ON
+
+	; now acquire a complex sample point
+        0.05u DWELL_RELEASE
+
+        ; dwell time for one complex point
+	; of the wobble curve
+        dwellTime
+
+        ; tell receiver not to acquire until next DWELL_RELEASE
+	1u DWELL_HOLD
+
+	1u TUNE_REC_OFF
+
+	1u fqList.inc
+
+	lo to 2 times wbstCmplx 
+
+    ;--------------
+
+	eoscnpx
+
+	exec_wait
+
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+}
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; END OF SUBROUTINE DEFINITION
+
+
+define delay		dwellTime
+define loopcounter	wbstCmplx
+define loopcounter      pointsForAveraging
+
+"pointsForAveraging = l1"
+"dwellTime = 2 * d1 * pointsForAveraging" ; for one point in wobble curve
+"wbstCmplx = td/2"
+
+
+	ze	
+		
+#ifdef WOBB_GRAD
+
+        ;optional gradient for removing CW wiggles on Cryo Probes
+        d0 UNBLKGRAD
+        d0 gron0
+
+#endif
+
+    1	100m ;speed adjustment
+
+#ifdef WOBB_F1
+        subr WOBB_ON_CHAN(freqList1, setrtp1, f1, adc1, EOSCNP1)
+#endif
+#ifdef WOBB_F2
+        subr WOBB_ON_CHAN(freqList2, setrtp2, f2, adc2, EOSCNP2)
+#endif
+#ifdef WOBB_F3
+        subr WOBB_ON_CHAN(freqList3, setrtp3, f3, adc3, EOSCNP3)
+#endif
+#ifdef WOBB_F4
+        subr WOBB_ON_CHAN(freqList4, setrtp4, f4, adc4, EOSCNP4)
+#endif
+#ifdef WOBB_F5
+        subr WOBB_ON_CHAN(freqList5, setrtp5, f5, adc5, EOSCNP5)
+#endif
+#ifdef WOBB_F6
+        subr WOBB_ON_CHAN(freqList6, setrtp6, f6, adc6, EOSCNP6)
+#endif
+#ifdef WOBB_F7
+        subr WOBB_ON_CHAN(freqList7, setrtp7, f7, adc7, EOSCNP7)
+#endif
+#ifdef WOBB_F8
+        subr WOBB_ON_CHAN(freqList8, setrtp8, f8, adc8, EOSCNP8)
+#endif
+
+
+	exec_on_other
+	100m
+	exec_wait
+
+	RCYC
+
+#ifdef WOBB_GRAD
+
+        d0 groff
+        d0 BLKGRAD
+
+#endif
+					
+	exit
+
+
+
+ph0 = 0

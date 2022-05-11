@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import sys
 import os
-sys.path.insert(0,'/Users/SRG/Documents/Adam/Python/SSNMR/functions')
+sys.path.insert(0,'/Users/SRG/Documents/GitHub/SSNMR/functions')
 import numpy as np
 import functions as proc
 import simpson as simproc
@@ -14,8 +14,13 @@ start_time = time.time()
 cwd =  os.getcwd()
 os.chdir(cwd + '\\' + '20')
 fid = proc.loadfid2('ser',plot='no')
-# np.save('128t1_ref_FID_EXP20.npy',fid)
+np.save('128t1_ref_FID_EXP20.npy',fid)
+
+#plot 1D FID - for figure, comment out
+# f = np.reshape(fid,(512*129,))
+# plt.plot(f.real)
 # sys.exit()
+
 #Params:
 nzf1 = 512
 nzf2 = 4096
@@ -34,6 +39,7 @@ spec = proc.mqproc(fid, SH = 7/9, zf1=nzf1, zf2=nzf2, lb1=0, lb2=5)
 ph = [243 + 10 -6, 797420 + 140, 0, 0]
 #ph = proc.autophase(spec[196,:],50,phase2='no')
 spec = proc.phase(spec,ph,ax=1)
+# proc.mphase(np.fft.fftshift(np.fft.fft2(fid,(nzf1,nzf2))))
 # proc.mphase(spec)
 
 #2D SWT

@@ -1,12 +1,12 @@
-##TITLE= Parameter file, TopSpin 4.1.3
+##TITLE= Parameter file, TopSpin 4.0.7
 ##JCAMPDX= 5.0
 ##DATATYPE= Parameter Values
-##NPOINTS= 3	$$ modification sequence number
+##NPOINTS= 8	$$ modification sequence number
 ##ORIGIN= Bruker BioSpin GmbH
 ##OWNER= nmrsu
-$$ 2021-11-02 15:41:40.600 -0700  THE-LAB\mason42@mapfire470
-$$ C:/Bruker/TopSpin4.1.3/data/MAS 1 testing/24/pdata/1/proc
-$$ process C:\Bruker\TopSpin4.1.3\prog\mod\dataserver.exe
+$$ 2022-02-16 16:19:52.380 -0500  SRG@DESKTOP-R5S7N7V
+$$ C:/Users/SRG/Documents/GitHub/SSNMR/Experimental Datasets/Chlorin HetCor/24/pdata/1/proc
+$$ process C:\Bruker\TopSpin4.0.7\prog\mod\dataserver.exe
 ##$ABSF1= 196.4919
 ##$ABSF2= 8.889185
 ##$ABSG= 5
@@ -66,11 +66,11 @@ $$ process C:\Bruker\TopSpin4.1.3\prog\mod\dataserver.exe
 ##$MddPHASE= 0
 ##$MddSEED= 0
 ##$MddSRSIZE= 0
-##$Mdd_CsALG= 0
+##$Mdd_CsALG= 1
 ##$Mdd_CsLAMBDA= 1
 ##$Mdd_CsNITER= 0
 ##$Mdd_CsNORM= 0
-##$Mdd_CsVE= yes
+##$Mdd_CsVE= no
 ##$Mdd_CsZF= 0
 ##$Mdd_LrLAMBDA= 0
 ##$Mdd_LrNITER= 0
@@ -106,11 +106,11 @@ $$ process C:\Bruker\TopSpin4.1.3\prog\mod\dataserver.exe
 ##$RDPOS= 0
 ##$REVERSE= no
 ##$SF= 75.711655
-##$SI= 512
+##$SI= 8192
 ##$SIGF1= 0
 ##$SIGF2= 0
 ##$SINO= 0
-##$SIOLD= 512
+##$SIOLD= 8192
 ##$SPECTYP= <>
 ##$SREF_mod= 1
 ##$SREGLST= <1H.CDCl3>
@@ -120,7 +120,7 @@ $$ process C:\Bruker\TopSpin4.1.3\prog\mod\dataserver.exe
 ##$SW_p= 5882.35294117038
 ##$SYMM= 0
 ##$S_DEV= 0
-##$TDeff= 1024
+##$TDeff= 0
 ##$TDoff= 0
 ##$TI= <>
 ##$TILT= no

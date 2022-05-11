@@ -1,0 +1,37 @@
+; wurst_zg.ih
+;
+;  - this pulse program can be used to selectively saturate
+;    satellites of spin = n/2 nuclei for signal enhancement
+
+;ns : 2*n
+;p1 : 90 pulse at PLW1
+;p8 : sweep time
+;d1 : recycle delay
+;d4 : short delay between sweep and read out pulse
+;pl1 : power level for selective 90 degree pulse
+;sp1 : power for frequency sweep
+;spnam1 : wursti
+;cnst31 : MAS freq [Hz]
+;l31 : # rotor periods for sweep pulse
+
+;$CLASS=Solids
+;$DIM=1D
+;$TYPE=half integer quadrupoles
+;$SUBTYPE=simple 1D
+;$COMMENT=selective CT excitation with WURST enhancement
+
+"p8=1s*l30/cnst31"
+
+1 ze
+2 d1
+  (p8:sp1 ph1):f1
+  d4
+  (p1 pl1 ph2):f1
+  go=2 ph31
+  wr #0 
+exit
+
+ph1= 0 2 1 3
+ph2= 0 2 1 3
+ph31=0 2 1 3
+

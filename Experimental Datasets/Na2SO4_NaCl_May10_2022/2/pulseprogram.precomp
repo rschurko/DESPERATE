@@ -1,0 +1,90 @@
+# 1 "/root/.topspin-BladeEpu/local_acqu/ppDirs/zg"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "/root/.topspin-BladeEpu/local_acqu/ppDirs/zg"
+;zg
+;avance-version (12/01/11)
+;1D sequence
+;
+;$CLASS=HighRes
+;$DIM=1D
+;$TYPE=
+;$SUBTYPE=
+;$COMMENT=
+
+
+# 1 "/root/.topspin-BladeEpu/local_acqu/ppDirs/Avance.incl" 1
+;Avance4.incl
+;   for AV 4
+;
+;avance-version (16/08/18)
+;
+;$CLASS=HighRes Incl
+;$COMMENT=
+
+
+# 19 "/root/.topspin-BladeEpu/local_acqu/ppDirs/Avance.incl"
+;setrtp0 denotes TimingController
+
+
+# 50 "/root/.topspin-BladeEpu/local_acqu/ppDirs/Avance.incl"
+# 51 "/root/.topspin-BladeEpu/local_acqu/ppDirs/Avance.incl"
+
+
+# 63 "/root/.topspin-BladeEpu/local_acqu/ppDirs/Avance.incl"
+# 89 "/root/.topspin-BladeEpu/local_acqu/ppDirs/Avance.incl"
+# 90 "/root/.topspin-BladeEpu/local_acqu/ppDirs/Avance.incl"
+
+
+# 123 "/root/.topspin-BladeEpu/local_acqu/ppDirs/Avance.incl"
+;#define LOWQ
+;#define HIGHQ
+
+
+;#define MIX_UP
+;#define MIX_DOWN
+# 136 "/root/.topspin-BladeEpu/local_acqu/ppDirs/Avance.incl"
+;$Id: Avance4.incl,v 1.11 2016/11/11 13:43:39 ber Exp $
+# 13 "/root/.topspin-BladeEpu/local_acqu/ppDirs/zg" 2
+
+
+"acqt0=-p1*2/3.1416"
+# 1 "mc_line 18 file /root/.topspin-BladeEpu/local_acqu/ppDirs/zg exp. def. part of mc cmd. before ze"
+; dimension 1D; AQ_mode 
+define delay MCWRK
+define delay MCREST
+"MCREST = 30m - 30m"
+"MCWRK = 0.333333*30m"
+# 18 "/root/.topspin-BladeEpu/local_acqu/ppDirs/zg"
+# 18 "/root/.topspin-BladeEpu/local_acqu/ppDirs/zg"
+1 ze
+# 1 "mc_line 18 file /root/.topspin-BladeEpu/local_acqu/ppDirs/zg exp. def. of mc cmd. after ze"
+# 19 "/root/.topspin-BladeEpu/local_acqu/ppDirs/zg"
+# 1 "mc_line 19 file /root/.topspin-BladeEpu/local_acqu/ppDirs/zg exp. start label for mc cmd."
+2 MCWRK  * 2
+LBLF0, MCWRK
+  MCREST
+# 20 "/root/.topspin-BladeEpu/local_acqu/ppDirs/zg"
+  d1
+  p1 ph1
+  go=2 ph31
+# 1 "mc_line 23 file /root/.topspin-BladeEpu/local_acqu/ppDirs/zg exp. mc cmd. in line"
+  MCWRK wr #0
+  MCWRK zd
+  lo to LBLF0 times td0
+
+# 24 "/root/.topspin-BladeEpu/local_acqu/ppDirs/zg"
+exit
+
+
+ph1=0 2 2 0 1 3 3 1
+ph31=0 2 2 0 1 3 3 1
+# 31 "/root/.topspin-BladeEpu/local_acqu/ppDirs/zg"
+;pl1 : f1 channel - power level for pulse (default)
+;p1 : f1 channel -  high power pulse
+;d1 : relaxation delay; 1-5 * T1
+;ns: 1 * n, total number of scans: NS * TD0
+
+
+# 38 "/root/.topspin-BladeEpu/local_acqu/ppDirs/zg"
+;$Id: zg,v 1.11 2012/01/31 17:49:31 ber Exp $

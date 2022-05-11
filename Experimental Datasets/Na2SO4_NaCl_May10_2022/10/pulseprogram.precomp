@@ -1,0 +1,96 @@
+# 1 "/root/.topspin-BladeEpu/local_acqu/ppDirs/hahnecho"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "/root/.topspin-BladeEpu/local_acqu/ppDirs/hahnecho"
+;hahnecho
+;
+;
+;TS3 / 03.06.2011
+;
+;checked by SEWE 03.06.2011
+;
+; Hahn-Echo experiment
+; to be used in MAS experiments, echo delay is set to be an integer number
+; of rotor periods
+; acquisition starts immediately after 180 degree pulse to be able to sample whole echo
+; for short echo delays set parameter nsp equal to number of points before echo-top
+; in this case use digmod analog or digmod digital and dspfirm smooth
+; for full echo accumulation digmod digital and dspfirm sharp can also be used
+; set phc0=0 and phc1=d6*swh*360 and do straight fp, sine bell or squared sine bell
+; window functions may be used
+; for static experiments enter cnst31 = 1e6 and set l1 to desired echo delay in us
+;
+;
+;parameters:
+;pl1 : RF power level for 90/180
+;p1 : 90 degree pulse
+;p2 : =p1*2, 180 degree pulse
+;d1 : recycle delay
+;d6 : echo delay (calculated)
+;cnst31 : =MAS spin rate (or =1e6 for static)
+;l1 : # of rotor cycles (or tau in us)
+;ns : 16*n
+;zgoptns : -Ddec (if decoupling desired) or blank
+;
+;
+;$CLASS=Solids
+;$DIM=1D
+;$TYPE=direct excitation
+;$SUBTYPE=simple 1D
+;$COMMENT=Hahn-Echo experiment, MAS or static, standard parameters
+
+prosol relations=<solids_default>
+
+# 41 "/root/.topspin-BladeEpu/local_acqu/ppDirs/hahnecho"
+"p2=p1*2"
+"d6=((1s*l1)/cnst31)-(p1/2)-(p2/2)"
+;cnst11 : to adjust t=0 for acquisition, if digmod = baseopt
+"acqt0=0"
+
+
+# 1 "mc_line 53 file /root/.topspin-BladeEpu/local_acqu/ppDirs/hahnecho exp. def. part of mc cmd. before ze"
+; dimension 1D; AQ_mode 
+define delay MCWRK
+define delay MCREST
+"MCREST = 10m - 10m"
+"MCWRK = 0.333333*10m"
+# 53 "/root/.topspin-BladeEpu/local_acqu/ppDirs/hahnecho"
+# 53 "/root/.topspin-BladeEpu/local_acqu/ppDirs/hahnecho"
+1 ze
+# 1 "mc_line 53 file /root/.topspin-BladeEpu/local_acqu/ppDirs/hahnecho exp. def. of mc cmd. after ze"
+# 54 "/root/.topspin-BladeEpu/local_acqu/ppDirs/hahnecho"
+# 1 "mc_line 54 file /root/.topspin-BladeEpu/local_acqu/ppDirs/hahnecho exp. start label for mc cmd."
+2 MCWRK  * 2
+LBLF0, MCWRK
+  MCREST
+# 55 "/root/.topspin-BladeEpu/local_acqu/ppDirs/hahnecho"
+
+
+# 58 "/root/.topspin-BladeEpu/local_acqu/ppDirs/hahnecho"
+  d1
+
+  (p1 pl1 ph1):f1
+
+# 64 "/root/.topspin-BladeEpu/local_acqu/ppDirs/hahnecho"
+  d6
+
+  (p2 ph2):f1
+  go=2 ph31
+
+# 1 "mc_line 71 file /root/.topspin-BladeEpu/local_acqu/ppDirs/hahnecho exp. mc cmd. in line"
+  MCWRK wr #0
+  MCWRK zd
+  lo to LBLF0 times td0
+
+# 72 "/root/.topspin-BladeEpu/local_acqu/ppDirs/hahnecho"
+# 72 "/root/.topspin-BladeEpu/local_acqu/ppDirs/hahnecho"
+exit
+
+ph0=0
+ph1=0 1 2 3
+ph2=0 0 0 0 1 1 1 1 2 2 2 2 3 3 3 3
+ph30=0
+ph31=0 3 2 1 2 1 0 3
+
+# 82 "/root/.topspin-BladeEpu/local_acqu/ppDirs/hahnecho"
+;$Id: hahnecho,v 1.7 2017/02/22 16:58:55 ber Exp $

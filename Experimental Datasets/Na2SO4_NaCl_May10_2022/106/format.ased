@@ -1,0 +1,223 @@
+#*******************************************************************
+#
+# $Source: /sc/CvsTree/sc/gen/src/form/ased_acqu.form,v $
+#
+# Copyright (c) 1995 - 2008
+# BRUKER BioSpin GmbH
+# D-76287 Rheinstetten, Germany
+#
+# All Rights Reserved
+#
+#
+# $Id: ased_acqu.form,v 1.40 2020/07/10 16:17:06 alexander.herbig Exp $
+#*******************************************************************
+EDIT_PAR COMMAND FILE
+
+DI_MODE         LONG
+ED_ENTRY        ACQU
+ORDER           FILE
+
+
+HEADER		"====== General ======"
+NAME		PULPROG
+END
+NAME		TD
+END
+NAME		SW
+END
+T_NAME		SWH
+		TYPE	R32
+		CLASS	ACQU
+		SUBRANGE 0.0 1e38
+		REL	"SWH=SW*SFO1"
+		INV_REL "SW=SWH/SFO1"
+		UNIT	"Hz"
+		FORMAT	"%14.2f Hz"
+		TEXT	"sweep width in acquisition direction"
+END
+T_NAME          AQ
+		TYPE	R32
+		CLASS	ACQU
+		SUBRANGE 0.0 1e38
+		REL	"AQ=aqcalc(SW,SFO1,TD,DIGTYP,FnMODE)"
+		INV_REL	"TD=tdcalc(SW,SFO1,1.0e6*AQ,DIGTYP,FnMODE)"
+		UNIT	"sec"
+		FORMAT	"%14.7f sec"
+                TEXT	"acquisition time"
+END
+NAME		RG
+END
+T_NAME          DW
+		TYPE	R32
+		CLASS	ACQU
+		SUBRANGE 0.0 1e38
+		REL	"DW=1/(2*SW*SFO1)"
+		INV_REL	"SW=1000000/(2*(0.005+DW)*SFO1)"
+		UNIT	"usec"
+		FORMAT	"%14.3f usec"
+		TEXT	"dwell time "
+END
+NAME		DE
+		FORMAT	"%14.2f usec"
+END
+T_NAME		GRPDLY
+		TYPE	R64
+		SUBRANGE 0 1e38
+		CLASS	ACQU
+		REL	"GRPDLY=GRPDLY"
+		INV_REL	"GRPDLY=GRPDLY"				
+		UNIT	"no"
+		TEXT	"group delay of digital filter"
+		FORMAT	"%14.0f"
+		NONEDIT
+END
+T_NAME		D1
+TYPE	R32
+CLASS	ACQU
+SUBRANGE 0.0 1e38
+REL	"D1=D[1]"
+INV_REL	"D[1]=D1"
+UNIT	"sec"
+FORMAT	"%14.9f sec"
+		TEXT		"recycle delay"
+END
+T_NAME		D4
+TYPE	R32
+CLASS	ACQU
+SUBRANGE 0.0 1e38
+REL	"D4=D[4]"
+INV_REL	"D[4]=D4"
+UNIT	"sec"
+FORMAT	"%14.9f sec"
+		TEXT		"short delay between sweep and read out pulse"
+END
+NAME		DS
+		TEXT	"number of dummy scans"
+END
+NAME		NS
+		TEXT	"scans to execute"
+END
+HEADER		"======== CHANNEL f1 ========"
+NAME		SFO1
+FORMAT	"%14.7f MHz"
+TEXT	"frequency of ch. 1"
+END
+NAME		O1
+FORMAT	"%14.2f Hz"
+TEXT	"frequency of ch. 1"
+END
+T_NAME		O1P
+TYPE	R64
+CLASS	ACQU
+SUBRANGE -1e38 1e38
+REL	"O1P=O1/BF1"
+INV_REL	"O1=O1P*BF1"
+UNIT	"ppm"
+FORMAT	"%14.3f ppm"
+TEXT	"frequency of ch. 1"
+END
+NAME		NUC1
+NONEDIT
+TEXT	"nucleus for channel 1"
+END
+T_NAME		CNST31
+TYPE	R32
+CLASS	ACQU
+SUBRANGE -1e38 1e38
+REL	"CNST31=CNST[31]"
+INV_REL	"CNST[31]=CNST31"
+FORMAT	"%14.7f"
+		TEXT		"MAS freq [Hz]"
+END
+T_NAME		L30
+TYPE	R32
+CLASS	ACQU
+SUBRANGE 0.0 1e38
+REL	"L30=L[30]"
+INV_REL	"L[30]=L30"
+FORMAT	"%14.0f"
+TEXT	"loop counter 30"
+END
+T_NAME		P1
+TYPE	R32
+CLASS	ACQU
+SUBRANGE 0.0 1.0e10
+REL	"P1=P[1]"
+INV_REL	"P[1]=P1"
+UNIT	"usec"
+FORMAT	"%14.3f usec"
+		TEXT		"90 pulse at PLW1"
+END
+T_NAME		p8
+		TYPE	R32
+		SUBRANGE -1e38 1e38
+		CLASS	ACQU
+		REL	"p8=1s*l30/cnst31"
+		INV_REL	"D[0]=p8"
+		UNIT	"usec"
+		TEXT		"sweep time"
+		FORMAT	"%14.2f usec"
+		NONEDIT
+END
+T_NAME		PLW1
+TYPE	R32
+CLASS	ACQU
+SUBRANGE 0 1098.87
+REL	"PLW1=PLW[1]"
+INV_REL	"PLW[1]=PLW1"
+UNIT	"W"
+FORMAT	"%14.5g W"
+		TEXT		"power level for selective 90 degree pulse"
+END
+T_NAME		PLdB1
+TYPE	R32
+CLASS	ACQU
+SUBRANGE -30.5095 1000
+REL	"if(PLW[1]>0)PLdB1=-10*log(PLW[1])/LN10;else PLdB1=1000;"
+INV_REL	"PLW[1]=0;if(PLdB1<1000)PLW[1]=pow(10.0,(-PLdB1)/10.0)"
+UNIT	"dB"
+FORMAT	"%14.2f dB"
+TEXT	"power PL1 in dB"
+END
+NAME		SPNAM[1]
+		TEXT		"wursti"
+END
+T_NAME		SPOAL1
+TYPE	R32
+CLASS	ACQU
+SUBRANGE -1.0 1.0
+REL	"SPOAL1=SPOAL[1]"
+INV_REL	"SPOAL[1]=SPOAL1"
+FORMAT	"%14.3f"
+TEXT	"phase alignment of freq. offset in SP1"
+END
+T_NAME		SPOFFS1
+TYPE	R32
+CLASS	ACQU
+SUBRANGE -1e38 1e38
+REL	"SPOFFS1=SPOFFS[1]"
+INV_REL	"SPOFFS[1]=SPOFFS1"
+UNIT	"Hz"
+FORMAT	"%14.2f Hz"
+TEXT	"offset frequency for SP1"
+END
+T_NAME		SPW1
+TYPE	R32
+CLASS	ACQU
+SUBRANGE 0 1098.87
+REL	"SPW1=SPW[1]"
+INV_REL	"SPW[1]=SPW1"
+UNIT	"W"
+FORMAT	"%14.5g W"
+		TEXT		"power for frequency sweep"
+END
+T_NAME		SPdB1
+TYPE	R32
+CLASS	ACQU
+SUBRANGE -30.5095 1000
+REL	"if(SPW[1]>0)SPdB1=-10*log(SPW[1])/LN10;elseSPdB1=1000;"
+INV_REL	"SPW[1]=0;if(SPdB1<1000)SPW[1]=pow(10.0,(-SPdB1)/10.0)"
+UNIT	"dB"
+FORMAT	"%14.2f -dBW"
+TEXT	"power SPW1 in -dBW"
+END
