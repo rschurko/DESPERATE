@@ -36,5 +36,3 @@ This software was supported (in part) by the National Science Foundation Chemica
 MIT
 
 [//]: # ()
-
-   [dill]: <https://github.com/joemccann/dillinger>
