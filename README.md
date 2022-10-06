@@ -1,22 +1,25 @@
-# Relaxation Assisted Seperation Toolbox
+# DEnoising SPEctRA in pyThon with wavElets (DESPERATE)
 
-Relaxation assisted seperation (RAS) is a method for analyzing and resolving NMR data using relaxation in MATLAB.
+DESPERATE is a Python library for processing and denoising NMR spectra
 
 
 ## Requirements
-- All testing has been done on MATLAB 2020a and newer
-- The Parrallel Computing Toolbox in MATLAB
-- Previously developed NNLS functions are included with this distribution
+- All testing has been done with Python 3.10 and newer
+- NumPy
+- SciPy
+- matplotlib
+- PyWavelets
+- nmrglue (mainly optional)
 
 ## Installation
-- #
+- pip #
 
 ## Features
 - 
 
 ## Citing
-If you use RAS please cite the following:
-A.R. Altenhof, H. E. Mason, and R.W. Schurko. ## J. Magn. Reson. https://doi.org/10.1039/D2CP00910B
+If you use DESPERATE please cite the following:
+A.R. Altenhof, H. E. Mason, and R.W. Schurko. ## J. Magn. Reson. https://doi.org/#
 
 ## Creators
 - Harris Mason
