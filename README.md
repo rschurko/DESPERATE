@@ -16,7 +16,7 @@ DESPERATE is a Python library for processing and denoising NMR spectra
 
 ## Features
 - functions.py contains some processing functions for Topspin data including loading FID's or SER's, FFT, window functions, phasing, automatic phasing, a manual phasing widget, Cadzow denoising, and PCA denoising
-- 
+- wavelet_denoise.py contains all wavelet denoising functions; wavelet_denoise and wavelet_denoise2 are for 1D and 2D spectra, respectively
 
 ## Citing
 If you use DESPERATE please cite the following:
