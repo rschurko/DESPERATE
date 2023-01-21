@@ -22,7 +22,7 @@ DESPERATE is a Python library for processing and denoising NMR spectra
 
 ## Citing
 If you use DESPERATE please cite the following:
-A.R. Altenhof, H. E. Mason, and R.W. Schurko. ## J. Magn. Reson. https://doi.org/#
+A.R. Altenhof, H. E. Mason, and R.W. Schurko, 2022. DESPERATE: A Python Library for Processing and Denoising NMR Spectra. J. Magn. Reson. 346, 107320 DOI:10.1016/j.jmr.2022.107320
 
 ## Creators
 - Harris Mason
