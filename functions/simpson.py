@@ -37,7 +37,7 @@ def read(name,lb,plot):
     
     return fid, SW
 
-def read2(name,plot):
+def read2(name,plot='no'):
     """Read SIMPSON file; preferrably the FID"""
     
     refid = np.array(pandas.read_csv(name, sep=' ',skiprows=[0,1,2,3], skipfooter=1,
@@ -46,6 +46,7 @@ def read2(name,plot):
                     engine='python',index_col=1))
     fid = refid+1j*(imfid)
     
+    
     g=open(name, mode='r')
     lines=g.readlines()
     g.close()
@@ -53,6 +54,35 @@ def read2(name,plot):
     SW = float(lines[2].split('=')[1])
     DW = 1/SW
     time = np.linspace(0, DW*float(td), num=td)
+    
+    fid = np.reshape(fid,(td,))
+        
+    if plot == 'yes':
+        plt.subplot(211)
+        plt.plot(time,np.real(fid),'b')
+        plt.title('Real')
+        plt.subplot(212)
+        plt.plot(time,np.imag(fid),'r')
+        plt.title('Imaginary')
+        plt.xlabel('Time (s)')
+    
+    return fid, SW
+
+
+def read3(name,plot='no'):
+    """Read SIMPSON file; preferrably the FID"""
+    
+    g=open(name, mode='r')
+    lines=g.readlines()
+    g.close()
+    td = int(lines[1].split('=')[1])
+    SW = float(lines[2].split('=')[1])
+    DW = 1/SW
+    time = np.linspace(0, DW*float(td), num=td)
+    
+    d = np.loadtxt(name, skiprows = 5, max_rows = td)
+    
+    fid = d[:,0]+1j*(d[:,1])
     
     fid = np.reshape(fid,(td,))
         

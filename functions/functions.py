@@ -1,12 +1,25 @@
-# -*- coding: utf-8 -*-
+# Adam Altenhof
+
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib as mpl
 from matplotlib.widgets import Slider, Button
 import os
 from mpl_toolkits.mplot3d import Axes3D
 import scipy 
 from scipy.optimize import curve_fit
+import scipy.signal as sig
 import sys
+from scipy.signal import find_peaks
+import pybaselines as bl
+import wavelet_denoise as wave
+
+#####Plotting Stuff
+mpl.rcParams['font.family'] = "arial"
+mpl.rcParams['font.size'] = 14
+mpl.rcParams['pdf.fonttype'] = 42
+plt.rcParams['figure.dpi'] = 100
+#####
 
 def loadfid(name,plot='no'):
     """loads Topspin FID with optional plotting"""
@@ -81,6 +94,127 @@ def loadfid2(name,plot='no'):
         plt.ylabel('t$_1$ (s)')
     return fid
 
+def get_group(dic):
+    """Return the # points from the Bruker digital filter.
+    dic : dictionary of acqus
+    """
+    
+    # g=open("acqus", mode='r')
+    # lines=g.readlines()
+    # for i in range(len(lines)):
+    #     if lines[i].split()[0] == '##$SW_h=': #SW actual index
+    #         SW = float(lines[i].split()[1])
+    #     if lines[i].split()[0] == '##$DTYPA=': #TD actual index
+    #         dt = int(lines[i].split()[1])
+    # DW = 1/SW
+    
+    ##ssnake fcn
+    dspfirm = dic["DSPFIRM"]
+    digtyp = dic["DIGTYP"]
+    decim = int(dic["DECIM"]) # decim can be float ?
+    dspfvs = dic["DSPFVS"]
+    digmod = dic["DIGMOD"]
+    
+    if digmod == 0:
+        return None
+    if dspfvs >= 20:
+        return dic["GRPDLY"] #* 2 * np.pi
+    if ((dspfvs == 10) | (dspfvs == 11) |
+                         (dspfvs == 12) | (dspfvs == 13)):
+        grpdly_table = {
+            10:     {
+                2: 44.7500,
+                3: 33.5000,
+                4: 66.6250,
+                6: 59.0833,
+                8: 68.5625,
+                12: 60.3750,
+                16: 69.5313,
+                24: 61.0208,
+                32: 70.0156,
+                48: 61.3438,
+                64: 70.2578,
+                96: 61.5052,
+                128: 70.3789,
+                192: 61.5859,
+                256: 70.4395,
+                384: 61.6263,
+                512: 70.4697,
+                768: 61.6465,
+                1024:    70.4849,
+                1536: 61.6566,
+                2048: 70.4924,
+                },
+            11:    {
+                2: 46.0000,
+                3: 36.5000,
+                4: 48.0000,
+                6: 50.1667,
+                8: 53.2500,
+                12: 69.5000,
+                16: 72.2500,
+                24: 70.1667,
+                32: 72.7500,
+                48: 70.5000,
+                64: 73.0000,
+                96: 70.6667,
+                128: 72.5000,
+                192: 71.3333,
+                256: 72.2500,
+                384: 71.6667,
+                512: 72.1250,
+                768: 71.8333,
+                1024: 72.0625,
+                1536: 71.9167,
+                2048: 72.0313
+                },
+            12:     {
+                2: 46.3110,
+                3: 36.5300,
+                4: 47.8700,
+                6: 50.2290,
+                8: 53.2890,
+                12: 69.5510,
+                16: 71.6000,
+                24: 70.1840,
+                32: 72.1380,
+                48: 70.5280,
+                64: 72.3480,
+                96: 70.7000,
+                128: 72.5240,
+                192: 0.0000,
+                256: 0.0000,
+                384: 0.0000,
+                512: 0.0000,
+                768: 0.0000,
+                1024:    0.0000,
+                1536: 0.0000,
+                2048: 0.0000
+                },
+            13:     {
+                2: 2.75,
+                3: 2.8333333333333333,
+                4: 2.875,
+                6: 2.9166666666666667,
+                8: 2.9375,
+                12: 2.9583333333333333,
+                16: 2.96875,
+                24: 2.9791666666666667,
+                32: 2.984375,
+                48: 2.9895833333333333,
+                64: 2.9921875,
+                96: 2.9947916666666667
+                }
+            }
+
+#            # Take correction from database. Based on matNMR routine (Jacco van Beek), which is itself based
+#            # on a text by W. M. Westler and F. Abildgaard.
+        return grpdly_table[dspfvs][decim]#* 2 * np.pi
+    if dspfvs == 0:
+        return None
+    if dspfvs == -1: # For FIDs gnereated by genser of genfid for example
+        return None
+
 def freqaxis(spec,unit='kHz'):
     "Generate the referenced frequency axis (in kHz or ppm) as an array"
     
@@ -100,7 +234,7 @@ def freqaxis(spec,unit='kHz'):
         if lines[i].split()[0] == '##$OFFSET=': #Offset actual index
             OFFSET = float(lines[i].split()[1])
         
-        if lines[i].split()[0] == '##$SF=': #SW actual index
+        if lines[i].split()[0] == '##$SF=': #
             SF = float(lines[i].split()[1])
 
     off = ((OFFSET*SF)-SW/2)*1e-3
@@ -220,6 +354,16 @@ def wurst(fid,N):
     
     return lbfid
 
+def nearest(a, a0):
+    "Element index in nd array 'a' closest to the scalar value 'a0'"
+    idx = np.abs(a - a0).argmin()
+    return idx
+
+def contour(M):
+    "Contour a matrix and exit; useful for debugging."
+    plt.contour(abs(M),40)
+    sys.exit()
+
 def fft(fid,n=0):
     """1D fftshift and fft"""
     zfi = autozero(fid,n)
@@ -237,17 +381,40 @@ def fmc(fid,SW):
     spec = np.fft.fftshift(np.fft.fft(fid,n=zfi)).abs()
     return spec
 
+def peakp(f, spec):
+    "Find peak width with same units as f"
+    
+    spec = np.real(spec)
+    m = np.argmax(spec)
+    idx = nearest(spec, np.max(spec)/2)
+    delta = 2*( abs(f[m] - f[idx] ) )
+    return delta
+
 def mesh(matrix):
     """3D mesh plot of a 2D matrix just like Matlab's mesh function"""
     
     x = np.arange(matrix.shape[0])
     y = np.arange(matrix.shape[1])
-    x, y = np.meshgrid(x, y)
-    fig = plt.figure()
-    ax = Axes3D(fig)
-    surf=ax.plot_surface(x.T, y.T, matrix, cmap='cool')
-    fig.colorbar(surf, shrink=0.5, aspect=10)
+    # x, y = np.meshgrid(x, y)
+    # fig = plt.figure()
+    # ax = Axes3D(fig)
+    # surf=ax.plot_surface(x.T, y.T, matrix, cmap='cool')
+    # fig.colorbar(surf, shrink=0.5, aspect=10)
+    
+    from mpl_toolkits import mplot3d
+     
+    # Creating figure
+    fig = plt.figure(figsize =(14, 9))
+    ax = plt.axes(projection ='3d')
+     
+    # Creating plot
+    ax.plot_surface(x.T, y.T, matrix)
+     
+    # show plot
     plt.show()
+    
+    
+    sys.exit()
     return
 
 def phase(spec, phases, ax=0):
@@ -278,7 +445,7 @@ def phase(spec, phases, ax=0):
         a = np.transpose(np.arange(-m/2, m/2, 1))/m
         b = (np.transpose(np.arange((-m/2-off),(m/2-off),1)**2)) / ((m**2)/2)
         phase = ph0 + a*ph1 + b*ph2
-        spec= np.multiply( spec, np.outer(np.exp((phase*(3.14159j/180))),np.ones((1,n))) )
+        spec= np.multiply( spec, np.outer(np.exp((phase*(np.pi*1j/180))),np.ones((1,n))) )
         if ax == 1:
             spec = np.transpose(spec)
     return spec
@@ -301,6 +468,8 @@ def mphase(data,fine=0,ax=1):
         ax = fig.subplots()
         p, = ax.plot(np.real(data),'k')
         z, = ax.plot(np.zeros((len(data),1)),'m--')
+        
+        plt.ylim([-np.max(abs(data)), 1.2*np.max(abs(data))])
         
         but = plt.axes([0.25, 0.25, 0.65, 0.03])
         off_slide = plt.axes([0.25, 0.2, 0.65, 0.03])
@@ -334,6 +503,8 @@ def mphase(data,fine=0,ax=1):
         ph0.on_changed(update); ph1.on_changed(update)
         ph2.on_changed(update); off.on_changed(update)
         b.on_clicked(press)
+        # b.close_event(sys.exit()) #try
+        fig.canvas.mpl_connect('close_event', sys.exit())
         plt.show(block=True)
         plt.close('all')
         
@@ -394,7 +565,7 @@ def mphase(data,fine=0,ax=1):
     return [ph0.val,ph1.val,ph2.val,off.val]
 
 def autophase(spec,n,phase2='no'):
-    """Automatically phases spectrum up to second order. Reccommended to use heavy line broadening prior to use"""
+    """Automatically phases spectrum up to second order."""
     
     td = spec.size
     size = td
@@ -462,11 +633,11 @@ def autophase(spec,n,phase2='no'):
         
     off = BestOffset[a]
     phases = [ph0,ph1*360,ph2,off]
-    plt.plot(np.real(phase(spec,phases)) + 1*np.max(np.abs(spec)),'m',label='Phased')
-    plt.plot(np.abs(spec),'k',label='Magnitude')
-    plt.plot(np.abs(spec) - np.real(phase(spec,phases)) + 2*np.max(np.abs(spec)),'r--',label='Difference')
-    plt.gca().invert_xaxis()
-    plt.legend(loc='upper right')
+    # plt.plot(np.real(phase(spec,phases)) + 1*np.max(np.abs(spec)),'m',label='Phased')
+    # plt.plot(np.abs(spec),'k',label='Magnitude')
+    # plt.plot(np.abs(spec) - np.real(phase(spec,phases)) + 2*np.max(np.abs(spec)),'r--',label='Difference')
+    # plt.gca().invert_xaxis()
+    # plt.legend(loc='upper right')
     
     phases = np.round_(phases,0)
     print('[%d, %d, %d, %d]' % (phases[0],phases[1],phases[2],phases[3]))
@@ -515,7 +686,7 @@ def coadd(fid,al='no',MAS='no',plot='no'):
         else:
             q = np.argmax(np.abs(np.real(cpmg[:,0])))
             for i in range(l22):
-                r = q - np.argmax(np.abs(np.real(cpmg[:,i]))) #amount to roll by is difference of index of echo tops
+                r = q - np.argmax(np.abs(np.abs(cpmg[:,i]))) #amount to roll by is difference of index of echo tops
                 cpmg[:,i] = np.roll(cpmg[:,i],r)
         
     fidcoadd = np.sum(cpmg, axis=1) 
@@ -525,11 +696,11 @@ def coadd(fid,al='no',MAS='no',plot='no'):
         plt.title('Real Coadded FID')
     return cpmg, fidcoadd
 
-def coaddgen(fid,pw=11,dring=3,dwindow=6,loop=22,lrot = 15,MAS='no'):
+def coaddgen(fid,pw=11,dring=3,dwindow=6,loop=22,lrot = 15,MAS='no', al='no'):
     """Automatically coadd all spin echos. Attempt at generic coaddition.
     Assumes that the CPMG pulse sequence has the following structure:
         
-    pulse - tau2 - [tau2 - pulse - tau2 - tau_echo]_N
+    pulse - tau1 - [tau2 - pulse - tau2 - tau_echo]_N
     
     parameters:
     dring: int
@@ -564,10 +735,11 @@ def coaddgen(fid,pw=11,dring=3,dwindow=6,loop=22,lrot = 15,MAS='no'):
         
         if lines[i].split()[0] == '##$SW_h=': #SW actual index
             SW = float(lines[i].split()[1])
+    # l22 = 51 #may need to hardcode a re-write
     DW = 1/SW #(s)
     #par = [d3,d6,l22,l15,tp,decim,SW]
     
-    fid = fid[(2*decim-1):] #remove decimation points
+    # fid = fid[(2*decim-1):] #remove decimation points
     fid = fid[:int((l22)*np.round((d6 + 2*d3 + 2e-6 + tp*1e-6)/DW))] #remove trailing pts
     cpmg = np.transpose( np.reshape(fid, (l22, int(len(fid)/l22) )) )
     
@@ -580,7 +752,7 @@ def coaddgen(fid,pw=11,dring=3,dwindow=6,loop=22,lrot = 15,MAS='no'):
         for i in range(l22):
             r = np.argmax(np.abs(np.real( gauss(cpmg[l-rot:l+rot,i],10) ))) + (l-rot)
             cpmg[:,i] = np.roll(cpmg[:,i],(q-r))
-    else:
+    elif al=='yes':
         q = np.argmax(np.abs(np.real(cpmg[:,0])))
         for i in range(l22):
             r = q - np.argmax(np.abs(np.real(cpmg[:,i]))) #amount to roll by is difference of index of echo tops
@@ -725,7 +897,7 @@ def T2fit(tops,tau):
         
     tops = tops/np.amax(tops)
     tau = np.asarray(tau)
-    plt.plot(tau,tops,'k')
+    plt.plot(tau,tops,'c*')
     plt.xlabel('Time (ms)')
     def f(x,a,T2):
         return a*np.exp(-x/T2)
@@ -737,10 +909,12 @@ def T2fit(tops,tau):
     rmse = np.sqrt(np.mean(np.square(f(tau, popt[0], popt[1])-tops)))
     print('RMSE = %5.4f' % rmse)
     
-    plt.plot(tau, f(tau, popt[0], popt[1]),'r',
+    plt.plot(tau, f(tau, popt[0], popt[1]),'k',
              label='fit a*exp[-t/T2]: a=%5.3f, T2=%5.3f (s), RMSE = %5.3f' % (popt[0],popt[1],rmse))        
     plt.legend()
-    return tau
+    
+    print('sigma =',np.sqrt(np.diag(pcov)))
+    return popt, np.sqrt(np.diag(pcov))
     
 def snr(spec,j=0):
     """SNR measure in the frequency domain. Specturm needs to be phased for accurate measure"""
@@ -764,9 +938,9 @@ def PCA(matrix,r):
     U, s, Vh = scipy.linalg.svd(matrix) #s is a vector of singular values, not a matrix
     plt.figure(1)
     plt.plot(np.abs(s))
-    plt.yscale('log')
+    # plt.yscale('log')
     plt.ylabel('Singular Value Magnitude')
-    plt.xlabel('Singular Value Entry')
+    # plt.xlabel('Singular Value Entry')
     sigma = scipy.linalg.diagsvd(s, m, n) #rebuilds s as sigma matrix
     b = np.dot(sigma, Vh) ##replace with np.matmul or @ 
     z = np.dot(U[:,:r], b[:r,:]) #retain 'r' principal components
@@ -837,3 +1011,220 @@ def cadzow(fid,p=10, plot ='no'):
     fidrecon = np.append( ad, ad2 ) #instead of rebuilding hank, just extract the fid
     return fidrecon
 
+def plot2(spec, freq1, base, s, units = 'kHz', xi = None, xj = None, yi = None, yj = None):
+    """Nice 2D plotting with all axes controlled together.
+    
+    spec : spectrum
+    freq1 : provide an axis for F1, since data could be pseudo 2D
+    base : baseline contour %
+    
+    s : switch for skyline or max projection or both (0,1,2)
+    
+    units : 'kHz' or 'ppm'
+    
+    xij, yij = limits for axes
+    """
+    
+    if units == 'JRES':
+        freq2 = freqaxis(spec[0,:],unit='ppm')
+    else:
+        freq2 = freqaxis(spec[0,:],unit=units)
+        
+        
+    # freq1 = fiso(spec[:,0],unit=units)
+    
+    h = np.max(np.real(spec))
+    lvls = np.linspace((base*1e-2)*h,h,30)
+    
+    # Set up the axes with gridspec 
+    fig = plt.figure(figsize=(12, 8)) # figure size w x h
+    grid = plt.GridSpec(4, 5, hspace=0.3, wspace=0.6) #4x5 grid of subplots #spacings for h and w
+    main_ax = fig.add_subplot(grid[1:, 1:4]) 
+    
+    yplot = fig.add_subplot(grid[1:, 0], sharey=main_ax)
+    xplot = fig.add_subplot(grid[0, 1:4], yticklabels=[], sharex=main_ax)
+    
+    main_ax.contour(freq2,freq1,(np.real(spec)),lvls,cmap='jet')
+    if units == 'ppm':
+        main_ax.set_xlabel('F$_{2}$ (ppm)')
+        main_ax.set_ylabel("F$_{1}$ (ppm)", labelpad=-429)
+    if units == 'kHz':
+        main_ax.set_xlabel('F$_{2}$ (kHz)')
+        main_ax.set_ylabel("F$_{1}$ (kHz)", labelpad=-429)
+    if units == 'JRES':
+        main_ax.set_xlabel('F$_{2}$ (ppm)')
+        main_ax.set_ylabel("F$_{1}$ (Hz)", labelpad=-429)
+    main_ax.invert_yaxis()
+    main_ax.invert_xaxis()
+    main_ax.tick_params(right = True,left = False,labelleft = False, 
+                        labelright=True, which = 'both')
+    main_ax.set_xlim(xi, xj) 
+    main_ax.set_ylim(yi, yj)
+    main_ax.minorticks_on()
+    
+    if s == 0:
+        xplot.plot(freq2,(np.sum(np.real(spec),0)),'k') #sum
+        yplot.plot(np.real(np.sum(spec,1)),freq1,'k')
+    elif s==1:
+        xplot.plot(freq2,(np.max(np.real(spec),0)),'k') #skyline
+        yplot.plot(np.real(np.max(spec,1)),freq1,'k') #Skyline
+    else:
+        xplot.plot(freq2,(np.max(np.real(spec),0) / np.max(np.max(np.real(spec),0)) )+0.5,'k') #both
+        xplot.plot(freq2,(np.sum(np.real(spec),0) / np.max(np.sum(np.real(spec),0))),'r') #
+        yplot.plot(np.real(np.max(spec,1) / np.max(np.max(spec,1)))+0.5,freq1,'k') 
+        yplot.plot(np.real(np.sum(spec,1) / np.max(np.sum(spec,1))),freq1,'r')
+    
+    # yplot.invert_xaxis()
+    # yplot.axis('off')
+    # xplot.axis('off')
+    yplot.invert_xaxis()
+    # s1.axis('off')
+    yplot.axis('off')
+    xplot.axis('off')
+    main_ax.xaxis.grid(True, zorder=0)
+    main_ax.yaxis.grid(True, zorder=0)
+    
+    
+def corr_mls(data, n, ref):
+    """
+    Calculate the correlation between an input signal and an MLS signal of defined length.
+    Normalizes the MLS and the input signal to vary between +/-1.
+    
+    data : nd array
+    n : power for the MLS
+    ref : function to multiply the MLS by
+    
+    """
+    
+    l = 2**n-1
+    
+    td = len(data) ##total length of sim data.
+    m = int(td/l)
+    
+    s0 = sig.max_len_seq(n)[0]-0.5 #nmr data is centered on zero
+    
+    seq0 = []
+    for i in range(m):
+        seq0 = np.concatenate((seq0,s0), axis=None)
+    
+    seq0 = seq0*ref
+    
+    seq0 = seq0 / np.max(seq0)
+    data = data/np.max(data)
+    
+    # plt.figure(4)
+    # plt.plot(data)
+    # # plt.plot(np.fft.fftshift(np.fft.fft(seq0)))
+    # plt.plot((seq0))
+    # sys.exit()
+    
+    out = sig.correlate(data, seq0, mode='same', method = 'fft')
+    
+    print('length = %d' %(l))
+    
+    return out
+
+
+def region_spec(data, thresh=1):
+    """
+    Find regions in a spectrum that contain signal via a 2nd derivative.
+    Gives an 8 percent buffer to to the found peak widths.
+    """
+    
+    diff = np.diff(np.diff(data))
+    # plt.plot(diff)
+    # 1/0
+    l0 = find_peaks(diff, prominence=max(diff)*(thresh*1e-2))[0]
+    
+    l=[]
+    for i in range(int(len(l0)/2)):
+        l+= list(range( int(l0[2*i]*0.92), int(l0[2*i+1]*1.08)) ) 
+    return l
+
+# def poly()
+
+def bl_poly(data, order, g, plot='no'):
+    """
+    Perform polynomial baseline correction.
+    data: real phased, positive-peak NMR data
+    order: int
+    region: binary list of regions where there are signals
+    """
+            
+    # np.where((l==0)|(l==1), l^1, l)
+    # l = np.ones((len(data),))
+    # l[l0] = 0
+    
+    base = bl.polynomial.poly(data, None, order, weights = g)[0]
+    
+    if plot == 'yes':
+        plt.plot(data)
+        plt.plot(np.array(g)*max(base))
+        plt.plot(base)
+    # 1/0
+    
+    return data - base
+
+
+def fit_poly(data, order, g, plot='no'):
+    """
+    Perform polynomial baseline correction.
+    data: real phased, positive-peak NMR data
+    order: int
+    region: binary list of regions where there are signals
+    """
+    
+    base = bl.polynomial.poly(data, None, order, weights = g)[0]
+    
+    if plot =='yes':
+        plt.plot(data)
+        plt.plot(np.array(g)*max(base))
+        plt.plot(base)
+    
+    return base
+
+def tsepsyche(data, dic):
+    """2D -> 1D TSE-PSYCHE Processing."""
+    
+    SW1 = dic['acqu2s']['SW_h']
+    dw2 = 1/( dic['acqus']['SW_h'] )
+    conc = 1/(SW1*dw2)
+    grp = get_group(dic['acqus'])
+    
+    # print('Grp. Delay = %.2f'%grp)
+
+    data = data[:,grp:(grp+int(conc))]
+    # contour(data.real)
+    # 1/0
+
+    fid = np.reshape(data, (data.shape[0]*data.shape[1],) )
+    return fid
+
+def simJ(M, J, sw, zf, r2):
+    """"Simulate a weak J-coupled spectrum
+    M: list of multiplicities
+    J: list of J couplings
+    sw: spectral window [Hz]
+    zf: numper of spectral points    
+    r2: T2 rate or line broadening
+    """
+    
+    dw = 1/sw
+    td = int(zf/4)
+    t = np.linspace(0, td*dw,td)
+    
+    if len(M) != len(J):
+        raise KeyError('Number of Spins is Inconsistent!')
+    
+    J1 = np.ones((td,))
+    for k in range(len(M)):
+        
+        J1 = np.multiply( np.cos((J[k]/2)*2*np.pi*t)**(M[k]-1) , J1) 
+    
+    ref = np.exp(-r2*t)*np.exp(-1j*0*t)*J1
+    spec = ( np.fft.fftshift(np.fft.fft(ref,zf)) ).real
+    
+    return spec / max(spec)
+
+
+# print('Finished!')

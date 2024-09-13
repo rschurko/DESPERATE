@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import sys
 import os
-sys.path.insert(0,'/Users/SRG/Documents/Adam/Python/SSNMR/functions')
+sys.path.insert(0,'C:/Github/SSNMR/functions')
 import numpy as np
 import functions as proc
 import simpson as simproc
@@ -12,7 +12,7 @@ import time
 start_time = time.time()
 
 cwd =  os.getcwd()
-os.chdir(cwd + '\\' + '204')
+os.chdir(cwd + '\\' + '205')
 fid = proc.loadfid2('ser',plot='no')
 #sys.exit()
 
