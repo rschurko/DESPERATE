@@ -11,8 +11,15 @@ from scipy.optimize import curve_fit
 import scipy.signal as sig
 import sys
 from scipy.signal import find_peaks
-import pybaselines as bl
+from scipy.optimize import nnls
+# import pybaselines as bl
 import wavelet_denoise as wave
+from scipy.optimize import brentq
+import scipy.io as sio # SciPy Version 1.11.2
+import scipy.sparse as sp # SciPy Version 1.11.2
+# import cvxpy as cp # CVXPY Version 1.4.1
+import time
+from scipy.sparse.linalg import svds # SciPy Version 1.11.
 
 #####Plotting Stuff
 mpl.rcParams['font.family'] = "arial"
@@ -898,33 +905,64 @@ def T2fit(tops,tau):
     tops = tops/np.amax(tops)
     tau = np.asarray(tau)
     plt.plot(tau,tops,'c*')
-    plt.xlabel('Time (ms)')
-    def f(x,a,T2):
-        return a*np.exp(-x/T2)
+    plt.xlabel('Time (s)')
+    def f(x,a,T2,c):
+        return a*np.exp(-x/T2)+c
     
-    popt, pcov = curve_fit(f, tau, tops, bounds= (0.0, [3., 1000.]) )
+    popt, pcov = curve_fit(f, tau, tops, bounds= (0.0, [3., 1000., 3.]) )
     print('a = %5.3f' % popt[0])
     print('T2 = %5.5f (s)' % popt[1])
     
-    rmse = np.sqrt(np.mean(np.square(f(tau, popt[0], popt[1])-tops)))
+    rmse = np.sqrt(np.mean(np.square(f(tau, popt[0], popt[1], popt[2])-tops)))
     print('RMSE = %5.4f' % rmse)
     
-    plt.plot(tau, f(tau, popt[0], popt[1]),'k',
-             label='fit a*exp[-t/T2]: a=%5.3f, T2=%5.3f (s), RMSE = %5.3f' % (popt[0],popt[1],rmse))        
+    plt.plot(tau, f(tau, popt[0], popt[1], popt[2]),'k',
+             label='fit a*exp[-t/T2]: a=%5.3f, T2=%5.3f (s), c=%5.3f, RMSE = %5.3f' % (popt[0],popt[1],popt[2],rmse))        
     plt.legend()
     
     print('sigma =',np.sqrt(np.diag(pcov)))
     return popt, np.sqrt(np.diag(pcov))
     
+def SRfit(tops,tau):
+    """TODO: write fcns and throw to fit
+    pass fcns 
+    pass bounds
+    somehow have arb. print of params in fcns, should be able to with list stuff
+    """
+        
+    tops = tops/np.amax(tops)
+    tau = np.asarray(tau)
+    plt.plot(tau,tops,'c*')
+    plt.xlabel('Time (s)')
+    def f(x,a,T2, c):
+        return a*(1 - np.exp(-x/T2) ) + c
+    
+    popt, pcov = curve_fit(f, tau, tops, bounds= (0.0, [3., 1000., 2.0]) )
+    print('a = %5.3f' % popt[0])
+    print('T1 = %5.5f (s)' % popt[1])
+    print('c = %5.5f (s)' % popt[2])
+    
+    rmse = np.sqrt(np.mean(np.square(f(tau, popt[0], popt[1], popt[2])-tops)))
+    print('RMSE = %5.4f' % rmse)
+    
+    plt.plot(tau, f(tau, popt[0], popt[1], popt[2]),'k',
+             label='fit a*(1-exp[-t/T1])+c: a=%5.3f, T1=%5.3f (s), c=%5.3f, RMSE = %5.3f' % (popt[0],popt[1],popt[2],rmse))        
+    plt.legend()
+    
+    print('sigma =',np.sqrt(np.diag(pcov)))
+    return popt, np.sqrt(np.diag(pcov))
+
+
 def snr(spec,j=0):
     """SNR measure in the frequency domain. Specturm needs to be phased for accurate measure"""
     
     spec = np.real(spec)
     #plt.plot(spec) #plot the spectrum to determine the index #'s of noise basline
     if j!=0:    
-        sn = np.max(spec) / np.std(spec[0:j])
+        sn = np.max(spec) / np.std(spec[j:-1])
     else:
-        sn = np.max(spec) / np.std(spec[0:int(0.1*len(spec))])
+        # sn = np.max(spec) / np.std(spec[0:int(0.1*len(spec))])
+        sn = np.max(spec) / np.std(spec[-int(0.1*len(spec)):-1]) #last 10p of data
     #print('SNR = %.3f' %sn)
     return sn
 
@@ -936,10 +974,10 @@ def PCA(matrix,r):
         matrix[:,j] = matrix[:,j] - np.mean(matrix[:,j])
     
     U, s, Vh = scipy.linalg.svd(matrix) #s is a vector of singular values, not a matrix
-    plt.figure(1)
-    plt.plot(np.abs(s))
+    # plt.figure(1)
+    # plt.plot(np.abs(s))
     # plt.yscale('log')
-    plt.ylabel('Singular Value Magnitude')
+    # plt.ylabel('Singular Value Magnitude')
     # plt.xlabel('Singular Value Entry')
     sigma = scipy.linalg.diagsvd(s, m, n) #rebuilds s as sigma matrix
     b = np.dot(sigma, Vh) ##replace with np.matmul or @ 
@@ -1084,6 +1122,64 @@ def plot2(spec, freq1, base, s, units = 'kHz', xi = None, xj = None, yi = None, 
     main_ax.xaxis.grid(True, zorder=0)
     main_ax.yaxis.grid(True, zorder=0)
     
+def plot2_inv(tau1, tau2, m, base, s, xi = None, xj = None, yi = None, yj = None):
+    """Nice 2D plotting with all axes controlled together. Specifically for ILT data
+    
+    tau1: vector used in inversion kernel
+    tau2: vector used in inversion kernel
+    m : inverted matrix
+    base : baseline contour %
+    
+    s : switch for skyline or max projection or both (0,1,2)
+    
+    xij, yij = limits for axes
+    """
+    
+    h = np.max(np.real(m))
+    lvls = np.linspace((base*1e-2)*h,h,30)
+    
+    # Set up the axes with gridspec 
+    fig = plt.figure(figsize=(12, 8)) # figure size w x h
+    grid = plt.GridSpec(4, 5, hspace=0.3, wspace=0.6) #4x5 grid of subplots #spacings for h and w
+    main_ax = fig.add_subplot(grid[1:, 1:4])
+    
+    yplot = fig.add_subplot(grid[1:, 0], sharey=main_ax)
+    xplot = fig.add_subplot(grid[0, 1:4], yticklabels=[], sharex=main_ax)
+    
+    main_ax.contour(tau1,tau2,m,lvls,cmap='jet')
+    
+    main_ax.set_xlabel('T$_{1}$ (s)')
+    main_ax.set_ylabel("T$_{2}$ (s)", labelpad=-450)
+    
+    # main_ax.invert_yaxis()
+    # main_ax.invert_xaxis()
+    # main_ax.tick_params(right = True,left = False,labelleft = False, 
+    #                     labelright=True, which = 'both')
+    main_ax.set_xlim(xi, xj) 
+    main_ax.set_ylim(yi, yj)
+    main_ax.minorticks_on()
+    main_ax.set_xscale('log')
+    main_ax.set_yscale('log')
+    
+    if s == 0:
+        xplot.plot(tau2,(np.sum(np.real(m),0)),'k') #sum
+        yplot.plot(np.real(np.sum(m,1)),tau1,'k')
+    elif s==1:
+        xplot.plot(tau2,(np.max(np.real(m),0)),'k') #skyline
+        yplot.plot(np.real(np.max(m,1)),tau1,'k') #Skyline
+    else:
+        xplot.plot(tau2,(np.max(np.real(m),0) / np.max(np.max(np.real(m),0)) )+0.5,'k') #both
+        xplot.plot(tau2,(np.sum(np.real(m),0) / np.max(np.sum(np.real(m),0))),'r') #
+        yplot.plot(np.real(np.max(m,1) / np.max(np.max(m,1)))+0.5,tau1,'k') 
+        yplot.plot(np.real(np.sum(m,1) / np.max(np.sum(m,1))),tau1,'r')
+    
+    # yplot.invert_xaxis()
+    yplot.invert_xaxis()
+    # s1.axis('off')
+    yplot.axis('off')
+    xplot.axis('off')
+    main_ax.xaxis.grid(True, zorder=0)
+    main_ax.yaxis.grid(True, zorder=0)
     
 def corr_mls(data, n, ref):
     """
@@ -1143,45 +1239,45 @@ def region_spec(data, thresh=1):
 
 # def poly()
 
-def bl_poly(data, order, g, plot='no'):
-    """
-    Perform polynomial baseline correction.
-    data: real phased, positive-peak NMR data
-    order: int
-    region: binary list of regions where there are signals
-    """
+# def bl_poly(data, order, g, plot='no'):
+#     """
+#     Perform polynomial baseline correction.
+#     data: real phased, positive-peak NMR data
+#     order: int
+#     region: binary list of regions where there are signals
+#     """
             
-    # np.where((l==0)|(l==1), l^1, l)
-    # l = np.ones((len(data),))
-    # l[l0] = 0
+#     # np.where((l==0)|(l==1), l^1, l)
+#     # l = np.ones((len(data),))
+#     # l[l0] = 0
     
-    base = bl.polynomial.poly(data, None, order, weights = g)[0]
+#     base = bl.polynomial.poly(data, None, order, weights = g)[0]
     
-    if plot == 'yes':
-        plt.plot(data)
-        plt.plot(np.array(g)*max(base))
-        plt.plot(base)
-    # 1/0
+#     if plot == 'yes':
+#         plt.plot(data)
+#         plt.plot(np.array(g)*max(base))
+#         plt.plot(base)
+#     # 1/0
     
-    return data - base
+#     return data - base
 
 
-def fit_poly(data, order, g, plot='no'):
-    """
-    Perform polynomial baseline correction.
-    data: real phased, positive-peak NMR data
-    order: int
-    region: binary list of regions where there are signals
-    """
+# def fit_poly(data, order, g, plot='no'):
+#     """
+#     Perform polynomial baseline correction.
+#     data: real phased, positive-peak NMR data
+#     order: int
+#     region: binary list of regions where there are signals
+#     """
     
-    base = bl.polynomial.poly(data, None, order, weights = g)[0]
+#     base = bl.polynomial.poly(data, None, order, weights = g)[0]
     
-    if plot =='yes':
-        plt.plot(data)
-        plt.plot(np.array(g)*max(base))
-        plt.plot(base)
+#     if plot =='yes':
+#         plt.plot(data)
+#         plt.plot(np.array(g)*max(base))
+#         plt.plot(base)
     
-    return base
+#     return base
 
 def tsepsyche(data, dic):
     """2D -> 1D TSE-PSYCHE Processing."""
@@ -1225,6 +1321,96 @@ def simJ(M, J, sw, zf, r2):
     spec = ( np.fft.fftshift(np.fft.fft(ref,zf)) ).real
     
     return spec / max(spec)
+
+def rmea1d(t,m,tau,lam):
+    """RMEA1D Performs 1D regularized multi-exponential analysis.
+    t: time points
+    m: observations
+    tau: kernel time vector
+    lam: lambda regularization
+    """
+    
+    A = np.exp(-np.outer(t, 1.0 / tau))
+    C = np.vstack((A, lam * np.eye(A.shape[1])))
+    p = np.hstack((m, np.zeros(A.shape[1])))
+    x = nnls(C,p)[0]
+    mc = A@x
+    f = x
+    return (f, mc)
+
+
+def Lcurve(t, m, tau, lam):
+    """
+    Populate an L-curve for rmea1d
+    """
+    n = []; rn = []
+    for i,j in enumerate(lam):
+        print(' %d , %.6f \n' % (i,j) )
+        f, mc = rmea1d(t, m, tau, j)
+        
+        n.append( np.linalg.norm(f) )
+        rn.append( np.linalg.norm(mc - m) )
+        
+    plt.plot(rn, n, 'c.--')
+    plt.xlabel('Residual Norm')
+    plt.ylabel('Solution Norm')
+    plt.xscale('log')
+    plt.yscale('log')
+
+
+def xcot_root(n, BT, rho, D):    # returns the nth root of x*cot(x) - b, starting with n = 0
+    if BT <= 1:
+        left = np.pi*n + 1e-12
+        right = np.pi*(n + 1) - 1e-12
+    else:
+        left = np.pi*(n + 1) + 1e-12
+        right = np.pi*(n + 2) - 1e-12
+    # return brentq(lambda x: x/np.tan(x) - b, left, right)
+    return brentq(lambda eps : -1*BT + ( (D*(( 1 - eps*(1/np.tan(eps)) )**2)) / ((rho**2)*(eps**2))), left, right)
+
+def pore_sph(T2, n=0, BT=0.99, rho=200*1e-9, D=2.2*1e-9):
+    
+    eps = xcot_root(n, BT, rho, D) #root of xcotx
+    # print(eps)
+    # sys.exit()
+    a = np.sqrt( T2*D*eps**2 )
+    
+    return a
+    
+def rmea2d(t1,t2,m,tau1,tau2,s1,s2,lambda_value):
+    '''RMEA2D Performs 2D regularized multi-exponential analysis on 
+    experimental data. 
+    Quantities m are measured at discrete time points (t1,t2). Amplitudes f
+    corresponding to time constants tau are computed using regularization
+    parameter lambda_value. The computed data at discrete time points are 
+    returned in mc.
+    Developer: Armin Afrough'''
+    K1 = np.exp(-np.outer(t1, 1.0 / tau1)) # kernel of the 1st dimension
+    K2 = np.exp(-np.outer(t2, 1.0 / tau2)) # kernel of the 2nd dimension
+    U1, SS1, V1T = svds(K1,k=s1); S1 = np.diag(SS1); V1 = V1T.T; # singular value decomposition, 1st dimension
+    U2, SS2, V2T = svds(K2,k=s2); S2 = np.diag(SS2); V2 = V2T.T; # singular value decomposition, 2st dimension
+    U=np.kron(U1,U2)
+    S=np.kron(S1,S2)
+    V=np.kron(V1,V2)
+    A=S@V.T # forward mapping matrix
+    b=U.T@m.T.flatten() # compressing the rhs vector
+    
+    # Setting the Sparse Problem
+    sA = sp.csr_matrix(A)     
+    sE = lambda_value * sp.eye(A.shape[1])
+    sC = sp.vstack([sA, sE])
+    sP=np.hstack((b, np.zeros(A.shape[1])))        
+    
+    # Define the Optimization Problem and Solving it
+    xc = cp.Variable(A.shape[1], nonneg=True)
+    objective = cp.Minimize(cp.norm(sC @ xc- sP, 2))
+    problem = cp.Problem(objective)
+    problem.solve(verbose=False, solver=cp.CLARABEL)
+    x=xc.value
+    f= np.reshape(x,[tau1.shape[0], tau2.shape[0]]).T
+    mc=V.T@x; mc=S@mc; mc=U@mc;
+    mc = np.reshape(mc,[m.shape[1], m.shape[0]]).T;
+    return (f, mc)
 
 
 # print('Finished!')
