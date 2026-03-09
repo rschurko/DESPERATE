@@ -17,7 +17,7 @@ import wavelet_denoise as wave
 from scipy.optimize import brentq
 import scipy.io as sio # SciPy Version 1.11.2
 import scipy.sparse as sp # SciPy Version 1.11.2
-# import cvxpy as cp # CVXPY Version 1.4.1
+import cvxpy as cp # CVXPY Version 1.4.1
 import time
 from scipy.sparse.linalg import svds # SciPy Version 1.11.
 
@@ -1279,6 +1279,21 @@ def region_spec(data, thresh=1):
     
 #     return base
 
+def fit_poly(x, data, order, g, plot='no'):
+    """
+    Perform polynomial baseline correction.
+    """
+    
+    # base = bl.polynomial.poly(data, None, order, weights = g)[0]
+    p = np.polyfit(x, data, deg=order, rcond=None, full=False, w=g, cov=False)
+    
+    if plot =='yes':
+        plt.plot(data)
+        plt.plot(np.array(g)*max(p))
+        plt.plot(p)
+    
+    return p
+
 def tsepsyche(data, dic):
     """2D -> 1D TSE-PSYCHE Processing."""
     
@@ -1351,12 +1366,35 @@ def Lcurve(t, m, tau, lam):
         n.append( np.linalg.norm(f) )
         rn.append( np.linalg.norm(mc - m) )
         
+    
+    # plt.subplot(121)
     plt.plot(rn, n, 'c.--')
     plt.xlabel('Residual Norm')
     plt.ylabel('Solution Norm')
     plt.xscale('log')
     plt.yscale('log')
+    plt.title('L Curve Optimization')
+    
+    # plt.subplot(122)
+    # plt.plot(abs(np.diff(n)), 'c.--')
+    # # plt.xlabel('Residual Norm')
+    # # plt.ylabel('Solution Norm')
+    # # plt.xscale('log')
+    # # plt.yscale('log')
+    # plt.title('L Curve Optimization')
 
+    # Labeling loop
+    for i,t in enumerate(n):
+        plt.text(rn[i], n[i], f'{lam[i]: .3f}', fontsize=12)
+    
+    g=open('LCurve_results.txt','w')
+    for j,t in enumerate(n):
+        g.write('%.2f, %.2f, %.2f \n' %(lam[j], n[j], rn[j]))
+    g.close()
+        
+    #Lcurve function should have a derivative finder
+    sys.exit()
+    
 
 def xcot_root(n, BT, rho, D):    # returns the nth root of x*cot(x) - b, starting with n = 0
     if BT <= 1:
